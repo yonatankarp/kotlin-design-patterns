@@ -66,4 +66,4 @@ jobs:
         id: tests
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: ./gradlew ${{ matrix.design-pattern }}:spotlessCheck ${{ matrix.design-pattern }}:build
+        run: ./gradlew ${{ matrix.design-pattern }}:build

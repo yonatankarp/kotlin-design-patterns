@@ -1,0 +1,16 @@
+[versions]
+kotlin = "1.9.10"
+junit = "5.9.1"
+
+[libraries]
+junit_bom = { module = "org.junit:junit-bom", version.ref = "junit" }
+junit = { module = "org.junit.jupiter:junit-jupiter" }
+
+[plugins]
+kotlin_jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+
+[bundles]
+
+tests_all = [
+    "junit"
+]

@@ -2,17 +2,30 @@
 kotlin = "1.9.10"
 junit = "5.9.1"
 spotless = "6.21.0"
+slf4j = "2.0.9"
+logback = "1.4.11"
+plantuml = "0.2.0"
 
 [libraries]
 junit_bom = { module = "org.junit:junit-bom", version.ref = "junit" }
 junit = { module = "org.junit.jupiter:junit-jupiter" }
+slf4j = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
+logback_classic = { module = "ch.qos.logback:logback-classic" , version.ref = "logback"}
+logback_core = { module = "ch.qos.logback:logback-core" , version.ref = "logback"}
 
 [plugins]
 kotlin_jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
+plantuml = { id = "io.github.redgreencoding.plantuml", version.ref = "plantuml" }
 
 [bundles]
 
 tests_all = [
     "junit"
+]
+
+log_all = [
+    "slf4j",
+    "logback_classic",
+    "logback_core"
 ]

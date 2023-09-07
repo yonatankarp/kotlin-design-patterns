@@ -58,7 +58,7 @@ jobs:
         env:
           DESIGN_PATTERN: ${{ matrix.design-pattern }}
         with:
-          config: './config/markdown-lint/rules.json'
+          config: './.github/config/markdown-lint/rules.json'
           args: '${DESIGN_PATTERN}/README.md'
 
       - name: Gradle Build

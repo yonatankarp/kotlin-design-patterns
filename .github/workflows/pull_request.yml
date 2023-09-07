@@ -41,6 +41,7 @@ jobs:
               - '${{ matrix.design-pattern }}/src/**'
               - '${{ matrix.design-pattern }}/build.gradle.kts'
               - 'build.gradle.kts'
+              - 'gradle/libs.versions.toml'
               - 'settings.gradle.kts'
               - 'gradle.properties'
             docs:

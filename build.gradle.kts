@@ -1,9 +1,11 @@
 plugins {
     alias(libs.plugins.spotless) apply true
+    alias(libs.plugins.plantuml) apply true
 }
 
 allprojects {
     apply(plugin = "com.diffplug.spotless")
+    apply(plugin = "io.github.redgreencoding.plantuml")
 
     repositories {
         mavenLocal()
@@ -13,7 +15,7 @@ allprojects {
     spotless {
         kotlin {
             target(
-                fileTree(project.rootDir) {
+                fileTree("${project.rootDir}/$name") {
                     include("**/*.kt")
                 },
             )
@@ -46,5 +48,30 @@ allprojects {
         }
     }
 
-    tasks.findByName("spotlessKotlinGradle")?.dependsOn("spotlessKotlin")
+    plantuml {
+        options {
+            outputDir = project.file("etc")
+            format = "svg"
+        }
+
+        diagrams {
+            create(project.name) {
+                sourceFile =
+                    project.file("$projectDir/etc/${project.name}.urm.puml")
+            }
+        }
+    }
+
+    val tasksDependencies = mapOf(
+        "spotlessKotlin" to listOf("spotlessKotlinGradle", "compileKotlin"),
+        "spotlessKotlinGradle" to listOf("compileKotlin"),
+    )
+
+    tasks.named("spotlessKotlin") {
+        mustRunAfter("compileKotlin")
+    }
+
+    tasksDependencies.forEach { (task, dependOn) ->
+        dependOn.forEach { tasks.findByName(task)!!.dependsOn(it) }
+    }
 }

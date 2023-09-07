@@ -1,0 +1,38 @@
+@startuml
+package com.yonatankarp.singleton {
+
+  enum EnumIvoryTower {
+    + instance {static}
+    + toString() : String
+    + valueOf(name : String) : EnumIvoryTower {static}
+    + values() : EnumIvoryTower[] {static}
+  }
+
+  class InitializingOnDemandHolderIdiom {
+    - InitializingOnDemandHolderIdiom()
+    + instance : InitializingOnDemandHolderIdiom {static}
+  }
+
+  class IvoryTower {
+    + instance : IvoryTower {static}
+    - IvoryTower()
+  }
+
+  class ThreadSafeDoubleCheckLocking {
+    - flag : boolean {static}
+    - instance : ThreadSafeDoubleCheckLocking {static}
+    - ThreadSafeDoubleCheckLocking()
+    + getInstance() : ThreadSafeDoubleCheckLocking {static}
+  }
+
+  class ThreadSafeLazyLoadedIvoryTower {
+    - instance : ThreadSafeLazyLoadedIvoryTower {static}
+    - ThreadSafeLazyLoadedIvoryTower()
+    + getInstance() : ThreadSafeLazyLoadedIvoryTower {static}
+  }
+}
+IvoryTower -->  "-instance" IvoryTower
+InitializingOnDemandHolderIdiom  --> "-instance" InitializingOnDemandHolderIdiom
+ThreadSafeDoubleCheckLocking -->  "-instance" ThreadSafeDoubleCheckLocking
+ThreadSafeLazyLoadedIvoryTower -->  "-instance" ThreadSafeLazyLoadedIvoryTower
+@enduml

@@ -1,11 +1,10 @@
 plugins {
-    id("java")
-    kotlin("jvm") version "1.9.10"
+    alias(libs.plugins.kotlin.jvm) apply true
 }
 
 dependencies {
-    testImplementation(platform("org.junit:junit-bom:5.9.1"))
-    testImplementation("org.junit.jupiter:junit-jupiter")
+    testImplementation(platform(libs.junit.bom))
+    testImplementation(libs.bundles.tests.all)
 }
 
 tasks.test {

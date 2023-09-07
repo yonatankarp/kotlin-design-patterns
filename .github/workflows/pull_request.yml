@@ -19,6 +19,7 @@ jobs:
     steps:
 
       - name: Git Checkout
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 

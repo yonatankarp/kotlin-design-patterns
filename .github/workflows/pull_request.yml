@@ -53,7 +53,7 @@ jobs:
         env:
           DESIGN_PATTERN: ${{ matrix.design-pattern }}
         with:
-          config: './.github/config/markdown-lint/rules.json'
+          config: './config/markdown-lint/rules.json'
           args: '${DESIGN_PATTERN}/README.md'
 
       - name: Gradle Build
@@ -61,7 +61,7 @@ jobs:
         id: tests
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: ./gradlew ${{ matrix.design-pattern }}:build
+        run: ./gradlew ${{ matrix.design-pattern }}:spotlessCheck ${{ matrix.design-pattern }}:build
 
   ci-check:
     if: always()

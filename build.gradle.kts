@@ -4,6 +4,7 @@ plugins {
 }
 
 allprojects {
+    apply(plugin = "jacoco-report-aggregation")
     apply(plugin = "com.diffplug.spotless")
     apply(plugin = "io.github.redgreencoding.plantuml")
 
@@ -60,6 +61,10 @@ allprojects {
                     project.file("$projectDir/etc/${project.name}.urm.puml")
             }
         }
+    }
+
+    tasks.named("check") {
+        tasks.getByName("testCodeCoverageReport").dependsOn(JacocoReport::class)
     }
 
     val tasksDependencies = mapOf(

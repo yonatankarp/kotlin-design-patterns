@@ -3,8 +3,6 @@ name: ci
 on:
   pull_request:
     types: [ opened, synchronize, reopened, ready_for_review ]
-  pull_request_target:
-    types: [ opened, synchronize, reopened, ready_for_review ]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -21,10 +19,6 @@ jobs:
     steps:
 
       - name: Git Checkout
-        if: github.event_name != 'pull_request_target'
-        uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac
-        # Do not trigger a checkout when opening PRs from a fork (helps avoid
-        # "pwnn request". See https://docs.github.com/en/actions/reference/events-that-trigger-workflows#pull_request_target )
         with:
           fetch-depth: 0
 
@@ -67,3 +61,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: ./gradlew ${{ matrix.design-pattern }}:build
+
+  ci-check:
+    if: always()
+    needs:
+      - ci
+    runs-on: ubuntu-latest
+    steps:
+      - name: Decide whether all CI jobs are succeeded or failed
+        uses: re-actors/alls-green@release/v1
+        with:
+          jobs: ${{ toJSON(needs) }}

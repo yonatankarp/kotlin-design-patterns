@@ -6,3 +6,4 @@
  */
 
 rootProject.name = "kotlin-design-patterns"
+include("singleton")

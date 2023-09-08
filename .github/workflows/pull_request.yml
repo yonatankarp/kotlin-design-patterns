@@ -63,9 +63,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ./gradlew ${{ matrix.design-pattern }}:spotlessCheck \
-              ${{ matrix.design-pattern }}:build \
-          
+          ./gradlew ${{ matrix.design-pattern }}:spotlessCheck ${{ matrix.design-pattern }}:build 
 
       - name: Code Coverage
         if: steps.changes.outputs.source_code == 'true'
@@ -78,7 +76,7 @@ jobs:
           chmod +x ./cc-test-reporter
 
           ./cc-test-reporter format-coverage \
-            "${{ matrix.design-pattern }}/build/reports/jacoco/test/jacocoTestReport.xml" \
+            "./${{ matrix.design-pattern }}/build/reports/jacoco/test/jacocoTestReport.xml" \
             --input-type jacoco \
             --output "codeclimate.${{ matrix.design-pattern }}.json"
         env:

@@ -62,7 +62,33 @@ jobs:
         id: tests
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: ./gradlew ${{ matrix.design-pattern }}:spotlessCheck ${{ matrix.design-pattern }}:build
+        run: |
+          ./gradlew ${{ matrix.design-pattern }}:spotlessCheck ${{ matrix.design-pattern }}:build 
+
+      - name: Code Coverage
+        if: steps.changes.outputs.source_code == 'true'
+        id: code-climate
+        run: |
+          curl --silent -L \
+            https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 \
+            > ./cc-test-reporter
+
+          chmod +x ./cc-test-reporter
+
+          ./cc-test-reporter format-coverage \
+            "./${{ matrix.design-pattern }}/build/reports/jacoco/test/jacocoTestReport.xml" \
+            --input-type jacoco \
+            --output "codeclimate.${{ matrix.design-pattern }}.json"
+        env:
+          JACOCO_SOURCE_PATH: "${{ matrix.design-pattern }}/src/main/kotlin"
+
+      - name: Upload Code Coverage artifacts
+        if: steps.changes.outputs.source_code == 'true'
+        uses: actions/upload-artifact@v3
+        with:
+          name: code-coverage-report
+          path: |
+            codeclimate.${{ matrix.design-pattern }}.json        
 
   ci-check:
     if: always()

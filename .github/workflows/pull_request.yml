@@ -82,6 +82,9 @@ jobs:
         env:
           JACOCO_SOURCE_PATH: "${{ matrix.design-pattern }}/src/main/kotlin"
 
+      - name: Code Climate Report
+        run: cat codeclimate.*.json
+
       - name: Upload Code Coverage artifacts
         if: steps.changes.outputs.source_code == 'true'
         uses: actions/upload-artifact@v3

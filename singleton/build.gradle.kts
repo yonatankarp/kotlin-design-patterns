@@ -1,4 +1,5 @@
 plugins {
+    jacoco
     alias(libs.plugins.kotlin.jvm) apply true
 }
 
@@ -10,4 +11,14 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+    finalizedBy(tasks.jacocoTestReport)
+}
+
+tasks {
+    jacocoTestReport {
+        reports {
+            xml.required.set(true)
+            html.required.set(true)
+        }
+    }
 }

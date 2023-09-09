@@ -12,10 +12,31 @@ jobs:
   ci:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         design-pattern: [
+          "abstract-factory",
+          "adapter",
+          "bridge",
+          "builder",
+          "chain-of-responsibility",
+          "command",
+          "composite",
+          "decorator",
+          "facade",
+          "factory-method",
+          "flyweight",
+          "iterator",
+          "mediator",
+          "observer",
+          "prototype",
+          "proxy",
           "singleton",
-          "factory-method"
+          "state",
+          "static-factory-method",
+          "strategy",
+          "template-method",
+          "visitor",
         ]
     steps:
 

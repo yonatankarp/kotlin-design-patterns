@@ -1,0 +1,7 @@
+@startuml
+package com.yonatankarp.factory.method {
+  class App {
+    + main(args : String[]) {static}
+  }
+}
+@enduml

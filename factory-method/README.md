@@ -93,7 +93,7 @@ The elf blacksmith manufactured axe
 
 ## Class diagram
 
-![Factory Method pattern class diagram](etc/factory-method.svg)
+![Factory Method pattern class diagram](etc/factory-method.svg "Factory Method pattern class diagram")
 
 ## Applicability
 

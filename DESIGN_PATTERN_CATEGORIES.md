@@ -31,3 +31,4 @@
 - [Visitor](./visitor/README.md)
 - [Template Method](./template-method/README.md)
 - [Observer](./observer/README.md)
+- [Interpreter](./interpreter/README.md)

@@ -43,6 +43,8 @@ of the following approaches
 Hopefully, you find the object-oriented solutions presented on this site useful
 in your architectures and have as much fun learning them as we had while developing them.
 
+You can find all patterns grouped by their category [here](DESIGN_PATTERN_CATEGORIES.md).
+
 # License
 
 This project is licensed under the terms of the MIT license.

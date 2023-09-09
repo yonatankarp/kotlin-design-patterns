@@ -13,10 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        design-pattern: [
-          "singleton",
-          "factory-method"
-        ]
+        include:
+          - <<: *{{ matrix-template.yml }}
     steps:
 
       - name: Git Checkout

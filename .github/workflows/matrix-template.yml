@@ -1,0 +1,6 @@
+strategy:
+  matrix:
+    design-pattern: [
+      "singleton",
+      "factory-method"
+    ]

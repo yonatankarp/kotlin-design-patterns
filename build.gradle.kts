@@ -57,7 +57,7 @@ allprojects {
         diagrams {
             create(project.name) {
                 sourceFile =
-                    project.file("$projectDir/etc/${project.name}.urm.puml")
+                    project.file("$projectDir/etc/${project.name}.puml")
             }
         }
     }

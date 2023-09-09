@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="124px" preserveAspectRatio="none" style="width:282px;height:124px;background:#FFFFFF;" version="1.1" viewBox="0 0 282 124" width="282px" zoomAndPan="magnify"><defs><filter height="300%" id="fyu1adzjax36d" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[0d7e978513eb7803508f9fdf97291ab3]
+cluster com.yonatankarp.factory.method--><polygon fill="#FFFFFF" filter="url(#fyu1adzjax36d)" points="16,6,255,6,262,28.4883,265,28.4883,265,117.96,16,117.96,16,6" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="16" x2="262" y1="28.4883" y2="28.4883"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="233" x="20" y="21.5352">com.yonatankarp.factory.method</text><!--MD5=[335f4d9be48430461c68bf6d6fdba145]
+class App--><rect codeLine="2" fill="#FEFECE" filter="url(#fyu1adzjax36d)" height="60.9551" id="App" style="stroke:#A80036;stroke-width:1.5;" width="133" x="73.5" y="41"/><ellipse cx="123.75" cy="57" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M126.2231,63.1431 Q125.6421,63.4419 125.0029,63.5913 Q124.3638,63.7407 123.6582,63.7407 Q121.1514,63.7407 119.8315,62.0889 Q118.5117,60.437 118.5117,57.3159 Q118.5117,54.1865 119.8315,52.5347 Q121.1514,50.8828 123.6582,50.8828 Q124.3638,50.8828 125.0112,51.0322 Q125.6587,51.1816 126.2231,51.4805 L126.2231,54.2031 Q125.5923,53.6221 124.9988,53.3523 Q124.4053,53.0825 123.7744,53.0825 Q122.4297,53.0825 121.7449,54.1492 Q121.0601,55.2158 121.0601,57.3159 Q121.0601,59.4077 121.7449,60.4744 Q122.4297,61.541 123.7744,61.541 Q124.4053,61.541 124.9988,61.2712 Q125.5923,61.0015 126.2231,60.4204 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="24" x="144.25" y="61.5352">App</text><line style="stroke:#A80036;stroke-width:1.5;" x1="74.5" x2="205.5" y1="73" y2="73"/><line style="stroke:#A80036;stroke-width:1.5;" x1="74.5" x2="205.5" y1="81" y2="81"/><ellipse cx="84.5" cy="92" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" text-decoration="underline" textLength="107" x="93.5" y="95.6348">main(args : String[])</text><!--MD5=[7ea86c4e91eae68f193754b025e90559]
+@startuml
+package com.yonatankarp.factory.method {
+  class App {
+    + main(args : String[]) {static}
+  }
+}
+@enduml
+
+PlantUML version 1.2021.16(Wed Dec 08 18:25:22 CET 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: DE
+--></g></svg>

@@ -1,0 +1,98 @@
+name: markdown-linter
+
+on:
+  pull_request:
+    types: [ opened, synchronize, reopened, ready_for_review ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  markdown-linter:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        design-pattern: [
+          "abstract-factory",
+          "adapter",
+          "bridge",
+          "builder",
+          "chain-of-responsibility",
+          "command",
+          "composite",
+          "decorator",
+          "facade",
+          "factory-method",
+          "flyweight",
+          "iterator",
+          "mediator",
+          "observer",
+          "prototype",
+          "proxy",
+          "singleton",
+          "state",
+          "static-factory-method",
+          "strategy",
+          "template-method",
+          "visitor",
+        ]
+    steps:
+
+      - name: Git Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check for Changes
+        uses: dorny/paths-filter@v2.11.1
+        id: changes
+        with:
+          filters: |
+            docs:
+              - '${{ matrix.design-pattern }}/README.md'
+
+      - name: Lint README
+        if: steps.changes.outputs.docs == 'true'
+        uses: avto-dev/markdown-lint@v1
+        env:
+          DESIGN_PATTERN: ${{ matrix.design-pattern }}
+        with:
+          config: './config/markdown-lint/rules.json'
+          args: '${DESIGN_PATTERN}/README.md'
+
+  main-markdown-linter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check for Changes
+        uses: dorny/paths-filter@v2.11.1
+        id: changes
+        with:
+          filters: |
+            docs:
+              - 'README.md'
+
+      - name: Lint README
+        if: steps.changes.outputs.docs == 'true'
+        uses: avto-dev/markdown-lint@v1
+        with:
+          config: './config/markdown-lint/rules.json'
+          args: 'README.md'
+
+  markdown-linter-check:
+    if: always()
+    needs:
+      - markdown-linter
+      - main-markdown-linter
+    runs-on: ubuntu-latest
+    steps:
+      - name: Decide whether all Markdown linter jobs are succeeded or failed
+        uses: re-actors/alls-green@release/v1
+        with:
+          jobs: ${{ toJSON(needs) }}

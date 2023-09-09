@@ -59,25 +59,25 @@ jobs:
         with:
           filters: |
             source_code:
-              - '.github/workflows/**'
-              - '${{ matrix.design-pattern }}/src/**'
               - '${{ matrix.design-pattern }}/build.gradle.kts'
+              - '${{ matrix.design-pattern }}/src/**'
+              - '.github/workflows/**'
               - 'build.gradle.kts'
               - 'gradle/libs.versions.toml'
               - 'settings.gradle.kts'
-              - 'gradle.properties'
-            docs:
-              - '${{ matrix.design-pattern }}/README.md'
-              - README.md
+            diagrams:
+              - '${{ matrix.design-pattern }}/etc/*.puml'
 
-      - name: Lint README
-        if: steps.changes.outputs.docs == 'true'
-        uses: avto-dev/markdown-lint@v1
-        env:
-          DESIGN_PATTERN: ${{ matrix.design-pattern }}
-        with:
-          config: './config/markdown-lint/rules.json'
-          args: '${DESIGN_PATTERN}/README.md'
+      - name: Generate PlantUML Diagram
+        if: steps.changes.outputs.diagrams == 'true'
+        run: |
+          ./gradlew ${{ matrix.design-pattern }}:plantumlAll
+          
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git add .
+          git commit -m "Update PlantUML diagrams for ${{ matrix.design-pattern }}"
+          git push
 
       - name: Gradle Build
         if: steps.changes.outputs.source_code == 'true'

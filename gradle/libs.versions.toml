@@ -1,4 +1,5 @@
 [versions]
+coroutines = "1.7.3"
 kotlin = "1.9.10"
 junit = "5.10.0"
 spotless = "6.21.0"
@@ -7,6 +8,9 @@ logback = "1.4.11"
 plantuml = "0.2.0"
 
 [libraries]
+kotlin_core = { module = "org.jetbrains.kotlin:kotlin-stdlib" }
+kotlinx_coroutines_core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+kotlinx_coroutines_test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 junit_bom = { module = "org.junit:junit-bom", version.ref = "junit" }
 junit = { module = "org.junit.jupiter:junit-jupiter" }
 slf4j = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
@@ -20,12 +24,18 @@ plantuml = { id = "io.github.redgreencoding.plantuml", version.ref = "plantuml" 
 
 [bundles]
 
-tests_all = [
-    "junit"
+kotlin_all = [
+    "kotlin_core",
+    "kotlinx_coroutines_core",
+    "kotlinx_coroutines_test"
 ]
 
 log_all = [
     "slf4j",
     "logback_classic",
     "logback_core"
+]
+
+tests_all = [
+    "junit"
 ]

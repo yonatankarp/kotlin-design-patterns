@@ -32,44 +32,45 @@ Wikipedia says
 > that restricts the instantiation of a class to one object. This is useful
 > when exactly one object is needed to coordinate actions across the system.
 
-**Programmatic Example**
-
-Joshua Bloch, Effective Java 2nd Edition p.18
-
-> A single-element enum type is the best way to implement a singleton
+Kotlin makes it externally easy to create singletons by introducing the language
+keyword `object`. By using this keyword we will get from the compiler an 
+implementation of the Singleton pattern, that contains all of our requirements.
 
 ```kotlin
-enum class EnumIvoryTower {
-  INSTANCE;
+data object IvoryTower
+```
+
+One of the key differences between a `class` and a `object` is that the latter
+does not allow constructor arguments. If your implementation needs
+initialization for your Singleton (e.g. to load data) you can use an `init`
+block.
+
+```kotlin
+data object IvoryTower {
+  init {
+    logger.info("Initializing Ivory Tower...")
+  }
 }
 ```
+
+Note that if the Singleton object is never invoked, it won't run its
+initialization block at all. This is called lazy initialization.
 
 Then in order to use:
 
 ```kotlin
-val enumIvoryTower1 = EnumIvoryTower.INSTANCE
-val enumIvoryTower2 = EnumIvoryTower.INSTANCE
-logger.info("enumIvoryTower1={}", enumIvoryTower1)
-logger.info("enumIvoryTower2={}", enumIvoryTower2)
+val ivoryTower1 = IvoryTower
+val ivoryTower2 = IvoryTower
+logger.info("ivoryTower1={}", ivoryTower1)
+logger.info("ivoryTower2={}", ivoryTower2)
 ```
 
-The console output
+The output on console:
 
-```
-enumIvoryTower1=com.yonatankarp.singleton.EnumIvoryTower@1629911510
-enumIvoryTower2=com.yonatankarp.singleton.EnumIvoryTower@1629911510
-```
-
-However, Kotlin provider a language feature to declare a class as a singleton.
-The keyword `object` is used, which will guarantee that only one instance of the
-class will ever be created.
-
-We can add the `instance` field to make it more Java-like.
-
-```kotlin
-object IvoryTower {
-  val instance: IvoryTower = this
-}
+```console
+09:21:31.107 [main] INFO Singlton -- Initializing Ivory Tower...
+09:21:31.109 [main] INFO Singlton -- ivoryTower1=com.yonatankarp.singleton.IvoryTower@1207938418
+09:21:31.111 [main] INFO Singlton -- ivoryTower2=com.yonatankarp.singleton.IvoryTower@1207938418
 ```
 
 ## Class diagram
@@ -110,7 +111,5 @@ Some typical use cases for the Singleton
 
 ## Credits
 
-* [Design Patterns: Elements of Reusable Object-Oriented Software](https://www.amazon.com/gp/product/0201633612/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0201633612&linkCode=as2&tag=javadesignpat-20&linkId=675d49790ce11db99d90bde47f1aeb59)
-* [Effective Java](https://www.amazon.com/gp/product/0134685997/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0134685997&linkCode=as2&tag=javadesignpat-20&linkId=4e349f4b3ff8c50123f8147c828e53eb)
-* [Head First Design Patterns: A Brain-Friendly Guide](https://www.amazon.com/gp/product/0596007124/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596007124&linkCode=as2&tag=javadesignpat-20&linkId=6b8b6eea86021af6c8e3cd3fc382cb5b)
-* [Refactoring to Patterns](https://www.amazon.com/gp/product/0321213351/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0321213351&linkCode=as2&tag=javadesignpat-20&linkId=2a76fcb387234bc71b1c61150b3cc3a7)
+* [Kotlin Design Patterns and Best Practices](https://www.amazon.de/Kotlin-Design-Patterns-Best-Practices/dp/1801815720/ref=sr_1_1?keywords=kotlin+design+patterns+and+best+practices&qid=1694244553&sprefix=kotlin+design%2Caps%2C101&sr=8-1)
+

@@ -5,6 +5,10 @@ package com.yonatankarp.singleton
  *
  * @author yonatankarp
  */
-object IvoryTower {
-    val instance: IvoryTower = this
+data object IvoryTower {
+    init {
+        logger.info("Initializing Ivory Tower...")
+    }
+
+    override fun toString() = this::class.java.name + "@" + hashCode()
 }

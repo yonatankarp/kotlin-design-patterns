@@ -32,6 +32,8 @@ Wikipedia says
 > that restricts the instantiation of a class to one object. This is useful
 > when exactly one object is needed to coordinate actions across the system.
 
+**Programmatic Example**
+
 Kotlin makes it externally easy to create singletons by introducing the language
 keyword `object`. By using this keyword we will get from the compiler an 
 implementation of the Singleton pattern, that contains all of our requirements.

@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.spotless) apply true
     alias(libs.plugins.plantuml) apply true
+    alias(libs.plugins.kotlin.jvm) apply true
 }
 
 allprojects {

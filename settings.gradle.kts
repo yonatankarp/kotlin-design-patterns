@@ -2,7 +2,7 @@ rootProject.name = "kotlin-design-patterns"
 include(
     "singleton",
     "factory-method",
-    "static-factory-method",
+    "factory",
     "abstract-factory",
     "builder",
     "prototype",

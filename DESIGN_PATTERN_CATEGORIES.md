@@ -4,7 +4,7 @@
 
 - [Singleton](./singleton/README.md)
 - [Factory Method](./factory-method/README.md)
-- [Static Factory Method](./static-factory-method/README.md)
+- [Factory](./factory/README.md)
 - [Abstract Factory](./abstract-factory/README.md)
 - [Builder](./builder/README.md)
 - [Prototype](./prototype/README.md)
@@ -31,4 +31,3 @@
 - [Visitor](./visitor/README.md)
 - [Template Method](./template-method/README.md)
 - [Observer](./observer/README.md)
-- [Interpreter](./interpreter/README.md)

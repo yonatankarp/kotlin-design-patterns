@@ -63,10 +63,11 @@ allprojects {
         }
     }
 
-    val tasksDependencies = mapOf(
-        "spotlessKotlin" to listOf("spotlessKotlinGradle", "compileKotlin"),
-        "spotlessKotlinGradle" to listOf("compileKotlin"),
-    )
+    val tasksDependencies =
+        mapOf(
+            "spotlessKotlin" to listOf("spotlessKotlinGradle", "compileKotlin"),
+            "spotlessKotlinGradle" to listOf("compileKotlin"),
+        )
 
     tasks.named("spotlessKotlin") {
         mustRunAfter("compileKotlin")

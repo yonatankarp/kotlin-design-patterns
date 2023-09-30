@@ -1,7 +1,89 @@
 @startuml
-package com.yonatankarp.factory.method {
+package com.yonatankarp.prototype {
   class App {
-    + main(args : String[]) {static}
+    - logger : Logger {static}
+    + main() {static}
+  }
+  abstract class Beast {
+    + Beast()
+    + clone() : Beast {abstract}
+    + equals(obj : Object) : boolean
+  }
+  class ElfBeast {
+    - helpType : String
+    + ElfBeast(helpType : String)
+    + clone() : ElfBeast
+    + equals(obj : Object) : boolean
+    + toString() : String
+  }
+  class ElfMage {
+    - helpType : String
+    + ElfMage(helpType : String)
+    + clone() : ElfMage
+    + equals(obj : Object) : boolean
+    + toString() : String
+  }
+  class ElfWarlord {
+    - helpType : String
+    + ElfWarlord(helpType : String)
+    + clone() : ElfWarlord
+    + equals(obj : Object) : boolean
+    + toString() : String
+  }
+  class HeroFactory {
+    - beast : Beast
+    - mage : Mage
+    - warlord : Warlord
+    + HeroFactoryImpl(mage : Mage, warlord : Warlord, beast : Beast)
+    + createBeast() : Beast
+    + createMage() : Mage
+    + createWarlord() : Warlord
+  }
+  abstract class Mage {
+    + Mage()
+    + clone() : Mage {abstract}
+    + equals(obj : Object) : boolean
+  }
+  class OrcBeast {
+    - weapon : String
+    + OrcBeast(weapon : String)
+    + clone() : OrcBeast
+    + equals(obj : Object) : boolean
+    + toString() : String
+  }
+  class OrcMage {
+    - weapon : String
+    + OrcMage(weapon : String)
+    + clone() : OrcMage
+    + equals(obj : Object) : boolean
+    + toString() : String
+  }
+  class OrcWarlord {
+    - weapon : String
+    + OrcWarlord(weapon : String)
+    + clone() : OrcWarlord
+    + equals(obj : Object) : boolean
+    + toString() : String
+  }
+  interface Prototype<T> {
+    + clone() : T {abstract}
+  }
+  abstract class Warlord {
+    + Warlord()
+    + clone() : Warlord {abstract}
+    + equals(obj : Object) : boolean
   }
 }
+HeroFactory -->  "-beast" Beast
+HeroFactory -->  "-warlord" Warlord
+HeroFactory -->  "-mage" Mage
+Beast ..|> Prototype
+ElfBeast --|> Beast
+ElfMage --|> Mage
+ElfWarlord --|> Warlord
+Mage ..|> Prototype
+OrcBeast --|> Beast
+OrcMage --|> Mage
+OrcWarlord --|> Warlord
+Warlord ..|> Prototype
 @enduml

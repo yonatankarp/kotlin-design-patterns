@@ -1,7 +1,32 @@
 @startuml
-package com.yonatankarp.factory.method {
+package com.yonatankarp.decorator {
   class App {
+    - logger : Logger {static}
+    + App()
     + main(args : String[]) {static}
   }
+  class ClubbedTroll {
+    - logger : Logger {static}
+    - decorated : Troll
+    + ClubbedTroll(decorated : Troll)
+    + attack()
+    + fleeBattle()
+    + attackPower : int
+  }
+  class SimpleTroll {
+    - logger : Logger {static}
+    + SimpleTroll()
+    + attack()
+    + fleeBattle()
+    + attackPower : int
+  }
+  interface Troll {
+    + attack() {abstract}
+    + fleeBattle() {abstract}
+    + attackPower : int {abstract}
+  }
 }
+ClubbedTroll -->  "-decorated" Troll
+ClubbedTroll ..|> Troll
+SimpleTroll ..|> Troll
 @enduml

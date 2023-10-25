@@ -1,5 +1,5 @@
 @startuml
-package com.iluwatar.factory {
+package com.yonatankarp.factory {
   class App {
     - LOGGER : Logger {static}
     + App()

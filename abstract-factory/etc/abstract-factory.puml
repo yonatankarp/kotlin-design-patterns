@@ -1,5 +1,5 @@
 @startuml
-package com.iluwatar.abstractfactory {
+package com.yonatankarp.abstractfactory {
   class App {
     - LOGGER : Logger {static}
     - army : Army

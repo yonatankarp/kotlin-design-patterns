@@ -19,7 +19,7 @@ import org.slf4j.LoggerFactory
  *
  * @author: yonatankarp
  */
-val logger: Logger = LoggerFactory.getLogger("Singlton")
+val logger: Logger = LoggerFactory.getLogger("com.yonatankarp.singleton")
 
 fun main() {
     val ivoryTower1 = IvoryTower

@@ -4,7 +4,7 @@ import com.yonatankarp.abstractfactory.Kingdom.FactoryMaker.KingdomType
 import com.yonatankarp.abstractfactory.Kingdom.FactoryMaker.makeFactory
 import org.slf4j.LoggerFactory
 
-private val logger = LoggerFactory.getLogger("Abstract Factory")
+private val logger = LoggerFactory.getLogger("com.yonatankarp.abstractfactory")
 
 fun main() {
     logger.info("elf kingdom")

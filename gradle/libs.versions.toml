@@ -1,6 +1,7 @@
 [versions]
 coroutines = "1.7.3"
 junit = "5.10.0"
+jvm = "17"
 kotlin = "1.9.10"
 logback = "1.4.11"
 mockk = "1.13.8"

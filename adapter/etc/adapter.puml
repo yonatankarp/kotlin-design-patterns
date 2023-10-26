@@ -1,7 +1,29 @@
 @startuml
-package com.yonatankarp.factory.method {
+package com.yonatankarp.adapter {
   class App {
+    - App()
     + main(args : String[]) {static}
   }
+  class Captain {
+    - rowingBoat : RowingBoat
+    + Captain(boat : RowingBoat)
+    ~ row()
+  }
+  ~class FishingBoat {
+    - logger : Logger {static}
+    ~ FishingBoat()
+    ~ sail()
+  }
+  class FishingBoatAdapter {
+    - boat : FishingBoat
+    + row()
+  }
+  interface RowingBoat {
+    + row() {abstract}
+  }
 }
+FishingBoatAdapter -->  "-boat" FishingBoat
+Captain -->  "-rowingBoat" RowingBoat
+FishingBoatAdapter ..|> RowingBoat
+FishingBoat -down-> RowingBoat : toRowingBoat()
 @enduml

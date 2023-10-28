@@ -1,5 +1,7 @@
 package com.yonatankarp.adapter
 
+import org.slf4j.LoggerFactory
+
 /**
  * An adapter helps two incompatible interfaces to work together. This is the
  * real world definition for an adapter. Interfaces may be incompatible but the
@@ -23,6 +25,12 @@ package com.yonatankarp.adapter
  * {@link FishingBoat}. The captain needs a rowing boat which he can operate.
  * The spec is in {@link RowingBoat}. We will use the Adapter pattern to reuse
  * {@link FishingBoat}.
+ */
+
+internal val logger = LoggerFactory.getLogger("com.yonatankarp.adapter")
+
+/**
+ * Program main entry point.
  */
 fun main() {
     // The captain can only operate rowing boats but with adapter he is able to

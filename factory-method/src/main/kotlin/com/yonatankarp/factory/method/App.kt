@@ -3,7 +3,7 @@ package com.yonatankarp.factory.method
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
-private val logger: Logger = LoggerFactory.getLogger("com.yonatankarp.factory.method")
+internal val logger: Logger = LoggerFactory.getLogger("com.yonatankarp.factory.method")
 
 /**
  * Program entry point.

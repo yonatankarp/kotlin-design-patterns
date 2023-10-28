@@ -18,7 +18,6 @@ class SimpleTroll : Troll {
 
     companion object {
         private val logger = LoggerFactory.getLogger(SimpleTroll::class.java)
-
         private const val ATTACK_POWER = 10
     }
 }

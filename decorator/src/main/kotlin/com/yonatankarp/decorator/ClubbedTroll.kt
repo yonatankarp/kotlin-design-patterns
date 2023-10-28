@@ -20,7 +20,6 @@ class ClubbedTroll(private val decorated: Troll) : Troll {
 
     companion object {
         private val logger = LoggerFactory.getLogger(ClubbedTroll::class.java)
-
         private const val CLUB_ATTACK_POWER = 10
     }
 }

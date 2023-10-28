@@ -4,8 +4,11 @@ import com.yonatankarp.abstractfactory.Kingdom.FactoryMaker.KingdomType
 import com.yonatankarp.abstractfactory.Kingdom.FactoryMaker.makeFactory
 import org.slf4j.LoggerFactory
 
-private val logger = LoggerFactory.getLogger("com.yonatankarp.abstractfactory")
+internal val logger = LoggerFactory.getLogger("com.yonatankarp.abstractfactory")
 
+/**
+ * Program main entry point.
+ */
 fun main() {
     logger.info("elf kingdom")
     val elfKingdom = createKingdom(KingdomType.ELF)

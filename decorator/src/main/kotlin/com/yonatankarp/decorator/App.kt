@@ -13,9 +13,12 @@ import org.slf4j.LoggerFactory
  * and perform the attack again. You can see how the behavior changes after the
  * decoration.
  */
-fun main() {
-    val logger = LoggerFactory.getLogger("com.yonatankarp.decorator")
+internal val logger = LoggerFactory.getLogger("com.yonatankarp.decorator")
 
+/**
+ * Program main entry point.
+ */
+fun main() {
     // simple troll
     logger.info("A simple looking troll approaches.")
     val troll = SimpleTroll()

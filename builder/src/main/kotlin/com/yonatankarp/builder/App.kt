@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory
  * default values for unset arguments</p>
  */
 
-private val logger = LoggerFactory.getLogger("com.yonatankarp.builder")
+internal val logger = LoggerFactory.getLogger("com.yonatankarp.builder")
 
 /**
  * Program entry point.

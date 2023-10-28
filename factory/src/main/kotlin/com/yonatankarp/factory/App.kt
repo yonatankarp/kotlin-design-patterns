@@ -2,7 +2,7 @@ package com.yonatankarp.factory
 
 import org.slf4j.LoggerFactory
 
-private val logger = LoggerFactory.getLogger("com.yonatankarp.factory")
+internal val logger = LoggerFactory.getLogger("com.yonatankarp.factory")
 
 /**
  * Program main entry point.

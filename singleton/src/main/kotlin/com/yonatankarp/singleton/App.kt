@@ -16,11 +16,12 @@ import org.slf4j.LoggerFactory
  *
  * Fortunately, Kotlin comes with a built-in implementation for Singletons using
  * the `object` keyword.
- *
- * @author: yonatankarp
  */
-val logger: Logger = LoggerFactory.getLogger("com.yonatankarp.singleton")
+internal val logger: Logger = LoggerFactory.getLogger("com.yonatankarp.singleton")
 
+/**
+ * Program main entry point.
+ */
 fun main() {
     val ivoryTower1 = IvoryTower
     val ivoryTower2 = IvoryTower

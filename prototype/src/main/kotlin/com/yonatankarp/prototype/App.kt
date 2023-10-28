@@ -15,9 +15,13 @@ import org.slf4j.LoggerFactory
  * by cloning the existing ones. The factory's prototype objects are given as
  * constructor parameters.
  */
-fun main() {
-    val logger = LoggerFactory.getLogger("com.yonatankarp.prototype")
 
+internal val logger = LoggerFactory.getLogger("com.yonatankarp.prototype")
+
+/**
+ * Program main entry point.
+ */
+fun main() {
     val elfFactory = HeroFactory(
         ElfMage("cooking"),
         ElfWarlord("cleaning"),

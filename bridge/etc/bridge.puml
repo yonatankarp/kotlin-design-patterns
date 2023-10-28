@@ -1,7 +1,54 @@
 @startuml
-package com.yonatankarp.factory.method {
+package com.yonatankarp.bridge {
   class App {
+    - logger : Logger {static}
+    + App()
     + main(args : String[]) {static}
   }
+  interface Enchantment {
+    + apply() {abstract}
+    + onActivate() {abstract}
+    + onDeactivate() {abstract}
+  }
+  class FlyingEnchantment {
+    + FlyingEnchantment()
+    + apply()
+    + onActivate()
+    + onDeactivate()
+  }
+  class Hammer {
+    - enchantment : Enchantment
+    + Hammer(enchantment : Enchantment)
+    + getEnchantment() : Enchantment
+    + swing()
+    + unwield()
+    + wield()
+  }
+  class SoulEatingEnchantment {
+    + SoulEatingEnchantment()
+    + apply()
+    + onActivate()
+    + onDeactivate()
+  }
+  class Sword {
+    - enchantment : Enchantment
+    + Sword(enchantment : Enchantment)
+    + getEnchantment() : Enchantment
+    + swing()
+    + unwield()
+    + wield()
+  }
+  interface Weapon {
+    + getEnchantment() : Enchantment {abstract}
+    + swing() {abstract}
+    + unwield() {abstract}
+    + wield() {abstract}
+  }
 }
+Sword -->  "-enchantment" Enchantment
+Hammer -->  "-enchantment" Enchantment
+FlyingEnchantment ..|> Enchantment
+Hammer ..|> Weapon
+SoulEatingEnchantment ..|> Enchantment
+Sword ..|> Weapon
 @enduml

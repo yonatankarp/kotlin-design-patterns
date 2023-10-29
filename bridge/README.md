@@ -1,12 +1,9 @@
 ---
-layout: pattern
 title: Bridge
-folder: bridge
-permalink: /patterns/bridge/
-categories: Structural
+category: Structural
 language: en
-tags:
-- Gang of Four
+tag:
+  - Gang of Four
 ---
 
 ## Also known as

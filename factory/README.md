@@ -1,18 +1,15 @@
 ---
-layout: pattern
 title: Factory
-folder: factory
-permalink: /patterns/factory/
-categories: Creational
+category: Creational
 language: en
-tags:
-- Gang of Four
+tag:
+  - Gang of Four
 ---
 
 ## Also known as
 
-* Factory
-* Simple Factory
+- Factory
+- Simple Factory
 
 ## Intent
 

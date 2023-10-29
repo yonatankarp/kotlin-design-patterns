@@ -1,12 +1,9 @@
 ---
-layout: pattern
 title: Builder
-folder: builder
-permalink: /patterns/builder/
-categories: Creational
+category: Creational
 language: en
-tags:
-- Gang of Four
+tag:
+  - Gang of Four
 ---
 
 ## Intent

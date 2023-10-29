@@ -1,7 +1,56 @@
 @startuml
-package com.yonatankarp.factory.method {
+package com.yonatankarp.facade {
   class App {
+    - logger : Logger {static}
     + main(args : String[]) {static}
   }
+  class DwarvenCartOperator {
+    + DwarvenCartOperator()
+    + name() : String
+    + work()
+  }
+  class DwarvenGoldDigger {
+    + DwarvenGoldDigger()
+    + name() : String
+    + work()
+  }
+  class DwarvenGoldmineFacade {
+    - workers : List<DwarvenMineWorker>
+    + DwarvenGoldmineFacade()
+    + digOutGold()
+    + endDay()
+    - makeActions(workers : Collection<DwarvenMineWorker>, actions : Action[]) {static}
+    + startNewDay()
+  }
+  abstract class DwarvenMineWorker {
+    + DwarvenMineWorker()
+    - action(action : Action)
+    + action(actions : Action[])
+    + goHome()
+    + goToMine()
+    + goToSleep()
+    + name() : String {abstract}
+    + wakeUp()
+    + work() {abstract}
+  }
+  ~enum Action {
+    + GO_HOME {static}
+    + GO_TO_MINE {static}
+    + GO_TO_SLEEP {static}
+    + WAKE_UP {static}
+    + WORK {static}
+    + valueOf(name : String) : Action {static}
+    + values() : Action[] {static}
+  }
+  class DwarvenTunnelDigger {
+    + DwarvenTunnelDigger()
+    + name() : String
+    + work()
+  }
 }
+DwarvenGoldmineFacade -->  "-workers" DwarvenMineWorker
+Action ..+ DwarvenMineWorker
+DwarvenCartOperator --|> DwarvenMineWorker
+DwarvenGoldDigger --|> DwarvenMineWorker
+DwarvenTunnelDigger --|> DwarvenMineWorker
 @enduml

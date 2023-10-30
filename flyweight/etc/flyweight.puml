@@ -1,56 +1,60 @@
 @startuml
-package com.yonatankarp.factory.method {
+package com.yonatankarp.flyweight {
+  class AlchemistShop {
+    - bottomShelf : List<Potion>
+    - topShelf : List<Potion>
+    + AlchemistShop()
+    + enumerate()
+    + getBottomShelf() : List<Potion>
+    + getTopShelf() : List<Potion>
+  }
   class App {
-    - LOGGER : Logger {static}
-    - blacksmith : Blacksmith
-    + App(blacksmith : Blacksmith)
+    - logger : Logger {static}
+    + App()
     + main(args : String[]) {static}
-    - manufactureWeapons()
   }
-  interface Blacksmith {
-    + manufactureWeapon(WeaponType) : Weapon {abstract}
+  class HealingPotion {
+    + HealingPotion()
+    + drink()
   }
-  class ElfBlacksmith {
-    - ELFARSENAL : Map<WeaponType, ElfWeapon> {static}
-    + ElfBlacksmith()
-    + manufactureWeapon(weaponType : WeaponType) : Weapon
+  class HolyWaterPotion {
+    + HolyWaterPotion()
+    + drink()
   }
-  class ElfWeapon {
-    - weaponType : WeaponType
-    + ElfWeapon(weaponType : WeaponType)
-    + getWeaponType() : WeaponType
-    + toString() : String
+  class InvisibilityPotion {
+    + InvisibilityPotion()
+    + drink()
   }
-  class OrcBlacksmith {
-    - ORCARSENAL : Map<WeaponType, OrcWeapon> {static}
-    + OrcBlacksmith()
-    + manufactureWeapon(weaponType : WeaponType) : Weapon
+  class PoisonPotion {
+    + PoisonPotion()
+    + drink()
   }
-  class OrcWeapon {
-    - weaponType : WeaponType
-    + OrcWeapon(weaponType : WeaponType)
-    + getWeaponType() : WeaponType
-    + toString() : String
+  interface Potion {
+    + drink() {abstract}
   }
-  interface Weapon {
-    + getWeaponType() : WeaponType {abstract}
+  class PotionFactory {
+    - potions : Map<PotionType, Potion>
+    + PotionFactory()
+    ~ createPotion(type : PotionType) : Potion
   }
-  enum WeaponType {
-    + AXE {static}
-    + SHORT_SWORD {static}
-    + SPEAR {static}
-    + UNDEFINED {static}
-    - title : String
-    + toString() : String
-    + valueOf(name : String) : WeaponType {static}
-    + values() : WeaponType[] {static}
+  enum PotionType {
+    + HEALING {static}
+    + HOLY_WATER {static}
+    + INVISIBILITY {static}
+    + POISON {static}
+    + STRENGTH {static}
+    + valueOf(name : String) : PotionType {static}
+    + values() : PotionType[] {static}
+  }
+  class StrengthPotion {
+    + StrengthPotion()
+    + drink()
   }
 }
-ElfWeapon -->  "-weaponType" WeaponType
-OrcWeapon -->  "-weaponType" WeaponType
-App -->  "-blacksmith" Blacksmith
-ElfBlacksmith ..|> Blacksmith
-ElfWeapon ..|> Weapon
-OrcBlacksmith ..|> Blacksmith
-OrcWeapon ..|> Weapon
+AlchemistShop -->  "-topShelf" Potion
+HealingPotion ..|> Potion
+HolyWaterPotion ..|> Potion
+InvisibilityPotion ..|> Potion
+PoisonPotion ..|> Potion
+StrengthPotion ..|> Potion
 @enduml

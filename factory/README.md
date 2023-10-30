@@ -8,8 +8,8 @@ tag:
 
 ## Also known as
 
-- Factory
 - Simple Factory
+- Static Factory Method
 
 ## Intent
 

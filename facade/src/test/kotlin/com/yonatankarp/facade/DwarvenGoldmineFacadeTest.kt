@@ -1,14 +1,11 @@
 package com.yonatankarp.facade
 
-import ch.qos.logback.classic.Logger
-import ch.qos.logback.classic.spi.ILoggingEvent
-import ch.qos.logback.core.AppenderBase
+import com.yonatankarp.facade.utils.InMemoryAppender
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.slf4j.LoggerFactory
 
 internal class DwarvenGoldmineFacadeTest {
     private val appender = InMemoryAppender()
@@ -78,28 +75,5 @@ internal class DwarvenGoldmineFacadeTest {
 
         // Every worker should be sleeping now, no other actions allowed
         assertEquals(15, appender.logSize)
-    }
-
-    private class InMemoryAppender : AppenderBase<ILoggingEvent>() {
-        private val log = mutableListOf<ILoggingEvent>()
-
-        val logSize: Int
-            get() = log.size
-
-        init {
-            (LoggerFactory.getLogger("root") as Logger).addAppender(this)
-            start()
-        }
-
-        override fun append(eventObject: ILoggingEvent) {
-            log.add(eventObject)
-        }
-
-        fun logContains(message: String) =
-            log
-                .map { it.formattedMessage }
-                .any { message == it }
-
-        fun clearAll() = log.clear()
     }
 }

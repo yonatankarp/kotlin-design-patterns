@@ -76,8 +76,8 @@ allprojects {
 
     val tasksDependencies =
         mapOf(
-            "spotlessKotlin" to listOf("spotlessKotlinGradle", "compileKotlin"),
-            "spotlessKotlinGradle" to listOf("compileKotlin"),
+            "spotlessKotlin" to listOf("spotlessKotlinGradle", "compileKotlin", "compileTestKotlin", "test"),
+            "spotlessKotlinGradle" to listOf("compileKotlin", "compileTestKotlin", "test"),
         )
 
     tasks.named("spotlessKotlin") {

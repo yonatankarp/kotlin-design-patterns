@@ -33,7 +33,7 @@ allprojects {
             )
             // see https://github.com/shyiko/ktlint#standard-rules
             trimTrailingWhitespace()
-            ktlint("0.49.0").editorConfigOverride(
+            ktlint("1.0.1").editorConfigOverride(
                 mapOf(
                     "ktlint_standard_package-name" to "disabled",
                     "ktlint_standard_enum-entry-name-case" to "disabled",

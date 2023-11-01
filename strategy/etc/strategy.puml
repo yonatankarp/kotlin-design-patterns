@@ -1,7 +1,64 @@
 @startuml
-package com.yonatankarp.factory.method {
+package com.yonatankarp.strategy {
   class App {
+    - LOGGER : Logger {static}
+    + App()
     + main(args : String[]) {static}
   }
+  class DragonSlayer {
+    - strategy : DragonSlayingStrategy
+    + DragonSlayer(strategy : DragonSlayingStrategy)
+    + changeStrategy(strategy : DragonSlayingStrategy)
+    + goToBattle()
+  }
+  interface DragonSlayingStrategy {
+    + execute() {abstract}
+  }
+  class EnumStrategy {
+    + EnumStrategy()
+    + MELEE_STRATEGY
+    + PROJECTILE_STRATEGY
+    + SPELL_STRATEGY
+  }
+  enum Strategy {
+    + MeleeStrategy {static}
+    + ProjectileStrategy {static}
+    + SpellStrategy {static}
+    - dragonSlayingStrategy : DragonSlayingStrategy
+    + execute()
+    + valueOf(name : String) : Strategy {static}
+    + values() : Strategy[] {static}
+  }
+  class MeleeStrategy {
+    + MeleeStrategy()
+    + execute()
+  }
+  class ProjectileStrategy {
+    + ProjectileStrategy()
+    + execute()
+  }
+  class SpellStrategy {
+    + SpellStrategy()
+    + execute()
+  }
+  class FunctionalDragonSlayer {
+      - strategy : () -> Unit
+      + FunctionalDragonSlayer(strategy : () -> Unit)
+      + changeStrategy(strategy : () -> Unit)
+      + goToBattle()
+  }
+  class LambdaStrategy {
+    + meleeStrategy {static}
+    + projectileStrategy {static}
+    + spellStrategy {static}
+  }
 }
+Strategy ..+ EnumStrategy
+Strategy -->  "-dragonSlayingStrategy" DragonSlayingStrategy
+DragonSlayer -->  "-strategy" DragonSlayingStrategy
+Strategy ..|> DragonSlayingStrategy
+MeleeStrategy ..|> DragonSlayingStrategy
+ProjectileStrategy ..|> DragonSlayingStrategy
+SpellStrategy ..|> DragonSlayingStrategy
+FunctionalDragonSlayer -->  "-strategy" LambdaStrategy
 @enduml

@@ -1,6 +1,6 @@
 package com.yonatankarp.proxy
 
-import com.yonatankarp.proxy.utils.InMemoryAppender
+import com.yonatankarp.kotlin.junit.tools.logger.InMemoryLoggerAppender
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test
  * Tests for [WizardTowerProxy]
  */
 internal class WizardTowerProxyTest {
-    private var appender = InMemoryAppender()
+    private var appender = InMemoryLoggerAppender()
 
     @BeforeEach
     fun setUp() {
@@ -37,6 +37,6 @@ internal class WizardTowerProxyTest {
         assertTrue(appender.logContains("Dumbledore enters the tower."))
         assertTrue(appender.logContains("Oz enters the tower."))
         assertTrue(appender.logContains("Merlin is not allowed to enter!"))
-        assertEquals(4, appender.size)
+        assertEquals(4, appender.logSize)
     }
 }

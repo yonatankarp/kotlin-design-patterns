@@ -1,0 +1,33 @@
+version: 2
+
+registries:
+  maven-kotlin-junit-tools:
+    type: maven-repository
+    url: https://maven.pkg.github.com/yonatankarp/kotlin-junit-tools
+    username: ${{ env.GITHUB_ACTOR }}
+    password: ${{ secrets.GITHUB_PAT }}
+
+updates:
+  # Maintain dependencies for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 20
+    labels:
+      - "type: dependencies"
+      - "relates-to: build"
+
+  # Maintain dependencies for Gradle
+  - package-ecosystem: "gradle"
+    directory: "/"
+    registries: "*"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 20
+    labels:
+      - "type: dependencies"
+      - "relates-to: build"
+
+# See https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/keeping-your-dependencies-updated-automatically
+# for more information about configuring Dependabot.

@@ -1,9 +1,9 @@
 package com.yonatankarp.strategy
 
+import com.yonatankarp.kotlin.junit.tools.logger.InMemoryLoggerAppender
 import com.yonatankarp.strategy.EnumStrategy.Strategy.MELEE_STRATEGY
 import com.yonatankarp.strategy.EnumStrategy.Strategy.PROJECTILE_STRATEGY
 import com.yonatankarp.strategy.EnumStrategy.Strategy.SPELL_STRATEGY
-import com.yonatankarp.strategy.utils.InMemoryAppender
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
@@ -11,7 +11,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
 internal class DragonSlayingStrategyTest {
-    private val appender = InMemoryAppender()
+    private val appender = InMemoryLoggerAppender()
 
     @BeforeEach
     fun setUp() {
@@ -29,7 +29,7 @@ internal class DragonSlayingStrategyTest {
     fun `test execute`(strategy: DragonSlayingStrategy, expectedResult: String) {
         strategy.execute()
         assertEquals(expectedResult, appender.lastMessage)
-        assertEquals(1, appender.size)
+        assertEquals(1, appender.logSize)
     }
 
     companion object {

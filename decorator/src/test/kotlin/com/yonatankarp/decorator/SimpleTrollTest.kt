@@ -1,6 +1,6 @@
 package com.yonatankarp.decorator
 
-import com.yonatankarp.decorator.utils.InMemoryAppender
+import com.yonatankarp.kotlin.junit.tools.logger.InMemoryLoggerAppender
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test
  * Tests for [SimpleTroll]
  */
 internal class SimpleTrollTest {
-    private var appender = InMemoryAppender(SimpleTroll::class.java)
+    private var appender = InMemoryLoggerAppender(SimpleTroll::class.java)
 
     @BeforeEach
     fun setUp() {

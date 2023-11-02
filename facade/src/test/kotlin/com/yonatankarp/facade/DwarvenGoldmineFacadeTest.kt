@@ -1,6 +1,6 @@
 package com.yonatankarp.facade
 
-import com.yonatankarp.facade.utils.InMemoryAppender
+import com.yonatankarp.kotlin.junit.tools.logger.InMemoryLoggerAppender
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -8,7 +8,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 internal class DwarvenGoldmineFacadeTest {
-    private val appender = InMemoryAppender()
+    private val appender = InMemoryLoggerAppender()
 
     @BeforeEach
     fun setUp() {

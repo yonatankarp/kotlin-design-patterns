@@ -3,6 +3,7 @@ coroutines = "1.7.3"
 junit = "5.10.0"
 jvm = "17"
 kotlin = "1.9.20"
+kotlinJunitTools = "0.1.0"
 logback = "1.4.11"
 mockk = "1.13.8"
 plantuml = "0.2.0"
@@ -12,6 +13,7 @@ spotless = "6.22.0"
 [libraries]
 junit = { module = "org.junit.jupiter:junit-jupiter" }
 junit_bom = { module = "org.junit:junit-bom", version.ref = "junit" }
+kotlin_junit_tools = {module = "com.yonatankarp:kotlin-junit-tools", version.ref = "kotlinJunitTools"}
 kotlin_core = { module = "org.jetbrains.kotlin:kotlin-stdlib" }
 kotlinx_coroutines_core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlinx_coroutines_test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }

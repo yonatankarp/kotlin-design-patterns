@@ -1,6 +1,6 @@
 package com.yonatankarp.proxy
 
-import com.yonatankarp.proxy.utils.InMemoryAppender
+import com.yonatankarp.kotlin.junit.tools.logger.InMemoryLoggerAppender
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test
  * Tests for [IvoryTower]
  */
 internal class IvoryTowerTest {
-    private val appender = InMemoryAppender()
+    private val appender = InMemoryLoggerAppender()
 
     @BeforeEach
     fun setUp() {
@@ -37,6 +37,6 @@ internal class IvoryTowerTest {
         assertTrue(appender.logContains("Dumbledore enters the tower."))
         assertTrue(appender.logContains("Oz enters the tower."))
         assertTrue(appender.logContains("Merlin enters the tower."))
-        assertEquals(4, appender.size)
+        assertEquals(4, appender.logSize)
     }
 }

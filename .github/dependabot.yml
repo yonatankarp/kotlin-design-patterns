@@ -5,7 +5,7 @@ registries:
     type: maven-repository
     url: https://maven.pkg.github.com/yonatankarp/kotlin-junit-tools
     username: ${{ env.GITHUB_ACTOR }}
-    password: ${{ secrets.GITHUB_PAT }}
+    password: ${{ secrets.CI_PAT }}
 
 updates:
   # Maintain dependencies for GitHub Actions

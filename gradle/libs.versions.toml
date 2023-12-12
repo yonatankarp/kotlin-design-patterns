@@ -2,7 +2,7 @@
 coroutines = "1.7.3"
 junit = "5.10.1"
 jvm = "17"
-kotlin = "1.9.20"
+kotlin = "1.9.21"
 kotlinJunitTools = "0.2.0"
 logback = "1.4.11"
 mockk = "1.13.8"

@@ -7,22 +7,4 @@ on:
 
 jobs:
   update-gradle-wrapper:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout PR
-        if: ${{ github.event_name != 'pull_request_target' }}
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Install Java
-        uses: actions/setup-java@v3
-        with:
-          java-version: 17
-          distribution: 'temurin'
-
-      - name: Update Gradle Wrapper
-        uses: gradle-update/update-gradle-wrapper-action@v1
-        with:
-          repo-token: ${{ secrets.CI_PAT` }}
+    uses:  yonatankarp/github-actions/.github/workflows/update-gradle-wrapper.yml@v1

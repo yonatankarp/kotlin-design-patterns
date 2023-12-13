@@ -1,4 +1,4 @@
-name: ci
+name: Continuous Integration
 
 on:
   pull_request:
@@ -7,21 +7,14 @@ on:
     types: [ opened, synchronize, reopened, ready_for_review ]
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: ${{ github.workflow }}-${{ github.job }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  ci:
-    # If the PR is coming from a fork (pull_request_target), ensure it's opened by "dependabot[bot]".
-    # Otherwise, process it normally.
-    if: |
-      (github.event_name == 'pull_request_target' && github.actor == 'dependabot[bot]') ||
-      (github.event_name != 'pull_request_target' && github.actor != 'dependabot[bot]')
-    runs-on: ubuntu-latest
+  pipeline:
     strategy:
-      fail-fast: false
       matrix:
-        design-pattern: [
+        module: [
           "abstract-factory",
           "adapter",
           "bridge",
@@ -45,58 +38,17 @@ jobs:
           "template-method",
           "visitor",
         ]
-    steps:
+    uses: yonatankarp/github-actions/.github/workflows/ci.yml@v1
+    with:
+      context: ${{ matrix.module }}
+      app_name: ${{ matrix.module }}
 
-      - name: Git Checkout
-        if: github.event_name != 'pull_request_target'
-        uses: actions/checkout@v4
-        # Do not trigger a checkout when opening PRs from a fork (helps avoid
-        # "pwnn request". See https://docs.github.com/en/actions/reference/events-that-trigger-workflows#pull_request_target )
-        with:
-          fetch-depth: 0
-
-      - name: Dependabot Checkout
-        if: github.event_name == 'pull_request_target'
-        uses: actions/checkout@v4
-        with:
-          # Dependabot can only checkout at the HEAD of the PR branch
-          ref: ${{ github.event.pull_request.head.sha }}
-
-
-      - name: Install Java
-        uses: actions/setup-java@v4
-        with:
-          java-version: 17
-          distribution: 'temurin'
-          #Instead of manually configure caching of gradle, use an action which is provided. Details here: https://github.com/actions/setup-java
-          cache: gradle
-
-      - name: Check for Changes
-        uses: dorny/paths-filter@v2.11.1
-        id: changes
-        with:
-          filters: |
-            source_code:
-              - '${{ matrix.design-pattern }}/build.gradle.kts'
-              - '${{ matrix.design-pattern }}/src/**'
-              - '.github/workflows/**'
-              - 'build.gradle.kts'
-              - 'gradle/libs.versions.toml'
-              - 'settings.gradle.kts'
-
-      - name: Gradle Build
-        if: steps.changes.outputs.source_code == 'true'
-        id: tests
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: ./gradlew ${{ matrix.design-pattern }}:spotlessCheck ${{ matrix.design-pattern }}:build
-
-  ci-check:
+  pipeline-check:
     if: |
       github.event_name == 'pull_request_target' ||
       github.event_name == 'pull_request' && github.actor == 'dependabot[bot]'
     needs:
-      - ci
+      - pipeline
     runs-on: ubuntu-latest
     steps:
       - name: Decide whether all CI jobs are succeeded or failed
@@ -105,30 +57,9 @@ jobs:
           jobs: ${{ toJSON(needs) }}
 
   dependabot_auto_merge:
+    needs: pipeline
     if: ${{ github.event_name == 'pull_request_target' && github.actor == 'dependabot[bot]' }}
-    runs-on: ubuntu-latest
-    needs: ci-check
-    steps:
-      # If the PR is created by Dependabot run additional steps
-      - name: Fetch Dependabot metadata
-        id: metadata
-        uses: dependabot/fetch-metadata@v1.6.0
-        with:
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
+    uses: yonatankarp/github-actions/.github/workflows/dependabot-auto-merge.yml@v1
 
-      - name: Approve a Dependabot PR
-        if: ${{ steps.metadata.outputs.update-type == 'version-update:semver-minor' ||
-          steps.metadata.outputs.update-type == 'version-update:semver-patch' }}
-        # Approving the PR and waiting for 5 sec to let GitHub UI to reflect the changes
-        run: gh pr review --approve "$PR_URL" && sleep 5
-        env:
-          PR_URL: ${{ github.event.pull_request.html_url }}
-          GITHUB_TOKEN: ${{ secrets.CI_PAT }}
-
-      - name: Enable auto-merge for Dependabot PRs
-        if: ${{ steps.metadata.outputs.update-type == 'version-update:semver-minor' ||
-          steps.metadata.outputs.update-type == 'version-update:semver-patch' }}
-        run: gh pr merge --auto --rebase "$PR_URL"
-        env:
-          PR_URL: ${{ github.event.pull_request.html_url }}
-          GITHUB_TOKEN: ${{ secrets.CI_PAT }}
+  linters:
+    uses: yonatankarp/github-actions/.github/workflows/linters.yml@v1

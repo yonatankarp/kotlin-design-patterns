@@ -61,4 +61,4 @@ jobs:
     if: ${{ github.event_name == 'pull_request_target' && github.actor == 'dependabot[bot]' }}
     uses: yonatankarp/github-actions/.github/workflows/dependabot-auto-merge.yml@v1
     secrets:
-      GITHUB_PAT: ${{ secrets.REVIEWER_GITHUB_TOKEN }}
+      GITHUB_PAT: ${{ secrets.CI_PAT }}

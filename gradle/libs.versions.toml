@@ -7,7 +7,7 @@ kotlinJunitTools = "0.2.2"
 logback = "1.4.14"
 mockk = "1.13.9"
 plantuml = "0.2.0"
-slf4j = "2.0.10"
+slf4j = "2.0.11"
 spotless = "6.23.3"
 
 [libraries]

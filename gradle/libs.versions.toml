@@ -8,7 +8,7 @@ logback = "1.4.14"
 mockk = "1.13.9"
 plantuml = "0.2.0"
 slf4j = "2.0.11"
-spotless = "6.23.3"
+spotless = "6.24.0"
 
 [libraries]
 junit = { module = "org.junit.jupiter:junit-jupiter" }

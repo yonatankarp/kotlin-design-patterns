@@ -46,7 +46,7 @@ jobs:
           fetch-depth: 0
 
       - name: Check for Changes
-        uses: dorny/paths-filter@v2.11.1
+        uses: dorny/paths-filter@v3.0.0
         id: changes
         with:
           filters: |
@@ -71,7 +71,7 @@ jobs:
           fetch-depth: 0
 
       - name: Check for Changes
-        uses: dorny/paths-filter@v2.11.1
+        uses: dorny/paths-filter@v3.0.0
         id: changes
         with:
           filters: |

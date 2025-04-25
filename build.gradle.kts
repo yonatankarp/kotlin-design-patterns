@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -14,8 +15,8 @@ allprojects {
     apply(plugin = "org.jetbrains.kotlin.jvm")
 
     tasks.withType(KotlinCompile::class.java) {
-        kotlinOptions {
-            jvmTarget = jvmVersion
+        compilerOptions {
+            jvmTarget = JvmTarget.fromTarget(jvmVersion)
         }
     }
 
@@ -53,8 +54,7 @@ allprojects {
                 },
             )
             trimTrailingWhitespace()
-            indentWithTabs(2)
-            indentWithSpaces(4)
+            leadingTabsToSpaces(4)
             endWithNewline()
             ktlint()
         }

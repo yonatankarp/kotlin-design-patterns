@@ -1,6 +1,7 @@
 [versions]
 coroutines = "1.10.2"
 junit = "5.12.2"
+junitPlatform = "1.12.2"
 jvm = "21"
 kotlin = "2.1.20"
 kotlinJunitTools = "0.3.0"
@@ -13,8 +14,10 @@ spotless = "7.0.3"
 [libraries]
 junit = { module = "org.junit.jupiter:junit-jupiter" }
 junit_bom = { module = "org.junit:junit-bom", version.ref = "junit" }
-kotlin_junit_tools = {module = "com.yonatankarp:kotlin-junit-tools", version.ref = "kotlinJunitTools"}
+junit_platform_engine = { module = "org.junit.platform:junit-platform-engine", version.ref = "junitPlatform" }
+junit_platform_launcher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junitPlatform" }
 kotlin_core = { module = "org.jetbrains.kotlin:kotlin-stdlib" }
+kotlin_junit_tools = {module = "com.yonatankarp:kotlin-junit-tools", version.ref = "kotlinJunitTools"}
 kotlinx_coroutines_core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlinx_coroutines_test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 logback_classic = { module = "ch.qos.logback:logback-classic" , version.ref = "logback"}
@@ -43,5 +46,7 @@ log_all = [
 
 tests_all = [
     "junit",
-    "mockk"
+    "junit_platform_engine",
+    "junit_platform_launcher",
+    "mockk",
 ]

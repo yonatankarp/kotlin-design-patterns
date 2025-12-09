@@ -62,4 +62,4 @@ jobs:
       pull-requests: write
     uses: yonatankarp/github-actions/.github/workflows/dependabot-auto-merge.yml@v1
     secrets:
-      DEPENDABOT_MERGE_TOKEN: ${{ secrets.CI_PAT }}
+      GITHUB_PAT: ${{ secrets.CI_PAT }}

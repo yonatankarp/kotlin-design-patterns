@@ -60,7 +60,7 @@ abstract class DwarvenMineWorker {
         }
 
     /**
-     -Perform actions.
+     * Perform actions.
      */
     internal fun action(vararg actions: Action) {
         actions.forEach { action: Action -> this.action(action) }
@@ -81,7 +81,7 @@ Then we have the concrete dwarf classes `DwarvenTunnelDigger`,
 
 ```kotlin
 /**
- -DwarvenTunnelDigger
+ * DwarvenTunnelDigger
  */
 class DwarvenTunnelDigger : DwarvenMineWorker() {
     override fun work() = logger.info("$name creates another promising tunnel.")
@@ -91,7 +91,7 @@ class DwarvenTunnelDigger : DwarvenMineWorker() {
 }
 
 /**
- -DwarvenGoldDigger
+ * DwarvenGoldDigger
  */
 class DwarvenGoldDigger : DwarvenMineWorker() {
     override fun work() = logger.info("$name digs for gold.")
@@ -101,7 +101,7 @@ class DwarvenGoldDigger : DwarvenMineWorker() {
 }
 
 /**
- -DwarvenCartOperator
+ * DwarvenCartOperator
  */
 class DwarvenCartOperator : DwarvenMineWorker() {
     override fun work() =
@@ -228,22 +228,22 @@ classDiagram
 
 Use the Facade pattern when
 
--You want to provide a simple interface to a complex subsystem. Subsystems
+- You want to provide a simple interface to a complex subsystem. Subsystems
   often get more complex as they evolve. Most patterns, when applied, result in
   more and smaller classes. This makes the subsystem more reusable and easier to
   customize, but it also becomes harder to use for clients that don't need to
   customize it. A facade can provide a simple default view of the subsystem that
   is good enough for most clients. Only clients needing more customization will
   need to look beyond the facade.
--There are many dependencies between clients and the implementation classes of
+- There are many dependencies between clients and the implementation classes of
   an abstraction. Introduce a facade to decouple the subsystem from clients and
   other subsystems, thereby promoting subsystem independence and portability.
--You want to layer your subsystems. Use a facade to define an entry point to
+- You want to layer your subsystems. Use a facade to define an entry point to
   each subsystem level. If subsystems are dependent, then you can simplify the
   dependencies between them by making them communicate with each other solely
   through their facades.
 
 ## Credits
 
--[Design Patterns: Elements of Reusable Object-Oriented Software](https://www.amazon.com/gp/product/0201633612/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0201633612&linkCode=as2&tag=javadesignpat-20&linkId=675d49790ce11db99d90bde47f1aeb59)
--[Head First Design Patterns: A Brain-Friendly Guide](https://www.amazon.com/gp/product/0596007124/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596007124&linkCode=as2&tag=javadesignpat-20&linkId=6b8b6eea86021af6c8e3cd3fc382cb5b)
+- [Design Patterns: Elements of Reusable Object-Oriented Software](https://www.amazon.com/gp/product/0201633612/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0201633612&linkCode=as2&tag=javadesignpat-20&linkId=675d49790ce11db99d90bde47f1aeb59)
+- [Head First Design Patterns: A Brain-Friendly Guide](https://www.amazon.com/gp/product/0596007124/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596007124&linkCode=as2&tag=javadesignpat-20&linkId=6b8b6eea86021af6c8e3cd3fc382cb5b)

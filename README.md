@@ -1,6 +1,8 @@
 # Design patterns implemented in Kotlin
 
-![CI](https://github.com/yonatankarp/kotlin-design-patterns/workflows/ci/badge.svg)
+![CI](https://github.com/yonatankarp/kotlin-design-patterns/actions/workflows/pull_request.yml/badge.svg?branch=main)
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.x-blue.svg?logo=kotlin)](https://kotlinlang.org)
+[![JVM](https://img.shields.io/badge/JVM-21-orange.svg)](https://openjdk.org/projects/jdk/21/)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/iluwatar/java-design-patterns/master/LICENSE.md)
 
 # Introduction

@@ -32,8 +32,6 @@ internal class DwarvenGoldmineFacade {
         workers: Collection<DwarvenMineWorker>,
         vararg actions: Action,
     ) {
-        workers.forEach { worker: DwarvenMineWorker ->
-            worker.action(*actions)
-        }
+        workers.forEach { it.action(*actions) }
     }
 }

@@ -3,7 +3,7 @@ package com.yonatankarp.composite
 /**
  * Composite interface.
  */
-open class LetterComposite {
+sealed class LetterComposite {
     private val children = mutableListOf<LetterComposite>()
     fun add(letter: LetterComposite) {
         children.add(letter)

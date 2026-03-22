@@ -15,8 +15,8 @@ import org.slf4j.LoggerFactory
  * proxy, can add additional functionality to the object of interest without
  * changing the object's code.
  *
- * In this example the proxy ({@link WizardTowerProxy}) controls access to the
- * actual object ({@link IvoryTower}).
+ * In this example the proxy ([WizardTowerProxy]) controls access to the
+ * actual object ([IvoryTower]).
  */
 
 internal val logger = LoggerFactory.getLogger("com.yonatankarp.proxy")

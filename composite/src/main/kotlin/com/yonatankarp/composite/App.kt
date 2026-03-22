@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory
  *
  * In this example we have sentences composed of words composed of letters. All
  * the objects can be treated through the same interface
- * ({@link LetterComposite}).
+ * ([LetterComposite]).
  */
 
 internal val logger = LoggerFactory.getLogger("com.yonatankarp.composite")

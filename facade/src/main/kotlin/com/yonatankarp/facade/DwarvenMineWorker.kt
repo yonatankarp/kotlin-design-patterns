@@ -26,7 +26,7 @@ internal abstract class DwarvenMineWorker {
      * Perform actions.
      */
     internal fun action(vararg actions: Action) {
-        actions.forEach { action: Action -> this.action(action) }
+        actions.forEach { action(it) }
     }
 
     internal enum class Action {

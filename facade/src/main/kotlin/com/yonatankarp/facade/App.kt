@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory
  * members required by client. These members access the system on behalf of the
  * facade client and hide the implementation details.
  *
- * In this example the Facade is ({@link DwarvenGoldmineFacade}) and it provides
+ * In this example the Facade is ([DwarvenGoldmineFacade]) and it provides
  * a simpler interface to the goldmine subsystem.
  */
 

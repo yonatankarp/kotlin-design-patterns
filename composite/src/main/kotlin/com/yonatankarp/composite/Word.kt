@@ -16,9 +16,7 @@ class Word : LetterComposite {
      * @param letters to include
      */
     constructor(vararg letters: Char) {
-        for (letter in letters) {
-            add(Letter(letter))
-        }
+        letters.forEach { add(Letter(it)) }
     }
 
     override fun printThisBefore() = print(" ")

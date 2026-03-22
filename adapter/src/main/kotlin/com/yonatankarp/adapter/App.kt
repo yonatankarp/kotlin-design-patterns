@@ -15,16 +15,16 @@ import org.slf4j.LoggerFactory
  * composition to contain the adaptee in the adapter object. This example uses
  * the object adapter approach.
  *
- * The Adapter ({@link FishingBoatAdapter}) converts the interface of the
- * adaptee class ({@link FishingBoat}) into a suitable one expected by the
- * client ({@link RowingBoat}).
+ * The Adapter ([FishingBoatAdapter]) converts the interface of the
+ * adaptee class ([FishingBoat]) into a suitable one expected by the
+ * client ([RowingBoat]).
  *
- * The story of this implementation is this. <br> Pirates are coming! we need a
- * {@link RowingBoat} to flee! We have a {@link FishingBoat} and our captain.
+ * The story of this implementation is this. Pirates are coming! we need a
+ * [RowingBoat] to flee! We have a [FishingBoat] and our captain.
  * We have no time to make up a new ship! we need to reuse this
- * {@link FishingBoat}. The captain needs a rowing boat which he can operate.
- * The spec is in {@link RowingBoat}. We will use the Adapter pattern to reuse
- * {@link FishingBoat}.
+ * [FishingBoat]. The captain needs a rowing boat which he can operate.
+ * The spec is in [RowingBoat]. We will use the Adapter pattern to reuse
+ * [FishingBoat].
  */
 
 internal val logger = LoggerFactory.getLogger("com.yonatankarp.adapter")

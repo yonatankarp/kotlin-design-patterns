@@ -11,17 +11,16 @@ internal data class NamedArgumentsHero(
     val armor: Armor? = null,
     val weapon: Weapon? = null,
 ) {
-    override fun toString(): String {
-        val sb = StringBuilder("This is a $profession named $name")
+    override fun toString(): String = buildString {
+        append("This is a $profession named $name")
         if (hairColor != null || hairType != null) {
-            sb.append(" with ")
-            hairColor?.let { sb.append("$it ") }
-            hairType?.let { sb.append("$it ") }
-            sb.append(if (hairType !== HairType.BALD) "hair" else "head")
+            append(" with ")
+            hairColor?.let { append("$it ") }
+            hairType?.let { append("$it ") }
+            append(if (hairType !== HairType.BALD) "hair" else "head")
         }
-        armor?.let { sb.append(" wearing $it") }
-        weapon?.let { sb.append(" and wielding a $it") }
-        sb.append('.')
-        return sb.toString()
+        armor?.let { append(" wearing $it") }
+        weapon?.let { append(" and wielding a $it") }
+        append('.')
     }
 }

@@ -136,8 +136,8 @@ Cons
 
 ## Related patterns
 
-* [Factory Method](../factory-method/README.md)
-* [Abstract Factory](../abstract-factory/README.md)
-* Factory Kit
+-[Factory Method](../factory-method/README.md)
+-[Abstract Factory](../abstract-factory/README.md)
+-Factory Kit
 
 [//]: # (TODO: link after adding the pattern)

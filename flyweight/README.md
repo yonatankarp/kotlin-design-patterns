@@ -43,7 +43,7 @@ interface Potion {
 }
 
 /**
- * HealingPotion.
+ -HealingPotion.
  */
 class HealingPotion : Potion {
   override fun drink() =
@@ -51,7 +51,7 @@ class HealingPotion : Potion {
 }
 
 /**
- * HolyWaterPotion.
+ -HolyWaterPotion.
  */
 class HolyWaterPotion : Potion {
   override fun drink() =
@@ -59,7 +59,7 @@ class HolyWaterPotion : Potion {
 }
 
 /**
- * InvisibilityPotion.
+ -InvisibilityPotion.
  */
 class InvisibilityPotion : Potion {
   override fun drink() =
@@ -212,15 +212,15 @@ classDiagram
 The Flyweight pattern's effectiveness depends heavily on how and where it's
 used. Apply the Flyweight pattern when all the following are true:
 
-* An application uses a large number of objects.
-* Storage costs are high because of the sheer quantity of objects.
-* Most of the object state can be made extrinsic.
-* Many groups of objects may be replaced by relatively few shared objects once
+-An application uses a large number of objects.
+-Storage costs are high because of the sheer quantity of objects.
+-Most of the object state can be made extrinsic.
+-Many groups of objects may be replaced by relatively few shared objects once
   the extrinsic state is removed.
-* The application doesn't depend on object identity. Since flyweight objects may
+-The application doesn't depend on object identity. Since flyweight objects may
   be shared, identity tests will return true for conceptually distinct objects.
 
 ## Credits
 
-* [Design Patterns: Elements of Reusable Object-Oriented Software](https://www.amazon.com/gp/product/0201633612/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0201633612&linkCode=as2&tag=javadesignpat-20&linkId=675d49790ce11db99d90bde47f1aeb59)
-* [Head First Design Patterns: A Brain-Friendly Guide](https://www.amazon.com/gp/product/0596007124/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596007124&linkCode=as2&tag=javadesignpat-20&linkId=6b8b6eea86021af6c8e3cd3fc382cb5b)
+-[Design Patterns: Elements of Reusable Object-Oriented Software](https://www.amazon.com/gp/product/0201633612/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0201633612&linkCode=as2&tag=javadesignpat-20&linkId=675d49790ce11db99d90bde47f1aeb59)
+-[Head First Design Patterns: A Brain-Friendly Guide](https://www.amazon.com/gp/product/0596007124/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596007124&linkCode=as2&tag=javadesignpat-20&linkId=6b8b6eea86021af6c8e3cd3fc382cb5b)

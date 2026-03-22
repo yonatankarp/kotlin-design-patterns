@@ -1,4 +1,4 @@
-package com.yonatankarp.factory.method
+package com.yonatankarp.factorymethod
 
 /**
  * The interface containing method for producing objects.

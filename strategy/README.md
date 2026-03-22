@@ -208,68 +208,61 @@ The program output is the same as the above one.
 
 ```mermaid
 classDiagram
-    class App {
-        -Logger LOGGER$
-        +App()
-        +main(args String[])$
+    %% Class-based strategy variant
+    class DragonSlayingStrategy {
+        <<fun interface>>
+        +execute()*
     }
     class DragonSlayer {
         -DragonSlayingStrategy strategy
-        +DragonSlayer(strategy DragonSlayingStrategy)
         +changeStrategy(strategy DragonSlayingStrategy)
         +goToBattle()
     }
-    class DragonSlayingStrategy {
-        <<interface>>
-        +execute()*
-    }
-    class EnumStrategy {
-        +EnumStrategy()
-        +MELEE_STRATEGY
-        +PROJECTILE_STRATEGY
-        +SPELL_STRATEGY
-    }
-    class Strategy {
-        <<enumeration>>
-        +MeleeStrategy$
-        +ProjectileStrategy$
-        +SpellStrategy$
-        -DragonSlayingStrategy dragonSlayingStrategy
-        +execute()
-        +valueOf(name String) Strategy$
-        +values() Strategy[]$
-    }
     class MeleeStrategy {
-        +MeleeStrategy()
         +execute()
+        +toString() String
     }
     class ProjectileStrategy {
-        +ProjectileStrategy()
         +execute()
+        +toString() String
     }
     class SpellStrategy {
-        +SpellStrategy()
         +execute()
+        +toString() String
     }
-    class FunctionalDragonSlayer {
-        -() ~Unit~ strategy
-        +FunctionalDragonSlayer(strategy () ~Unit~)
-        +changeStrategy(strategy () ~Unit~)
-        +goToBattle()
-    }
-    class LambdaStrategy {
-        +meleeStrategy$
-        +projectileStrategy$
-        +spellStrategy$
-    }
-    Strategy *-- EnumStrategy
-    Strategy --> DragonSlayingStrategy : dragonSlayingStrategy
     DragonSlayer --> DragonSlayingStrategy : strategy
-    Strategy ..|> DragonSlayingStrategy
     MeleeStrategy ..|> DragonSlayingStrategy
     ProjectileStrategy ..|> DragonSlayingStrategy
     SpellStrategy ..|> DragonSlayingStrategy
-    FunctionalDragonSlayer --> LambdaStrategy : strategy
+
+    %% Enum-based strategy variant
+    class EnumStrategy {
+        <<outer class>>
+    }
+    class EnumStrategy_Strategy {
+        <<enumeration>>
+        +MELEE_STRATEGY
+        +PROJECTILE_STRATEGY
+        +SPELL_STRATEGY
+        -DragonSlayingStrategy dragonSlayingStrategy
+        +execute()
+    }
+    EnumStrategy *-- EnumStrategy_Strategy
+    EnumStrategy_Strategy ..|> DragonSlayingStrategy
+
+    %% Functional strategy variant
+    class FunctionalDragonSlayer {
+        -Strategy strategy
+        +changeStrategy(strategy Strategy)
+        +goToBattle()
+    }
+    class LambdaStrategy {
+        <<object>>
+        +meleeStrategy()
+        +projectileStrategy()
+        +spellStrategy()
+    }
+    note for FunctionalDragonSlayer "Strategy is a typealias for () -> Unit"
 ```
 
 ## Applicability

@@ -82,10 +82,9 @@ classDiagram
         +main(args String[])$
     }
     class IvoryTower {
-        -IvoryTower()
-        +getInstance() IvoryTower$
+        <<data object>>
     }
-    IvoryTower --> IvoryTower : INSTANCE
+    App --> IvoryTower : uses
 ```
 
 ## Applicability

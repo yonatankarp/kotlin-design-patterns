@@ -179,21 +179,19 @@ classDiagram
     }
     class Weapon {
         <<interface>>
-        +getEnchantment() Enchantment*
+        +Enchantment enchantment*
         +swing()*
         +unwield()*
         +wield()*
     }
     class Sword {
-        -Enchantment enchantment
-        +getEnchantment() Enchantment
+        +Enchantment enchantment
         +swing()
         +unwield()
         +wield()
     }
     class Hammer {
-        -Enchantment enchantment
-        +getEnchantment() Enchantment
+        +Enchantment enchantment
         +swing()
         +unwield()
         +wield()

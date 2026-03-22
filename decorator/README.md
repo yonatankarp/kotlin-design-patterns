@@ -136,13 +136,11 @@ classDiagram
         +int attackPower*
     }
     class SimpleTroll {
-        -Logger logger$
         +attack()
         +fleeBattle()
         +int attackPower
     }
     class ClubbedTroll {
-        -Logger logger$
         -Troll decorated
         +attack()
         +fleeBattle()

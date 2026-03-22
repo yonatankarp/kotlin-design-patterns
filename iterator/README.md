@@ -38,6 +38,22 @@ Wikipedia says
 > which an iterator is used to traverse a container and access the container's
 > elements.
 
+```mermaid
+sequenceDiagram
+    participant Client
+    participant Collection
+    participant Iterator
+
+    Client->>Collection: createIterator()
+    Collection->>Iterator: return iterator
+    Client->>Iterator: hasNext()
+    Iterator-->>Client: true
+    Client->>Iterator: next()
+    Iterator-->>Client: element
+    Client->>Iterator: hasNext()
+    Iterator-->>Client: false
+```
+
 **Programmatic Example**
 
 The main class in our example is the `TreasureChest` that contains items.

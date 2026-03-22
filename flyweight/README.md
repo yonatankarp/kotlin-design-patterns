@@ -159,7 +159,53 @@ You feel blessed. (Potion=1946403944)
 
 ## Class diagram
 
-![alt text](etc/flyweight.svg "Flyweight pattern class diagram")
+```mermaid
+classDiagram
+    class Potion {
+        <<interface>>
+        +drink()*
+    }
+    class PotionType {
+        <<enumeration>>
+        HEALING
+        HOLY_WATER
+        INVISIBILITY
+        POISON
+        STRENGTH
+    }
+    class PotionFactory {
+        -Map~PotionType, Potion~ potions
+        ~createPotion(PotionType type) Potion
+    }
+    class AlchemistShop {
+        -List~Potion~ topShelf
+        -List~Potion~ bottomShelf
+        +enumerate()
+        +getTopShelf() List~Potion~
+        +getBottomShelf() List~Potion~
+    }
+    class HealingPotion {
+        +drink()
+    }
+    class HolyWaterPotion {
+        +drink()
+    }
+    class InvisibilityPotion {
+        +drink()
+    }
+    class PoisonPotion {
+        +drink()
+    }
+    class StrengthPotion {
+        +drink()
+    }
+    AlchemistShop --> Potion : topShelf
+    HealingPotion ..|> Potion
+    HolyWaterPotion ..|> Potion
+    InvisibilityPotion ..|> Potion
+    PoisonPotion ..|> Potion
+    StrengthPotion ..|> Potion
+```
 
 ## Applicability
 

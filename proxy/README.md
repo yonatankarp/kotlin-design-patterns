@@ -107,7 +107,29 @@ Brown wizard is not allowed to enter!
 
 ## Class diagram
 
-![alt text](etc/proxy.svg "Proxy pattern class diagram")
+```mermaid
+classDiagram
+    class WizardTower {
+        <<interface>>
+        +enter(Wizard)*
+    }
+    class IvoryTower {
+        +enter(Wizard wizard)
+    }
+    class Wizard {
+        -String name
+        +toString() String
+    }
+    class WizardTowerProxy {
+        -int NUM_WIZARDS_ALLOWED$
+        -int numWizards
+        -WizardTower tower
+        +enter(Wizard wizard)
+    }
+    WizardTowerProxy --> WizardTower : tower
+    IvoryTower ..|> WizardTower
+    WizardTowerProxy ..|> WizardTower
+```
 
 ## Applicability
 

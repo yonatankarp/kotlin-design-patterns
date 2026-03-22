@@ -152,7 +152,46 @@ Message from the elves:
 
 ## Class diagram
 
-![alt text](etc/composite.svg "Composite class diagram")
+```mermaid
+classDiagram
+    class LetterComposite {
+        <<abstract>>
+        -List~LetterComposite~ children
+        +add(letter LetterComposite)
+        +count() int
+        +print()
+        #printThisAfter()
+        #printThisBefore()
+    }
+    class Letter {
+        -char character
+        #printThisBefore()
+    }
+    class Word {
+        +Word(letters List~Letter~)
+        +Word(letters char[])
+        #printThisBefore()
+    }
+    class Sentence {
+        +Sentence(words List~Word~)
+        #printThisAfter()
+    }
+    class Messenger {
+        ~messageFromElves() LetterComposite
+        ~messageFromOrcs() LetterComposite
+    }
+    class App {
+        -Logger logger$
+        +main(args String[])$
+    }
+    LetterComposite --> LetterComposite : children
+    Letter --|> LetterComposite
+    Sentence --|> LetterComposite
+    Word --|> LetterComposite
+    Messenger --> Word
+    Messenger --> Sentence
+    App --> Messenger
+```
 
 ## Applicability
 

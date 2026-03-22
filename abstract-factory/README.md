@@ -177,7 +177,93 @@ This is the orc Army!
 
 ## Class diagram
 
-![Abstract Factory class diagram](etc/abstract-factory.svg "Abstract Factory class diagram")
+```mermaid
+classDiagram
+    class App {
+        -Logger LOGGER$
+        -Army army
+        -Castle castle
+        -King king
+        +createKingdom(factory KingdomFactory)
+        +getArmy() Army
+        +getCastle() Castle
+        +getKing() King
+        +main(args String[])$
+    }
+    class FactoryMaker {
+        +makeFactory(type KingdomType) KingdomFactory$
+    }
+    class KingdomType {
+        <<enumeration>>
+        ELF
+        ORC
+    }
+    class Army {
+        <<interface>>
+        +getDescription() String*
+    }
+    class Castle {
+        <<interface>>
+        +getDescription() String*
+    }
+    class King {
+        <<interface>>
+        +getDescription() String*
+    }
+    class KingdomFactory {
+        <<interface>>
+        +createArmy() Army*
+        +createCastle() Castle*
+        +createKing() King*
+    }
+    class ElfArmy {
+        ~String DESCRIPTION$
+        +getDescription() String
+    }
+    class ElfCastle {
+        ~String DESCRIPTION$
+        +getDescription() String
+    }
+    class ElfKing {
+        ~String DESCRIPTION$
+        +getDescription() String
+    }
+    class ElfKingdomFactory {
+        +createArmy() Army
+        +createCastle() Castle
+        +createKing() King
+    }
+    class OrcArmy {
+        ~String DESCRIPTION$
+        +getDescription() String
+    }
+    class OrcCastle {
+        ~String DESCRIPTION$
+        +getDescription() String
+    }
+    class OrcKing {
+        ~String DESCRIPTION$
+        +getDescription() String
+    }
+    class OrcKingdomFactory {
+        +createArmy() Army
+        +createCastle() Castle
+        +createKing() King
+    }
+    KingdomType *-- FactoryMaker
+    App --> Castle : castle
+    FactoryMaker *-- App
+    App --> King : king
+    App --> Army : army
+    ElfArmy ..|> Army
+    ElfCastle ..|> Castle
+    ElfKing ..|> King
+    ElfKingdomFactory ..|> KingdomFactory
+    OrcArmy ..|> Army
+    OrcCastle ..|> Castle
+    OrcKing ..|> King
+    OrcKingdomFactory ..|> KingdomFactory
+```
 
 ## Applicability
 

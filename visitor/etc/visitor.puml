@@ -1,7 +1,0 @@
-@startuml
-package com.yonatankarp.visitor {
-  class App {
-    + main(args : String[]) {static}
-  }
-}
-@enduml

@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     alias(libs.plugins.spotless) apply true
-    alias(libs.plugins.plantuml) apply true
+
     alias(libs.plugins.kotlin.jvm) apply true
 }
 
@@ -11,7 +11,7 @@ val jvmVersion = libs.versions.jvm.get()
 
 allprojects {
     apply(plugin = "com.diffplug.spotless")
-    apply(plugin = "io.github.redgreencoding.plantuml")
+
     apply(plugin = "org.jetbrains.kotlin.jvm")
 
     tasks.withType(KotlinCompile::class.java) {
@@ -57,20 +57,6 @@ allprojects {
             leadingTabsToSpaces(4)
             endWithNewline()
             ktlint()
-        }
-    }
-
-    plantuml {
-        options {
-            outputDir = project.file("etc")
-            format = "svg"
-        }
-
-        diagrams {
-            create(project.name) {
-                sourceFile =
-                    project.file("$projectDir/etc/${project.name}.puml")
-            }
         }
     }
 

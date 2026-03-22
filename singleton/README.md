@@ -74,7 +74,19 @@ The output on console:
 
 ## Class diagram
 
-![Singleton pattern class diagram](./etc/singleton.svg "Singleton pattern class diagram")
+```mermaid
+classDiagram
+    class App {
+        -Logger LOGGER$
+        +App()
+        +main(args String[])$
+    }
+    class IvoryTower {
+        -IvoryTower()
+        +getInstance() IvoryTower$
+    }
+    IvoryTower --> IvoryTower : INSTANCE
+```
 
 ## Applicability
 

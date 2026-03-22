@@ -1,7 +1,0 @@
-@startuml
-package com.yonatankarp.mediator {
-  class App {
-    + main(args : String[]) {static}
-  }
-}
-@enduml

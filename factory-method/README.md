@@ -90,7 +90,50 @@ The elf blacksmith manufactured axe
 
 ## Class diagram
 
-![Factory Method pattern class diagram](etc/factory-method.svg "Factory Method pattern class diagram")
+```mermaid
+classDiagram
+    class Blacksmith {
+        <<interface>>
+        +manufactureWeapon(WeaponType) Weapon*
+    }
+    class Weapon {
+        <<interface>>
+        +getWeaponType() WeaponType*
+    }
+    class WeaponType {
+        <<enumeration>>
+        AXE
+        SHORT_SWORD
+        SPEAR
+        UNDEFINED
+        -String title
+        +toString() String
+    }
+    class ElfBlacksmith {
+        -Map~WeaponType, ElfWeapon~ ELFARSENAL$
+        +manufactureWeapon(WeaponType weaponType) Weapon
+    }
+    class OrcBlacksmith {
+        -Map~WeaponType, OrcWeapon~ ORCARSENAL$
+        +manufactureWeapon(WeaponType weaponType) Weapon
+    }
+    class ElfWeapon {
+        -WeaponType weaponType
+        +getWeaponType() WeaponType
+        +toString() String
+    }
+    class OrcWeapon {
+        -WeaponType weaponType
+        +getWeaponType() WeaponType
+        +toString() String
+    }
+    ElfWeapon --> WeaponType : weaponType
+    OrcWeapon --> WeaponType : weaponType
+    ElfBlacksmith ..|> Blacksmith
+    OrcBlacksmith ..|> Blacksmith
+    ElfWeapon ..|> Weapon
+    OrcWeapon ..|> Weapon
+```
 
 ## Applicability
 

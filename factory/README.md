@@ -90,7 +90,33 @@ This is a gold coin.
 
 ## Class Diagram
 
-![Factory pattern class diagram](etc/factory.svg "Factory pattern class diagram")
+```mermaid
+classDiagram
+    class Coin {
+        <<interface>>
+        +getDescription() String*
+    }
+    class CoinFactory {
+        +getCoin(CoinType type) Coin$
+    }
+    class CoinType {
+        <<enumeration>>
+        COPPER
+        GOLD
+        -Supplier~Coin~ constructor
+        +getConstructor() Supplier~Coin~
+    }
+    class CopperCoin {
+        ~String DESCRIPTION$
+        +getDescription() String
+    }
+    class GoldCoin {
+        ~String DESCRIPTION$
+        +getDescription() String
+    }
+    CopperCoin ..|> Coin
+    GoldCoin ..|> Coin
+```
 
 ## Applicability
 

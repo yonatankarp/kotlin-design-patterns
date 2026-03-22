@@ -115,7 +115,30 @@ captain.row()
 
 ## Class diagram
 
-![alt text](etc/adapter.svg "Adapter class diagram")
+```mermaid
+classDiagram
+    class Captain {
+        -RowingBoat rowingBoat
+        +Captain(boat RowingBoat)
+        ~row()
+    }
+    class FishingBoat {
+        -Logger logger$
+        ~sail()
+    }
+    class FishingBoatAdapter {
+        -FishingBoat boat
+        +row()
+    }
+    class RowingBoat {
+        <<interface>>
+        +row()*
+    }
+    FishingBoatAdapter --> FishingBoat : boat
+    Captain --> RowingBoat : rowingBoat
+    FishingBoatAdapter ..|> RowingBoat
+    FishingBoat --> RowingBoat : toRowingBoat()
+```
 
 ## Applicability
 Use the Adapter pattern when

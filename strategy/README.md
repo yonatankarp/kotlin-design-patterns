@@ -206,7 +206,71 @@ The program output is the same as the above one.
 
 ## Class diagram
 
-![alt text](etc/strategy.svg "Strategy")
+```mermaid
+classDiagram
+    class App {
+        -Logger LOGGER$
+        +App()
+        +main(args String[])$
+    }
+    class DragonSlayer {
+        -DragonSlayingStrategy strategy
+        +DragonSlayer(strategy DragonSlayingStrategy)
+        +changeStrategy(strategy DragonSlayingStrategy)
+        +goToBattle()
+    }
+    class DragonSlayingStrategy {
+        <<interface>>
+        +execute()*
+    }
+    class EnumStrategy {
+        +EnumStrategy()
+        +MELEE_STRATEGY
+        +PROJECTILE_STRATEGY
+        +SPELL_STRATEGY
+    }
+    class Strategy {
+        <<enumeration>>
+        +MeleeStrategy$
+        +ProjectileStrategy$
+        +SpellStrategy$
+        -DragonSlayingStrategy dragonSlayingStrategy
+        +execute()
+        +valueOf(name String) Strategy$
+        +values() Strategy[]$
+    }
+    class MeleeStrategy {
+        +MeleeStrategy()
+        +execute()
+    }
+    class ProjectileStrategy {
+        +ProjectileStrategy()
+        +execute()
+    }
+    class SpellStrategy {
+        +SpellStrategy()
+        +execute()
+    }
+    class FunctionalDragonSlayer {
+        -() ~Unit~ strategy
+        +FunctionalDragonSlayer(strategy () ~Unit~)
+        +changeStrategy(strategy () ~Unit~)
+        +goToBattle()
+    }
+    class LambdaStrategy {
+        +meleeStrategy$
+        +projectileStrategy$
+        +spellStrategy$
+    }
+    Strategy *-- EnumStrategy
+    Strategy --> DragonSlayingStrategy : dragonSlayingStrategy
+    DragonSlayer --> DragonSlayingStrategy : strategy
+    Strategy ..|> DragonSlayingStrategy
+    MeleeStrategy ..|> DragonSlayingStrategy
+    ProjectileStrategy ..|> DragonSlayingStrategy
+    SpellStrategy ..|> DragonSlayingStrategy
+    FunctionalDragonSlayer --> LambdaStrategy : strategy
+```
 
 ## Applicability
 

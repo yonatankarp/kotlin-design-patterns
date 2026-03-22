@@ -16,8 +16,8 @@ private const val BLACK_DRAGON_LANDS = "Black dragon lands before you."
  * With Kotlin, it is easy to pass behavior with method references and lambdas
  * making the code shorter and more readable.
  *
- * In this example ({@link DragonSlayingStrategy}) encapsulates an algorithm.
- * The containing object ({@link DragonSlayer}) can alter its behavior by
+ * In this example ([DragonSlayingStrategy]) encapsulates an algorithm.
+ * The containing object ([DragonSlayer]) can alter its behavior by
  * changing its strategy.
  */
 

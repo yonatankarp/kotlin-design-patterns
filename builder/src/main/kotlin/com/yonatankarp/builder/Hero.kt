@@ -17,39 +17,29 @@ internal data class Hero(
         builder.weapon
     )
 
-    override fun toString(): String {
-        val sb = StringBuilder("This is a $profession named $name")
+    override fun toString(): String = buildString {
+        append("This is a $profession named $name")
         if (hairColor != null || hairType != null) {
-            sb.append(" with ")
-            hairColor?.let { sb.append("$it ") }
-            hairType?.let { sb.append("$it ") }
-            sb.append(if (hairType !== HairType.BALD) "hair" else "head")
+            append(" with ")
+            hairColor?.let { append("$it ") }
+            hairType?.let { append("$it ") }
+            append(if (hairType !== HairType.BALD) "hair" else "head")
         }
-        armor?.let { sb.append(" wearing $it") }
-        weapon?.let { sb.append(" and wielding a $it") }
-        sb.append('.')
-        return sb.toString()
+        armor?.let { append(" wearing $it") }
+        weapon?.let { append(" and wielding a $it") }
+        append('.')
     }
 
     /**
      * The builder class.
      */
     internal class Builder(profession: Profession?, name: String?) {
-        val profession: Profession
-        val name: String
+        val profession: Profession = requireNotNull(profession) { "profession can not be null" }
+        val name: String = requireNotNull(name) { "name can not be null" }
         var hairType: HairType? = null
         var hairColor: HairColor? = null
         var armor: Armor? = null
         var weapon: Weapon? = null
-
-        /**
-         * Constructor.
-         */
-        init {
-            require(!(profession == null || name == null)) { "profession and name can not be null" }
-            this.profession = profession
-            this.name = name
-        }
 
         fun withHairType(hairType: HairType?): Builder = apply {
             this.hairType = hairType

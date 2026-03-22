@@ -23,9 +23,9 @@ internal class DwarvenGoldmineFacadeTest {
 
     /**
      * Test a complete day cycle in the gold mine by executing all three
-     * different steps: {@link DwarvenGoldmineFacade#startNewDay()},
-     * {@link DwarvenGoldmineFacade#digOutGold()} and
-     * {@link DwarvenGoldmineFacade#endDay()}.
+     * different steps: [DwarvenGoldmineFacade.startNewDay],
+     * [DwarvenGoldmineFacade.digOutGold] and
+     * [DwarvenGoldmineFacade.endDay].
      *
      * See if the workers are doing what's expected from them on each step.
      */

@@ -38,7 +38,7 @@ Wikipedia says
 > interface and implemented by child classes, or implemented in a base class and
 > optionally overridden by derived classes—rather than by calling a constructor.
 
-**Programmatic Example**
+### Programmatic Example
 
 Taking our blacksmith example above. First of all, we have a `Blacksmith`
 interface and some implementations for it:
@@ -81,7 +81,8 @@ logger.info("$blacksmith manufactured ${weapon.weaponType.title}")
 ```
 
 Program output:
-```
+
+```text
 The orc blacksmith manufactured spear
 The orc blacksmith manufactured axe
 The elf blacksmith manufactured spear
@@ -139,9 +140,9 @@ classDiagram
 
 Use the Factory Method pattern when:
 
-* Class cannot anticipate the class of objects it must create.
-* Class wants its subclasses to specify the objects it creates.
-* Classes delegate responsibility to one of several helper subclasses, and you
+- Class cannot anticipate the class of objects it must create.
+- Class wants its subclasses to specify the objects it creates.
+- Classes delegate responsibility to one of several helper subclasses, and you
   want to localize the knowledge of which helper subclass is the delegate.
 
 ## Credits

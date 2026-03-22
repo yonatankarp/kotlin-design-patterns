@@ -34,7 +34,7 @@ Wikipedia says
 > hierarchies. Implementing the composite pattern lets clients treat individual
 > objects and compositions uniformly.
 
-**Programmatic Example**
+### Programmatic Example
 
 Taking our sentence example from above. Here we have the base class
 `LetterComposite` and the different printable types `Letter`, `Word` and
@@ -143,7 +143,7 @@ messenger.messageFromElves().print()
 
 The console output:
 
-```
+```text
 Message from the orcs: 
  Where there is a whip there is a way.
 Message from the elves: 

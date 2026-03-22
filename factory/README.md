@@ -32,7 +32,7 @@ Wikipedia says
 > Factory is an object for creating other objects – formally a factory is a
 > function or method that returns objects of a varying prototype or class.
 
-**Programmatic Example**
+### Programmatic Example
 
 We have an interface `Coin` and two implementations `GoldCoin` and `CopperCoin`.
 
@@ -125,14 +125,14 @@ how to create and manage it.
 
 Pros
 
-* Allows keeping all objects creation in one place.
-* Allows to write loosely coupled code. Some of its main advantages include
+- Allows keeping all objects creation in one place.
+- Allows to write loosely coupled code. Some of its main advantages include
   better testability, easy-to-understand code, swappable components, scalability
   and isolated features.
 
 Cons
 
-* The code becomes more complicated than it should be.
+- The code becomes more complicated than it should be.
 
 ## Related patterns
 

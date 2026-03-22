@@ -41,7 +41,7 @@ Wikipedia says
 > by allowing the functionality of a class to be extended without being
 > modified.
 
-**Programmatic Example**
+### Programmatic Example
 
 Let's take the troll example. First of all we have a `SimpleTroll` implementing
 the `Troll` interface:
@@ -157,10 +157,10 @@ classDiagram
 
 Decorator is used to:
 
-* Add responsibilities to individual objects dynamically and transparently, that
+- Add responsibilities to individual objects dynamically and transparently, that
   is, without affecting other objects.
-* For responsibilities that can be withdrawn.
-* When extension by subclassing is impractical. Sometimes a large number of
+- For responsibilities that can be withdrawn.
+- When extension by subclassing is impractical. Sometimes a large number of
   independent extensions are possible and would produce an explosion of
   subclasses to support every combination. Or a class definition may be hidden
   or otherwise unavailable for subclassing.

@@ -1,62 +1,35 @@
-name: Continuous Integration
+name: CI
 
 on:
   pull_request:
     types: [ opened, synchronize, reopened, ready_for_review ]
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.job }}-${{ github.ref }}
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  pipeline:
-    strategy:
-      matrix:
-        module: [
-          "abstract-factory",
-          "adapter",
-          "bridge",
-          "builder",
-          "chain-of-responsibility",
-          "command",
-          "composite",
-          "decorator",
-          "facade",
-          "factory",
-          "factory-method",
-          "flyweight",
-          "iterator",
-          "mediator",
-          "observer",
-          "prototype",
-          "proxy",
-          "singleton",
-          "state",
-          "strategy",
-          "template-method",
-          "visitor",
-        ]
-    uses: yonatankarp/github-actions/.github/workflows/ci.yml@v1
-    with:
-      context: ${{ matrix.module }}
-      build_dockerfile: false
-
-  ci-check:
-    if: |
-      github.event_name == 'pull_request_target' ||
-      github.event_name == 'pull_request' && github.actor == 'dependabot[bot]'
-    needs:
-      - pipeline
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Decide whether all CI jobs have succeeded or failed
-        uses: re-actors/alls-green@release/v1
-        with:
-          jobs: ${{ toJSON(needs) }}
+      - name: Git Checkout
+        uses: actions/checkout@v6
 
-  dependabot_auto_merge:
-    needs: pipeline
-    if: ${{ github.actor == 'dependabot[bot]' }}
+      - name: Install Java
+        uses: actions/setup-java@v5
+        with:
+          java-version: 21
+          distribution: 'temurin'
+          cache: gradle
+
+      - name: Build & Test
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: ./gradlew build
+
+  dependabot-auto-merge:
+    needs: build
+    if: github.event.pull_request.user.login == 'dependabot[bot]'
     permissions:
       contents: write
       pull-requests: write

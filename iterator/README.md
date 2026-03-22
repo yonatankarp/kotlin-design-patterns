@@ -210,7 +210,49 @@ Next node: 14
 
 ## Class diagram
 
-![alt text](etc/iterator.svg "Iterator")
+```mermaid
+classDiagram
+    class ItemType {
+        <<enumeration>>
+        ANY
+        POTION
+        RING
+        WEAPON
+    }
+    class Item {
+        <<data>>
+        +ItemType type
+        +String name
+    }
+    class TreasureChest {
+        +List~Item~ items
+        +iterator(itemType ItemType) Iterator~Item~
+    }
+    class TreasureChestItemIterator {
+        -List~Item~ items
+        -ItemType type
+        -Int currentIndex
+        +hasNext() Boolean
+        +next() Item
+    }
+    class TreeNode~T : Comparable~ {
+        +T value
+        +TreeNode~T~? left
+        +TreeNode~T~? right
+        +insert(newValue T)
+    }
+    class BstIterator~T : Comparable~ {
+        -ArrayDeque~TreeNode~T~~ stack
+        +hasNext() Boolean
+        +next() TreeNode~T~
+    }
+    TreasureChest --> TreasureChestItemIterator : creates
+    TreasureChest o-- Item
+    Item --> ItemType
+    TreasureChestItemIterator ..|> Iterator
+    BstIterator ..|> Iterator
+    BstIterator --> TreeNode
+```
 
 ## Applicability
 

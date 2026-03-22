@@ -288,32 +288,32 @@ Use the Abstract Factory pattern when
 
 Example use cases
 
-* Selecting to call to the appropriate implementation of FileSystemAcmeService
+-Selecting to call to the appropriate implementation of FileSystemAcmeService
   or DatabaseAcmeService or NetworkAcmeService at runtime.
-* Unit test case writing becomes much easier
-* UI tools for different OS
+-Unit test case writing becomes much easier
+-UI tools for different OS
 
 ## Consequences
 
-* Dependency injection in java hides the service class dependencies that can
+-Dependency injection in java hides the service class dependencies that can
   lead to runtime errors that would have been caught at compile time.
-* While the pattern is great when creating predefined objects, adding the new
+-While the pattern is great when creating predefined objects, adding the new
   ones might be challenging.
-* The code becomes more complicated than it should be since a lot of new
+-The code becomes more complicated than it should be since a lot of new
   interfaces and classes are introduced along with the pattern.
 
 ## Tutorials
 
-* [Abstract Factory Pattern Tutorial](https://www.journaldev.com/1418/abstract-factory-design-pattern-in-java)
+-[Abstract Factory Pattern Tutorial](https://www.journaldev.com/1418/abstract-factory-design-pattern-in-java)
 
 ## Related patterns
 
-* [Factory Method](../factory-method/README.md)
-* Factory Kit
+-[Factory Method](../factory-method/README.md)
+-Factory Kit
 
 [//]: # (TODO: link after adding the pattern)
 
 ## Credits
 
-* [Design Patterns: Elements of Reusable Object-Oriented Software](https://www.amazon.com/gp/product/0201633612/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0201633612&linkCode=as2&tag=javadesignpat-20&linkId=675d49790ce11db99d90bde47f1aeb59)
-* [Head First Design Patterns: A Brain-Friendly Guide](https://www.amazon.com/gp/product/0596007124/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596007124&linkCode=as2&tag=javadesignpat-20&linkId=6b8b6eea86021af6c8e3cd3fc382cb5b)
+-[Design Patterns: Elements of Reusable Object-Oriented Software](https://www.amazon.com/gp/product/0201633612/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0201633612&linkCode=as2&tag=javadesignpat-20&linkId=675d49790ce11db99d90bde47f1aeb59)
+-[Head First Design Patterns: A Brain-Friendly Guide](https://www.amazon.com/gp/product/0596007124/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596007124&linkCode=as2&tag=javadesignpat-20&linkId=6b8b6eea86021af6c8e3cd3fc382cb5b)

@@ -145,15 +145,15 @@ classDiagram
 
 Use the Adapter pattern when
 
-* You want to use an existing class, and its interface does not match the one
+-You want to use an existing class, and its interface does not match the one
   you need
-* You want to create a reusable class that cooperates with unrelated or
+-You want to create a reusable class that cooperates with unrelated or
   unforeseen classes, that is, classes that don't necessarily have compatible
   interfaces
-* You need to use several existing subclasses, but it's impractical to adapt
+-You need to use several existing subclasses, but it's impractical to adapt
   their interface by subclassing everyone. An object adapter can adapt the
   interface of its parent class.
-* Most of the applications using third-party libraries use adapters as a middle
+-Most of the applications using third-party libraries use adapters as a middle
   layer between the application and the 3rd party library to decouple the
   application from the library. If another library has to be used only an
   adapter for the new library is required without having to change the
@@ -161,9 +161,9 @@ Use the Adapter pattern when
 
 ## Tutorials
 
-* [Dzone](https://dzone.com/articles/adapter-design-pattern-in-java)
-* [Refactoring Guru](https://refactoring.guru/design-patterns/adapter/java/example)
-* [Baeldung](https://www.baeldung.com/java-adapter-pattern)
+-[Dzone](https://dzone.com/articles/adapter-design-pattern-in-java)
+-[Refactoring Guru](https://refactoring.guru/design-patterns/adapter/java/example)
+-[Baeldung](https://www.baeldung.com/java-adapter-pattern)
 
 ## Consequences
 
@@ -188,7 +188,7 @@ An object adapter
 
 ## Credits
 
-* [Design Patterns: Elements of Reusable Object-Oriented Software](https://www.amazon.com/gp/product/0201633612/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0201633612&linkCode=as2&tag=javadesignpat-20&linkId=675d49790ce11db99d90bde47f1aeb59)
-* [J2EE Design Patterns](https://www.amazon.com/gp/product/0596004273/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596004273&linkCode=as2&tag=javadesignpat-20&linkId=48d37c67fb3d845b802fa9b619ad8f31)
-* [Head First Design Patterns: A Brain-Friendly Guide](https://www.amazon.com/gp/product/0596007124/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596007124&linkCode=as2&tag=javadesignpat-20&linkId=6b8b6eea86021af6c8e3cd3fc382cb5b)
-* [Refactoring to Patterns](https://www.amazon.com/gp/product/0321213351/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0321213351&linkCode=as2&tag=javadesignpat-20&linkId=2a76fcb387234bc71b1c61150b3cc3a7)
+-[Design Patterns: Elements of Reusable Object-Oriented Software](https://www.amazon.com/gp/product/0201633612/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0201633612&linkCode=as2&tag=javadesignpat-20&linkId=675d49790ce11db99d90bde47f1aeb59)
+-[J2EE Design Patterns](https://www.amazon.com/gp/product/0596004273/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596004273&linkCode=as2&tag=javadesignpat-20&linkId=48d37c67fb3d845b802fa9b619ad8f31)
+-[Head First Design Patterns: A Brain-Friendly Guide](https://www.amazon.com/gp/product/0596007124/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596007124&linkCode=as2&tag=javadesignpat-20&linkId=6b8b6eea86021af6c8e3cd3fc382cb5b)
+-[Refactoring to Patterns](https://www.amazon.com/gp/product/0321213351/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0321213351&linkCode=as2&tag=javadesignpat-20&linkId=2a76fcb387234bc71b1c61150b3cc3a7)

@@ -29,10 +29,10 @@ Wikipedia says
 > that restricts the instantiation of a class to one object. This is useful
 > when exactly one object is needed to coordinate actions across the system.
 
-**Programmatic Example**
+### Programmatic Example
 
 Kotlin makes it externally easy to create singletons by introducing the language
-keyword `object`. By using this keyword we will get from the compiler an 
+keyword `object`. By using this keyword we will get from the compiler an
 implementation of the Singleton pattern, that contains all of our requirements.
 
 ```kotlin
@@ -92,28 +92,27 @@ classDiagram
 
 Use the Singleton pattern when
 
-* There must be exactly one instance of a class, and it must be accessible to
+-There must be exactly one instance of a class, and it must be accessible to
   clients from a well-known access point
-* When the sole instance should be extensible by subclassing, and clients should
+-When the sole instance should be extensible by subclassing, and clients should
   be able to use an extended instance without modifying their code
 
 Some typical use cases for the Singleton
 
-* The logging class
-* Managing a connection to a database
-* File manager
+-The logging class
+-Managing a connection to a database
+-File manager
 
 ## Consequences
 
-* Violates Single Responsibility Principle (SRP) by controlling their creation
+-Violates Single Responsibility Principle (SRP) by controlling their creation
   and lifecycle.
-* Encourages using a globally shared instance which prevents an object and
+-Encourages using a globally shared instance which prevents an object and
   resources used by this object from being deallocated.
-* Creates tightly coupled code. The clients of the Singleton become difficult
+-Creates tightly coupled code. The clients of the Singleton become difficult
   to test.
-* Makes it almost impossible to subclass a Singleton.
+-Makes it almost impossible to subclass a Singleton.
 
 ## Credits
 
-* [Kotlin Design Patterns and Best Practices](https://www.amazon.de/Kotlin-Design-Patterns-Best-Practices/dp/1801815720/ref=sr_1_1?keywords=kotlin+design+patterns+and+best+practices&qid=1694244553&sprefix=kotlin+design%2Caps%2C101&sr=8-1)
-
+- [Kotlin Design Patterns and Best Practices](https://www.amazon.de/Kotlin-Design-Patterns-Best-Practices/dp/1801815720/ref=sr_1_1?keywords=kotlin+design+patterns+and+best+practices&qid=1694244553&sprefix=kotlin+design%2Caps%2C101&sr=8-1)

@@ -61,14 +61,14 @@ abstract class LetterComposite {
 }
 
 /**
- * Letter.
+ -Letter.
  */
 class Letter(private val character: Char) : LetterComposite() {
   override fun printThisBefore() = print(character)
 }
 
 /**
- * Word.
+ -Word.
  */
 class Word : LetterComposite {
   constructor(letters: List<Letter>) {
@@ -85,7 +85,7 @@ class Word : LetterComposite {
 }
 
 /**
- * Sentence.
+ -Sentence.
  */
 class Sentence(words: List<Word>) : LetterComposite() {
   init {
@@ -197,13 +197,13 @@ classDiagram
 
 Use the Composite pattern when
 
-* You want to represent part-whole hierarchies of objects.
-* You want clients to be able to ignore the difference between compositions of
+-You want to represent part-whole hierarchies of objects.
+-You want clients to be able to ignore the difference between compositions of
   objects and individual objects. Clients will treat all objects in the
   composite structure uniformly.
 
 ## Credits
 
-* [Design Patterns: Elements of Reusable Object-Oriented Software](https://www.amazon.com/gp/product/0201633612/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0201633612&linkCode=as2&tag=javadesignpat-20&linkId=675d49790ce11db99d90bde47f1aeb59)
-* [Head First Design Patterns: A Brain-Friendly Guide](https://www.amazon.com/gp/product/0596007124/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596007124&linkCode=as2&tag=javadesignpat-20&linkId=6b8b6eea86021af6c8e3cd3fc382cb5b)
-* [Refactoring to Patterns](https://www.amazon.com/gp/product/0321213351/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0321213351&linkCode=as2&tag=javadesignpat-20&linkId=2a76fcb387234bc71b1c61150b3cc3a7)
+-[Design Patterns: Elements of Reusable Object-Oriented Software](https://www.amazon.com/gp/product/0201633612/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0201633612&linkCode=as2&tag=javadesignpat-20&linkId=675d49790ce11db99d90bde47f1aeb59)
+-[Head First Design Patterns: A Brain-Friendly Guide](https://www.amazon.com/gp/product/0596007124/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596007124&linkCode=as2&tag=javadesignpat-20&linkId=6b8b6eea86021af6c8e3cd3fc382cb5b)
+-[Refactoring to Patterns](https://www.amazon.com/gp/product/0321213351/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0321213351&linkCode=as2&tag=javadesignpat-20&linkId=2a76fcb387234bc71b1c61150b3cc3a7)

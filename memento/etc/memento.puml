@@ -1,5 +1,5 @@
 @startuml
-package com.yonatankarp.factory.method {
+package com.yonatankarp.memento {
   class App {
     + main(args : String[]) {static}
   }

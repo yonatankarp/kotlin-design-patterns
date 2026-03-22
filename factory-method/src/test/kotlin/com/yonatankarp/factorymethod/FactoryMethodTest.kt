@@ -1,4 +1,4 @@
-package com.yonatankarp.factory.method
+package com.yonatankarp.factorymethod
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue

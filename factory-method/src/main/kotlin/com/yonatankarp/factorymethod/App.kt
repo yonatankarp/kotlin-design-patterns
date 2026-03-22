@@ -1,9 +1,9 @@
-package com.yonatankarp.factory.method
+package com.yonatankarp.factorymethod
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
-internal val logger: Logger = LoggerFactory.getLogger("com.yonatankarp.factory.method")
+internal val logger: Logger = LoggerFactory.getLogger("com.yonatankarp.factorymethod")
 
 /**
  * Program entry point.

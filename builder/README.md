@@ -230,7 +230,7 @@ classDiagram
         +withWeapon(weapon Weapon) Builder
     }
     Hero --> Profession : profession
-    Builder *-- Hero
+    Builder ..> Hero : creates
     Hero --> Armor : armor
     Builder --> HairColor : hairColor
     Builder --> Weapon : weapon

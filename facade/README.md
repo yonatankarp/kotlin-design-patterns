@@ -218,7 +218,7 @@ classDiagram
         +work()
     }
     DwarvenGoldmineFacade --> DwarvenMineWorker : workers
-    Action *-- DwarvenMineWorker
+    DwarvenMineWorker *-- Action
     DwarvenCartOperator --|> DwarvenMineWorker
     DwarvenGoldDigger --|> DwarvenMineWorker
     DwarvenTunnelDigger --|> DwarvenMineWorker

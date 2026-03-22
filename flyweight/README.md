@@ -178,11 +178,9 @@ classDiagram
         ~createPotion(PotionType type) Potion
     }
     class AlchemistShop {
-        -List~Potion~ topShelf
-        -List~Potion~ bottomShelf
-        +enumerate()
-        +getTopShelf() List~Potion~
-        +getBottomShelf() List~Potion~
+        +List~Potion~ topShelf
+        +List~Potion~ bottomShelf
+        +drinkPotions()
     }
     class HealingPotion {
         +drink()
@@ -200,6 +198,7 @@ classDiagram
         +drink()
     }
     AlchemistShop --> Potion : topShelf
+    AlchemistShop --> Potion : bottomShelf
     HealingPotion ..|> Potion
     HolyWaterPotion ..|> Potion
     InvisibilityPotion ..|> Potion

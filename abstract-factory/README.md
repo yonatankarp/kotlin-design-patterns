@@ -179,36 +179,32 @@ This is the orc Army!
 
 ```mermaid
 classDiagram
-    class App {
-        -Logger LOGGER$
-        -Army army
-        -Castle castle
-        -King king
-        +createKingdom(factory KingdomFactory)
-        +getArmy() Army
-        +getCastle() Castle
-        +getKing() King
-        +main(args String[])$
-    }
-    class FactoryMaker {
-        +makeFactory(type KingdomType) KingdomFactory$
-    }
-    class KingdomType {
-        <<enumeration>>
-        ELF
-        ORC
+    namespace Kingdom {
+        class Kingdom {
+            +king King
+            +castle Castle
+            +army Army
+        }
+        class FactoryMaker {
+            +makeFactory(type KingdomType) KingdomFactory$
+        }
+        class KingdomType {
+            <<enumeration>>
+            ELF
+            ORC
+        }
     }
     class Army {
         <<interface>>
-        +getDescription() String*
+        +description String*
     }
     class Castle {
         <<interface>>
-        +getDescription() String*
+        +description String*
     }
     class King {
         <<interface>>
-        +getDescription() String*
+        +description String*
     }
     class KingdomFactory {
         <<interface>>
@@ -217,16 +213,13 @@ classDiagram
         +createKing() King*
     }
     class ElfArmy {
-        ~String DESCRIPTION$
-        +getDescription() String
+        +description String
     }
     class ElfCastle {
-        ~String DESCRIPTION$
-        +getDescription() String
+        +description String
     }
     class ElfKing {
-        ~String DESCRIPTION$
-        +getDescription() String
+        +description String
     }
     class ElfKingdomFactory {
         +createArmy() Army
@@ -234,27 +227,24 @@ classDiagram
         +createKing() King
     }
     class OrcArmy {
-        ~String DESCRIPTION$
-        +getDescription() String
+        +description String
     }
     class OrcCastle {
-        ~String DESCRIPTION$
-        +getDescription() String
+        +description String
     }
     class OrcKing {
-        ~String DESCRIPTION$
-        +getDescription() String
+        +description String
     }
     class OrcKingdomFactory {
         +createArmy() Army
         +createCastle() Castle
         +createKing() King
     }
-    KingdomType *-- FactoryMaker
-    App --> Castle : castle
-    FactoryMaker *-- App
-    App --> King : king
-    App --> Army : army
+    FactoryMaker ..> KingdomFactory : creates
+    FactoryMaker --> KingdomType : uses
+    Kingdom --> King : king
+    Kingdom --> Castle : castle
+    Kingdom --> Army : army
     ElfArmy ..|> Army
     ElfCastle ..|> Castle
     ElfKing ..|> King

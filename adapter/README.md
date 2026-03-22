@@ -138,7 +138,12 @@ classDiagram
     FishingBoatAdapter --> FishingBoat : boat
     Captain --> RowingBoat : rowingBoat
     FishingBoatAdapter ..|> RowingBoat
-    FishingBoat --> RowingBoat : toRowingBoat()
+    class FishingBoatExtFunctionAdapter {
+        <<extension>>
+        +toRowingBoat(FishingBoat) RowingBoat
+    }
+    FishingBoatExtFunctionAdapter ..> FishingBoat
+    FishingBoatExtFunctionAdapter ..> RowingBoat
 ```
 
 ## Applicability

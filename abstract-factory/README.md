@@ -36,7 +36,7 @@ Wikipedia says
 > individual factories that have a common theme without specifying their
 > concrete classes
 
-**Programmatic Example**
+### Programmatic Example
 
 Translating the kingdom example above. First of all, we have some interfaces and
 implementation for the objects in the kingdom.
@@ -269,21 +269,21 @@ classDiagram
 
 Use the Abstract Factory pattern when
 
-* The system should be independent of how its products are created, composed,
+- The system should be independent of how its products are created, composed,
   and represented
-* The system should be configured with one of the multiple families of products
-* The family of related product objects is designed to be used together, and
+- The system should be configured with one of the multiple families of products
+- The family of related product objects is designed to be used together, and
   you need to enforce this constraint
-* You want to provide a class library of products, and you want to reveal just
+- You want to provide a class library of products, and you want to reveal just
   their interfaces, not their implementations
-* The lifetime of the dependency is conceptually shorter than the lifetime of
+- The lifetime of the dependency is conceptually shorter than the lifetime of
   the consumer.
-* You need a run-time value to construct a particular dependency
-* You want to decide which product to call from a family at runtime.
-* You need to supply one or more parameters only known at run-time before you
+- You need a run-time value to construct a particular dependency
+- You want to decide which product to call from a family at runtime.
+- You need to supply one or more parameters only known at run-time before you
   can resolve a dependency.
-* When you need consistency among products
-* You don’t want to change existing code when adding new products or families of
+- When you need consistency among products
+- You don’t want to change existing code when adding new products or families of
   products to the program.
 
 Example use cases

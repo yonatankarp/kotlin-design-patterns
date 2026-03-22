@@ -30,7 +30,7 @@ Wikipedia says
 > A facade is an object that provides a simplified interface to a larger body of
 > code, such as a class library.
 
-**Programmatic Example**
+### Programmatic Example
 
 Let's take our goldmine example from above. Here we have the dwarven mine worker
 hierarchy. First there's a base class `DwarvenMineWorker`:

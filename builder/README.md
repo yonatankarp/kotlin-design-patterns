@@ -52,7 +52,7 @@ and it may become difficult to understand the arrangement of parameters. Plus
 this parameter list could keep on growing if you would want to add more options
 in the future. This is called telescoping constructor anti-pattern.
 
-**Programmatic Example**
+### Programmatic Example
 
 The sane alternative is to use the Builder pattern. First of all, we have our
 hero that we want to create:

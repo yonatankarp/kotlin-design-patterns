@@ -32,7 +32,7 @@ Wikipedia says
 > with other similar objects; it is a way to use objects in large numbers when
 > a simple repeated representation would use an unacceptable amount of memory.
 
-**Programmatic example**
+### Programmatic Example
 
 Translating our alchemist shop example from above. First of all, we have
 different potion types:

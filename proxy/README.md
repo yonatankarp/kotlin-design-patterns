@@ -39,7 +39,7 @@ Wikipedia says
 > when operations on the real object are resource intensive, or checking
 > preconditions before operations on the real object are invoked.
 
-**Programmatic Example**
+### Programmatic Example
 
 Taking our wizard tower example from above. Firstly we have the `WizardTower`
 interface and the `IvoryTower` class.
@@ -137,19 +137,19 @@ Proxy is applicable whenever there is a need for a more versatile or
 sophisticated reference to an object than a simple pointer. Here are several
 common situations in which the Proxy pattern is applicable.
 
-* Remote proxy provides a local representative for an object in a different
+- Remote proxy provides a local representative for an object in a different
   address space.
-* Virtual proxy creates expensive objects on demand.
-* Protection proxy controls access to the original object. Protection proxies
+- Virtual proxy creates expensive objects on demand.
+- Protection proxy controls access to the original object. Protection proxies
   are useful when objects should have different access rights.
 
 Typically, the proxy pattern is used to
 
-* Control access to another object
-* Lazy initialization
-* Implement logging
-* Facilitate network connection
-* Count references to an object
+- Control access to another object
+- Lazy initialization
+- Implement logging
+- Facilitate network connection
+- Count references to an object
 
 ## Tutorials
 
@@ -158,7 +158,8 @@ Typically, the proxy pattern is used to
 ## Related patterns
 
 [//]: # (TODO: Update once the pattern is set)
-* [Ambassador](https://java-design-patterns.com/patterns/ambassador/)
+
+- [Ambassador](https://java-design-patterns.com/patterns/ambassador/)
 
 ## Credits
 

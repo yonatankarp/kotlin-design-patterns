@@ -1,3 +1,11 @@
+---
+title: Mediator
+category: Behavioral
+language: en
+tag:
+  - Gang of Four
+---
+
 ## Class diagram
 
 ```mermaid

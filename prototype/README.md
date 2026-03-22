@@ -132,7 +132,75 @@ Orcish wolf attacks with laser
 
 ## Class diagram
 
-![alt text](etc/prototype.svg "Prototype pattern class diagram")
+```mermaid
+classDiagram
+    class Prototype~T~ {
+        <<abstract>>
+        +clone() T*
+    }
+    class Beast {
+        <<abstract>>
+        +clone() Beast*
+    }
+    class Mage {
+        <<abstract>>
+        +clone() Mage*
+    }
+    class Warlord {
+        <<abstract>>
+        +clone() Warlord*
+    }
+    class HeroFactory {
+        -Beast beast
+        -Mage mage
+        -Warlord warlord
+        +createBeast() Beast
+        +createMage() Mage
+        +createWarlord() Warlord
+    }
+    class ElfBeast {
+        -String helpType
+        +clone() ElfBeast
+        +toString() String
+    }
+    class ElfMage {
+        -String helpType
+        +clone() ElfMage
+        +toString() String
+    }
+    class ElfWarlord {
+        -String helpType
+        +clone() ElfWarlord
+        +toString() String
+    }
+    class OrcBeast {
+        -String weapon
+        +clone() OrcBeast
+        +toString() String
+    }
+    class OrcMage {
+        -String weapon
+        +clone() OrcMage
+        +toString() String
+    }
+    class OrcWarlord {
+        -String weapon
+        +clone() OrcWarlord
+        +toString() String
+    }
+    HeroFactory --> Beast : beast
+    HeroFactory --> Warlord : warlord
+    HeroFactory --> Mage : mage
+    Beast ..|> Prototype~T~
+    Mage ..|> Prototype~T~
+    Warlord ..|> Prototype~T~
+    ElfBeast --|> Beast
+    ElfMage --|> Mage
+    ElfWarlord --|> Warlord
+    OrcBeast --|> Beast
+    OrcMage --|> Mage
+    OrcWarlord --|> Warlord
+```
 
 ## Applicability
 

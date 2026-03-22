@@ -159,7 +159,52 @@ The item's glow fades.
 
 ## Class diagram
 
-![alt text](etc/bridge.svg "Bridge class diagram")
+```mermaid
+classDiagram
+    class Enchantment {
+        <<interface>>
+        +apply()*
+        +onActivate()*
+        +onDeactivate()*
+    }
+    class FlyingEnchantment {
+        +apply()
+        +onActivate()
+        +onDeactivate()
+    }
+    class SoulEatingEnchantment {
+        +apply()
+        +onActivate()
+        +onDeactivate()
+    }
+    class Weapon {
+        <<interface>>
+        +getEnchantment() Enchantment*
+        +swing()*
+        +unwield()*
+        +wield()*
+    }
+    class Sword {
+        -Enchantment enchantment
+        +getEnchantment() Enchantment
+        +swing()
+        +unwield()
+        +wield()
+    }
+    class Hammer {
+        -Enchantment enchantment
+        +getEnchantment() Enchantment
+        +swing()
+        +unwield()
+        +wield()
+    }
+    Sword --> Enchantment : enchantment
+    Hammer --> Enchantment : enchantment
+    FlyingEnchantment ..|> Enchantment
+    Hammer ..|> Weapon
+    SoulEatingEnchantment ..|> Enchantment
+    Sword ..|> Weapon
+```
 
 ## Applicability
 

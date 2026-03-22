@@ -153,7 +153,94 @@ at compile time.
 
 ## Class diagram
 
-![Builder class diagram](etc/builder.svg "Builder class diagram")
+```mermaid
+classDiagram
+    class Armor {
+        <<enumeration>>
+        CHAIN_MAIL
+        CLOTHES
+        LEATHER
+        PLATE_MAIL
+        -String title
+        +toString() String
+    }
+    class HairColor {
+        <<enumeration>>
+        BLACK
+        BLOND
+        BROWN
+        RED
+        WHITE
+        +toString() String
+    }
+    class HairType {
+        <<enumeration>>
+        BALD
+        CURLY
+        LONG_CURLY
+        LONG_STRAIGHT
+        SHORT
+        -String title
+        +toString() String
+    }
+    class Profession {
+        <<enumeration>>
+        MAGE
+        PRIEST
+        THIEF
+        WARRIOR
+        +toString() String
+    }
+    class Weapon {
+        <<enumeration>>
+        AXE
+        BOW
+        DAGGER
+        SWORD
+        WARHAMMER
+        +toString() String
+    }
+    class Hero {
+        -Armor armor
+        -HairColor hairColor
+        -HairType hairType
+        -String name
+        -Profession profession
+        -Weapon weapon
+        +getArmor() Armor
+        +getHairColor() HairColor
+        +getHairType() HairType
+        +getName() String
+        +getProfession() Profession
+        +getWeapon() Weapon
+        +toString() String
+    }
+    class Builder {
+        -Armor armor
+        -HairColor hairColor
+        -HairType hairType
+        -String name
+        -Profession profession
+        -Weapon weapon
+        +Builder(profession Profession, name String)
+        +build() Hero
+        +withArmor(armor Armor) Builder
+        +withHairColor(hairColor HairColor) Builder
+        +withHairType(hairType HairType) Builder
+        +withWeapon(weapon Weapon) Builder
+    }
+    Hero --> Profession : profession
+    Builder *-- Hero
+    Hero --> Armor : armor
+    Builder --> HairColor : hairColor
+    Builder --> Weapon : weapon
+    Builder --> HairType : hairType
+    Hero --> HairColor : hairColor
+    Builder --> Profession : profession
+    Hero --> Weapon : weapon
+    Hero --> HairType : hairType
+    Builder --> Armor : armor
+```
 
 ## Applicability
 

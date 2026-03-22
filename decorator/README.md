@@ -127,7 +127,31 @@ Clubbed troll power: 20.
 
 ## Class diagram
 
-![alt text](etc/decorator.svg "Decorator pattern class diagram")
+```mermaid
+classDiagram
+    class Troll {
+        <<interface>>
+        +attack()*
+        +fleeBattle()*
+        +int attackPower*
+    }
+    class SimpleTroll {
+        -Logger logger$
+        +attack()
+        +fleeBattle()
+        +int attackPower
+    }
+    class ClubbedTroll {
+        -Logger logger$
+        -Troll decorated
+        +attack()
+        +fleeBattle()
+        +int attackPower
+    }
+    ClubbedTroll --> Troll : decorated
+    ClubbedTroll ..|> Troll
+    SimpleTroll ..|> Troll
+```
 
 ## Applicability
 

@@ -1,7 +1,0 @@
-@startuml
-package com.yonatankarp.observer {
-  class App {
-    + main(args : String[]) {static}
-  }
-}
-@enduml

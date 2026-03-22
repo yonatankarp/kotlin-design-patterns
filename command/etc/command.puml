@@ -1,7 +1,0 @@
-@startuml
-package com.yonatankarp.command {
-  class App {
-    + main(args : String[]) {static}
-  }
-}
-@enduml

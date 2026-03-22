@@ -177,7 +177,52 @@ Dwarven tunnel digger goes to sleep.
 
 ## Class diagram
 
-![alt text](etc/facade.svg "Facade pattern class diagram")
+```mermaid
+classDiagram
+    class DwarvenMineWorker {
+        <<abstract>>
+        +String name*
+        +work()*
+        +goToSleep()
+        +wakeUp()
+        +goHome()
+        +goToMine()
+        ~action(Action action)
+        ~action(Action[] actions)
+    }
+    class Action {
+        <<enumeration>>
+        GO_HOME
+        GO_TO_MINE
+        GO_TO_SLEEP
+        WAKE_UP
+        WORK
+    }
+    class DwarvenGoldmineFacade {
+        -List~DwarvenMineWorker~ workers
+        +startNewDay()
+        +digOutGold()
+        +endDay()
+        -makeActions(Collection~DwarvenMineWorker~ workers, Action[] actions)$
+    }
+    class DwarvenCartOperator {
+        +String name
+        +work()
+    }
+    class DwarvenGoldDigger {
+        +String name
+        +work()
+    }
+    class DwarvenTunnelDigger {
+        +String name
+        +work()
+    }
+    DwarvenGoldmineFacade --> DwarvenMineWorker : workers
+    Action *-- DwarvenMineWorker
+    DwarvenCartOperator --|> DwarvenMineWorker
+    DwarvenGoldDigger --|> DwarvenMineWorker
+    DwarvenTunnelDigger --|> DwarvenMineWorker
+```
 
 ## Applicability
 

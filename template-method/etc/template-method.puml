@@ -1,7 +1,0 @@
-@startuml
-package com.yonatankarp.templatemethod {
-  class App {
-    + main(args : String[]) {static}
-  }
-}
-@enduml

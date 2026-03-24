@@ -118,23 +118,23 @@ fun main() {
 
     tokenString.split(" ").forEach { token ->
         if (isOperator(token)) {
-            val right = stack.pop()
-            val left = stack.pop()
+            val right = stack.removeLast()
+            val left = stack.removeLast()
             logger.info("popped from stack left: {} right: {}", left.interpret(), right.interpret())
             val operator = getOperatorInstance(token, left, right)
             logger.info("operator: {}", operator)
             val result = operator.interpret()
             val resultExpression = NumberExpression(result)
-            stack.push(resultExpression)
+            stack.addLast(resultExpression)
             logger.info("push result to stack: {}", resultExpression.interpret())
         } else {
             val expression = NumberExpression(token)
-            stack.push(expression)
+            stack.addLast(expression)
             logger.info("push to stack: {}", expression.interpret())
         }
     }
 
-    logger.info("result: {}", stack.pop().interpret())
+    logger.info("result: {}", stack.removeLast().interpret())
 }
 ```
 

@@ -25,6 +25,7 @@
 - [Iterator](./iterator/README.md)
 - [State](./state/README.md)
 - [Command](./command/README.md)
+- [Interpreter](./interpreter/README.md)
 - [Chain of Responsibility](./chain-of-responsibility/README.md)
 - [Mediator](./mediator/README.md)
 - [Memento](./memento/README.md)

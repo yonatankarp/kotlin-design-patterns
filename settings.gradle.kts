@@ -12,6 +12,7 @@ include(
     "composite",
     "facade",
     "flyweight",
+    "interpreter",
     "proxy",
     "strategy",
     "iterator",

@@ -21,18 +21,17 @@ provide an interpreter to handle this grammar.
 
 ### Real-world example
 
-> Consider a calculator application designed to interpret
-> and calculate expressions entered by users. The
-> application uses the Interpreter pattern to parse and
-> evaluate arithmetic expressions such as `"5 + 3 * 2"`.
-> Here, the Interpreter translates each part of the
-> expression into objects that represent numbers and
-> operations. These objects follow a defined grammar that
-> allows the application to understand and compute the
-> result correctly based on the rules of arithmetic. Each
-> element of the expression corresponds to a class in the
-> program's structure, simplifying the parsing and
-> evaluation process for any inputted arithmetic formula.
+> Consider a calculator that evaluates postfix expressions
+> (Reverse Polish Notation), such as `"5 3 2 * +"`. The
+> application uses the Interpreter pattern to process
+> tokens from left to right: numbers are pushed onto a
+> stack, and when an operator is encountered, the top two
+> operands are popped, combined into an expression object,
+> evaluated, and the result is pushed back. Each token —
+> whether a number or an operator — maps to its own
+> expression class, and the stack-based evaluation order
+> eliminates the need for parentheses or precedence
+> rules.
 
 ### In plain words
 
@@ -108,8 +107,11 @@ internal data class PlusExpression(
 }
 ```
 
-Now we can show the interpreter pattern in action, parsing
-a postfix arithmetic expression using a stack.
+Now we can show the interpreter pattern in action. The
+evaluator reads a postfix (RPN) expression token by token:
+numbers are pushed onto a stack, and each operator pops
+its two operands, evaluates them, and pushes the result
+back.
 
 ```kotlin
 fun main() {

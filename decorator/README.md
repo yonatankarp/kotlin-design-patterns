@@ -3,8 +3,11 @@ title: Decorator
 category: Structural
 language: en
 tag:
-  - Gang of Four
+  - Enhancement
   - Extensibility
+  - Gang of Four
+  - Object composition
+  - Wrapping
 ---
 
 ## Also known as
@@ -13,96 +16,112 @@ tag:
 
 ## Intent
 
-Attach additional responsibilities to an object dynamically. Decorators provide
-a flexible alternative to subclassing for extending functionality.
+Attach additional responsibilities to an object
+dynamically. Decorators provide a flexible alternative
+to subclassing for extending functionality.
 
 ## Explanation
 
-Real-world example
+### Real-world example
 
-> There is an angry troll living in the nearby hills. Usually, it goes
-> bare-handed, but sometimes it has a weapon. To arm the troll it's not
-> necessary to create a new troll but to decorate it dynamically with a suitable
-> weapon.
+> There is an angry troll living in the nearby hills.
+> Usually, it goes bare-handed, but sometimes it has a
+> weapon. To arm the troll it's not necessary to create
+> a new troll but to decorate it dynamically with a
+> suitable weapon.
 
-In plain words
+### In plain words
 
-> Decorator pattern lets you dynamically change the behavior of an object at run
-> time by wrapping them in an object of a decorator class.
+> Decorator pattern lets you dynamically change the
+> behavior of an object at run time by wrapping them in
+> an object of a decorator class.
 
-Wikipedia says
+### Wikipedia says
 
-> In object-oriented programming, the decorator pattern is a design pattern that
-> allows behavior to be added to an individual object, either statically or
-> dynamically, without affecting the behavior of other objects from the same
-> class. The decorator pattern is often useful for adhering to the Single
-> Responsibility Principle, as it allows functionality to be divided between
-> classes with unique areas of concern as well as to the Open-Closed Principle,
-> by allowing the functionality of a class to be extended without being
+> In object-oriented programming, the decorator pattern
+> is a design pattern that allows behavior to be added
+> to an individual object, either statically or
+> dynamically, without affecting the behavior of other
+> objects from the same class. The decorator pattern is
+> often useful for adhering to the Single Responsibility
+> Principle, as it allows functionality to be divided
+> between classes with unique areas of concern as well
+> as to the Open-Closed Principle, by allowing the
+> functionality of a class to be extended without being
 > modified.
 
-### Programmatic Example
+```mermaid
+sequenceDiagram
+    participant Client
+    participant ClubbedTroll
+    participant SimpleTroll
 
-Let's take the troll example. First of all we have a `SimpleTroll` implementing
-the `Troll` interface:
+    Client->>ClubbedTroll: attack()
+    ClubbedTroll->>SimpleTroll: attack()
+    SimpleTroll-->>ClubbedTroll: done
+    ClubbedTroll-->>Client: club swing added
+```
+
+### **Programmatic Example**
+
+Let's take the troll example. First of all we have a
+`SimpleTroll` implementing the `Troll` interface:
 
 ```kotlin
 interface Troll {
-    fun attack()
-
-    fun fleeBattle()
-
     val attackPower: Int
+    fun attack()
+    fun fleeBattle()
 }
 
 class SimpleTroll : Troll {
+    override val attackPower: Int
+        get() = ATTACK_POWER
+
     override fun attack() {
         logger.info("The troll tries to grab you!")
     }
 
     override fun fleeBattle() {
-        logger.info("The troll shrieks in horror and runs away!")
+        logger.info(
+            "The troll shrieks in horror and runs away!"
+        )
     }
-
-    override val attackPower: Int
-        get() = 10
 }
 ```
 
-Next, we want to add a club for the troll. We can do it dynamically by using a
-decorator:
+Next, we want to add a club for the troll. We can do
+it dynamically by using a decorator:
 
 ```kotlin
-class ClubbedTroll(private val decorated: Troll) : Troll {
+class ClubbedTroll(
+    private val decorated: Troll,
+) : Troll {
+    override val attackPower: Int
+        get() = decorated.attackPower + CLUB_ATTACK_POWER
 
-  override fun attack() {
-    decorated.attack()
-    logger.info("The troll swings at you with a club!")
-  }
+    override fun attack() {
+        decorated.attack()
+        logger.info(
+            "The troll swings at you with a club!"
+        )
+    }
 
-  override fun fleeBattle() {
-    decorated.fleeBattle()
-  }
-
-  override val attackPower: Int
-    get() = decorated.attackPower + 10
+    override fun fleeBattle() {
+        decorated.fleeBattle()
+    }
 }
 ```
 
 Here's the troll in action:
 
 ```kotlin
-// simple troll
-val logger = LoggerFactory.getLogger("com.yonatankarp.decorator")
-
-// simple troll
 logger.info("A simple looking troll approaches.")
 val troll = SimpleTroll()
 troll.attack()
 troll.fleeBattle()
 logger.info("Simple troll power: ${troll.attackPower}.\n")
 
-// change the behavior of the simple troll by adding a decorator
 logger.info("A troll with huge club surprises you.")
 val clubbedTroll = ClubbedTroll(troll)
 clubbedTroll.attack()
@@ -131,20 +150,20 @@ Clubbed troll power: 20.
 classDiagram
     class Troll {
         <<interface>>
-        +attack()*
-        +fleeBattle()*
-        +int attackPower*
+        +attackPower Int
+        +attack()
+        +fleeBattle()
     }
     class SimpleTroll {
+        +attackPower Int
         +attack()
         +fleeBattle()
-        +int attackPower
     }
     class ClubbedTroll {
-        -Troll decorated
+        -decorated Troll
+        +attackPower Int
         +attack()
         +fleeBattle()
-        +int attackPower
     }
     ClubbedTroll --> Troll : decorated
     ClubbedTroll ..|> Troll
@@ -153,25 +172,51 @@ classDiagram
 
 ## Applicability
 
-Decorator is used to:
+Use the Decorator pattern when:
 
-- Add responsibilities to individual objects dynamically and transparently, that
-  is, without affecting other objects.
+- You want to add responsibilities to individual
+  objects dynamically and transparently, without
+  affecting other objects.
 - For responsibilities that can be withdrawn.
-- When extension by subclassing is impractical. Sometimes a large number of
-  independent extensions are possible and would produce an explosion of
-  subclasses to support every combination. Or a class definition may be hidden
-  or otherwise unavailable for subclassing.
+- When extension by subclassing is impractical due to
+  an explosion of subclasses or hidden class
+  definitions.
 
-## Tutorials
+## Consequences
 
-- [Decorator Pattern Tutorial](https://www.journaldev.com/1540/decorator-design-pattern-in-java-example)
+Benefits:
+
+- Greater flexibility than static inheritance.
+- Avoids feature-laden classes high up in the
+  hierarchy.
+- Responsibilities can be added or removed at runtime.
+
+Trade-offs:
+
+- A decorator and its component aren't identical, so
+  tests for object type will fail.
+- Can lead to many small objects that look alike,
+  making configuration harder.
+
+## Related Patterns
+
+- [Adapter](../adapter/README.md): Changes an object's
+  interface, while Decorator changes its
+  responsibilities.
+- [Composite](../composite/README.md): Decorators can
+  be viewed as a degenerate composite with only one
+  component.
+- [Strategy](../strategy/README.md): Decorator changes
+  the skin; Strategy changes the guts.
 
 ## Credits
 
-- [Design Patterns: Elements of Reusable Object-Oriented Software](https://www.amazon.com/gp/product/0201633612/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0201633612&linkCode=as2&tag=javadesignpat-20&linkId=675d49790ce11db99d90bde47f1aeb59)
-- [Functional Programming in Java: Harnessing the Power of Java 8 Lambda Expressions](https://www.amazon.com/gp/product/1937785467/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1937785467&linkCode=as2&tag=javadesignpat-20&linkId=7e4e2fb7a141631491534255252fd08b)
-- [J2EE Design Patterns](https://www.amazon.com/gp/product/0596004273/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596004273&linkCode=as2&tag=javadesignpat-20&linkId=48d37c67fb3d845b802fa9b619ad8f31)
-- [Head First Design Patterns: A Brain-Friendly Guide](https://www.amazon.com/gp/product/0596007124/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596007124&linkCode=as2&tag=javadesignpat-20&linkId=6b8b6eea86021af6c8e3cd3fc382cb5b)
-- [Refactoring to Patterns](https://www.amazon.com/gp/product/0321213351/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0321213351&linkCode=as2&tag=javadesignpat-20&linkId=2a76fcb387234bc71b1c61150b3cc3a7)
-- [J2EE Design Patterns](https://www.amazon.com/gp/product/0596004273/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596004273&linkCode=as2&tag=javadesignpat-20&linkId=f27d2644fbe5026ea448791a8ad09c94)
+- [Design Patterns: Elements of Reusable Object-Oriented
+  Software](https://amzn.to/3w0pvKI)
+- [Functional Programming in
+  Java](https://amzn.to/3JUIc5Q)
+- [Head First Design Patterns: Building Extensible and
+  Maintainable Object-Oriented
+  Software](https://amzn.to/49NGldq)
+- [J2EE Design Patterns](https://amzn.to/4dpzgmx)
+- [Refactoring to Patterns](https://amzn.to/3VOO4F5)

@@ -1,7 +1,7 @@
 package com.yonatankarp.decorator
 
 /**
- * Interface for trolls.
+ * Represents a troll that can attack, flee, and report its power.
  */
 interface Troll {
     val attackPower: Int

@@ -1,7 +1,7 @@
 package com.yonatankarp.abstractfactory
 
 /**
- * OrcKingdomFactory concrete factory.
+ * [KingdomFactory] that creates orcish [King], [Castle], and [Army].
  */
 internal class OrcKingdomFactory : KingdomFactory {
     override fun createCastle() = OrcCastle()

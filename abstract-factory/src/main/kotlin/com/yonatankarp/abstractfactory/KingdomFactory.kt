@@ -1,7 +1,7 @@
 package com.yonatankarp.abstractfactory
 
 /**
- * KingdomFactory factory interface.
+ * Abstract factory for creating [King], [Castle], and [Army] families.
  */
 internal interface KingdomFactory {
     fun createCastle(): Castle

@@ -1,7 +1,7 @@
 package com.yonatankarp.abstractfactory
 
 /**
- * King interface.
+ * Represents a king in a [Kingdom].
  */
 internal interface King {
     val description: String

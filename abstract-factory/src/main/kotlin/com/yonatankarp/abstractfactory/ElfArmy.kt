@@ -1,7 +1,7 @@
 package com.yonatankarp.abstractfactory
 
 /**
- * Elf Army.
+ * An elven [Army] created by [ElfKingdomFactory].
  */
 internal class ElfArmy : Army {
     override val description = "This is the elven army!"

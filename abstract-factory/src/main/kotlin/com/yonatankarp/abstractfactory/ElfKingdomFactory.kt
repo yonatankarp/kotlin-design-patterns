@@ -1,7 +1,7 @@
 package com.yonatankarp.abstractfactory
 
 /**
- * ElfKingdomFactory concrete factory.
+ * [KingdomFactory] that creates elven [King], [Castle], and [Army].
  */
 internal class ElfKingdomFactory : KingdomFactory {
     override fun createCastle() = ElfCastle()

@@ -1,9 +1,10 @@
 package com.yonatankarp.singleton
 
 /**
- * Singleton class. Eagerly initialized static instance guarantees thread safety.
- *
- * @author yonatankarp
+ * [IvoryTower] is a singleton implemented via Kotlin's `object`
+ * keyword, which guarantees a single, thread-safe instance without
+ * the boilerplate required in Java (private constructor, static
+ * field, double-checked locking, etc.).
  */
 data object IvoryTower {
     init {

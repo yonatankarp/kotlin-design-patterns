@@ -1,7 +1,7 @@
 package com.yonatankarp.abstractfactory
 
 /**
- * Army interface.
+ * Represents an army in a [Kingdom].
  */
 internal interface Army {
     val description: String

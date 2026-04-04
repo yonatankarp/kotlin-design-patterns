@@ -6,11 +6,11 @@ internal data class Kingdom(
     val army: Army,
 ) {
     /**
-     * The factory of kingdom factories.
+     * Creates [KingdomFactory] instances based on [KingdomType].
      */
     object FactoryMaker {
         /**
-         * The factory method to create KingdomFactory concrete objects.
+         * Returns the appropriate [KingdomFactory] for [type].
          */
         fun makeFactory(type: KingdomType): KingdomFactory = when (type) {
             KingdomType.ELF -> ElfKingdomFactory()
@@ -18,7 +18,7 @@ internal data class Kingdom(
         }
 
         /**
-         * Enumeration for the different types of Kingdoms.
+         * Enumerates the available kingdom types.
          */
         enum class KingdomType {
             ELF,

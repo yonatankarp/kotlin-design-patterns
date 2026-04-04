@@ -1,7 +1,7 @@
 package com.yonatankarp.abstractfactory
 
 /**
- * Castle interface.
+ * Represents a castle in a [Kingdom].
  */
 internal interface Castle {
     val description: String

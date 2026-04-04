@@ -3,7 +3,11 @@ title: Abstract Factory
 category: Creational
 language: en
 tag:
+  - Abstraction
+  - Decoupling
   - Gang of Four
+  - Instantiation
+  - Polymorphism
 ---
 
 ## Also known as
@@ -12,89 +16,96 @@ tag:
 
 ## Intent
 
-Provide an interface for creating families of related or dependent objects
-without specifying their concrete classes.
+Provide an interface for creating families of related
+or dependent objects without specifying their concrete
+classes.
 
 ## Explanation
 
-Real-world example
+### Real-world example
 
-> To create a kingdom we need objects with a common theme. The elven kingdom
-> needs an elven king, elven castle, and elven army whereas the orcish kingdom
-> needs an orcish king, orcish castle, and orcish army. There is a dependency
-> between the objects in the kingdom.
+> To create a kingdom we need objects with a common
+> theme. The elven kingdom needs an elven king, elven
+> castle, and elven army whereas the orcish kingdom
+> needs an orcish king, orcish castle, and orcish army.
+> There is a dependency between the objects in the
+> kingdom.
 
-In plain words
+### In plain words
 
-> A factory of factories; a factory that groups the individual but
-> related/dependent factories together without specifying their concrete
+> A factory of factories; a factory that groups the
+> individual but related/dependent factories together
+> without specifying their concrete classes.
+
+### Wikipedia says
+
+> The abstract factory pattern provides a way to
+> encapsulate a group of individual factories that have
+> a common theme without specifying their concrete
 > classes.
 
-Wikipedia says
+### **Programmatic Example**
 
-> The abstract factory pattern provides a way to encapsulate a group of
-> individual factories that have a common theme without specifying their
-> concrete classes
-
-### Programmatic Example
-
-Translating the kingdom example above. First of all, we have some interfaces and
-implementation for the objects in the kingdom.
+Translating the kingdom example above. First of all,
+we have some interfaces and implementations for the
+objects in the kingdom.
 
 ```kotlin
 internal interface Castle {
-  val description: String
+    val description: String
 }
 
 internal interface King {
-  val description: String
+    val description: String
 }
 
 internal interface Army {
-  val description: String
+    val description: String
 }
 
 // Elven implementations ->
 
 internal class ElfCastle : Castle {
-  override val description = "This is the elven castle!"
+    override val description = "This is the elven castle!"
 }
 
 internal class ElfKing : King {
-  override val description = "This is the elven king!"
+    override val description = "This is the elven king!"
 }
 
 internal class ElfArmy : Army {
-  override val description = "This is the elven army!"
+    override val description = "This is the elven army!"
 }
 
 // Orcish implementations similarly -> ...
 ```
 
-Then we have the abstraction and implementations for the kingdom factory.
+Then we have the abstraction and implementations for
+the kingdom factory.
 
 ```kotlin
 internal interface KingdomFactory {
-  fun createCastle(): Castle
-  fun createKing(): King
-  fun createArmy(): Army
+    fun createCastle(): Castle
+    fun createKing(): King
+    fun createArmy(): Army
 }
 
 internal class ElfKingdomFactory : KingdomFactory {
-  override fun createCastle() = ElfCastle()
-  override fun createKing() = ElfKing()
-  override fun createArmy() = ElfArmy()
+    override fun createCastle() = ElfCastle()
+    override fun createKing() = ElfKing()
+    override fun createArmy() = ElfArmy()
 }
 
 internal class OrcKingdomFactory : KingdomFactory {
-  override fun createCastle() = OrcCastle()
-  override fun createKing() = OrcKing()
-  override fun createArmy() = OrcArmy()
+    override fun createCastle() = OrcCastle()
+    override fun createKing() = OrcKing()
+    override fun createArmy() = OrcArmy()
 }
 ```
 
-Now we have the abstract factory that lets us make a family of related objects
-i.e. elven kingdom factory creates elven castle, king and army, etc.
+Now we have the abstract factory that lets us make a
+family of related objects -- the elven kingdom factory
+creates elven castle, king and army, etc.
 
 ```kotlin
 val factory = ElfKingdomFactory()
@@ -109,44 +120,44 @@ army.description
 
 Program output:
 
-```shell
+```text
 This is the elven castle!
 This is the elven king!
-This is the elven Army!
+This is the elven army!
 ```
 
-Now, we can design a factory for our different kingdom factories. In this
-example, we created `FactoryMaker`, responsible for returning an instance of
-either `ElfKingdomFactory` or `OrcKingdomFactory`.  
-The client can use `FactoryMaker` to create the desired concrete factory which,
-in turn, will produce different concrete objects (derived from `Army`, `King`,
-`Castle`).  
-In this example, we also used an enum to parameterize which type of kingdom
-factory the client will ask for.
+We also created a `FactoryMaker`, responsible for
+returning an instance of either `ElfKingdomFactory` or
+`OrcKingdomFactory`. The client can use `FactoryMaker`
+to create the desired concrete factory which, in turn,
+will produce different concrete objects (derived from
+`Army`, `King`, `Castle`). We also used an enum to
+parameterize which type of kingdom factory the client
+will ask for.
 
 ```kotlin
 internal data class Kingdom(
-  val king: King,
-  val castle: Castle,
-  val army: Army,
+    val king: King,
+    val castle: Castle,
+    val army: Army,
 ) {
-  object FactoryMaker {
-    enum class KingdomType {
-      ELF,
-      ORC
+    object FactoryMaker {
+        enum class KingdomType {
+            ELF,
+            ORC,
+        }
+
+        fun makeFactory(type: KingdomType): KingdomFactory =
+            when (type) {
+                KingdomType.ELF -> ElfKingdomFactory()
+                KingdomType.ORC -> OrcKingdomFactory()
+            }
     }
-    
-    fun makeFactory(type: KingdomType): KingdomFactory {
-      return when (type) {
-        KingdomType.ELF -> ElfKingdomFactory()
-        KingdomType.ORC -> OrcKingdomFactory()
-      }
-    }
-  }
 }
 ```
 
-Now we can use the abstract factory to create the kingdoms
+Now we can use the abstract factory to create the
+kingdoms:
 
 ```kotlin
 logger.info("elf kingdom")
@@ -164,29 +175,29 @@ logger.info(orcKingdom.king.description)
 
 Program output:
 
-```shell
+```text
 elf kingdom
+This is the elven army!
 This is the elven castle!
 This is the elven king!
-This is the elven Army!
 orc kingdom
+This is the orc army!
 This is the orc castle!
 This is the orc king!
-This is the orc Army!
 ```
 
 ## Class diagram
 
 ```mermaid
 classDiagram
-    namespace Kingdom {
+    namespace KingdomNs {
         class Kingdom {
             +king King
             +castle Castle
             +army Army
         }
         class FactoryMaker {
-            +makeFactory(type KingdomType) KingdomFactory$
+            +makeFactory(KingdomType) KingdomFactory
         }
         class KingdomType {
             <<enumeration>>
@@ -196,21 +207,21 @@ classDiagram
     }
     class Army {
         <<interface>>
-        +description String*
+        +description String
     }
     class Castle {
         <<interface>>
-        +description String*
+        +description String
     }
     class King {
         <<interface>>
-        +description String*
+        +description String
     }
     class KingdomFactory {
         <<interface>>
-        +createArmy() Army*
-        +createCastle() Castle*
-        +createKing() King*
+        +createArmy() Army
+        +createCastle() Castle
+        +createKing() King
     }
     class ElfArmy {
         +description String
@@ -257,53 +268,48 @@ classDiagram
 
 ## Applicability
 
-Use the Abstract Factory pattern when
+Use the Abstract Factory pattern when:
 
-- The system should be independent of how its products are created, composed,
-  and represented
-- The system should be configured with one of the multiple families of products
-- The family of related product objects is designed to be used together, and
-  you need to enforce this constraint
-- You want to provide a class library of products, and you want to reveal just
-  their interfaces, not their implementations
-- The lifetime of the dependency is conceptually shorter than the lifetime of
-  the consumer.
-- You need a run-time value to construct a particular dependency
-- You want to decide which product to call from a family at runtime.
-- You need to supply one or more parameters only known at run-time before you
-  can resolve a dependency.
-- When you need consistency among products
-- You don’t want to change existing code when adding new products or families of
-  products to the program.
-
-Example use cases
-
-- Selecting to call to the appropriate implementation of FileSystemAcmeService
-  or DatabaseAcmeService or NetworkAcmeService at runtime.
-- Unit test case writing becomes much easier
-- UI tools for different OS
+- The system should be independent of how its products
+  are created, composed, and represented.
+- The system should be configured with one of multiple
+  families of products.
+- A family of related product objects is designed to be
+  used together, and you need to enforce this
+  constraint.
+- You want to provide a class library of products, and
+  you want to reveal just their interfaces, not their
+  implementations.
 
 ## Consequences
 
-- Dependency injection in java hides the service class dependencies that can
-  lead to runtime errors that would have been caught at compile time.
-- While the pattern is great when creating predefined objects, adding the new
-  ones might be challenging.
-- The code becomes more complicated than it should be since a lot of new
-  interfaces and classes are introduced along with the pattern.
+Benefits:
 
-## Tutorials
+- Easily switch between product families without code
+  modifications.
+- Client code only interacts with abstract interfaces,
+  promoting decoupling and maintainability.
 
-- [Abstract Factory Pattern Tutorial](https://www.journaldev.com/1418/abstract-factory-design-pattern-in-java)
+Trade-offs:
 
-## Related patterns
+- Adding new product types requires changes to the
+  abstract factory interface and all its
+  implementations.
+- The code becomes more complex due to the many
+  interfaces and classes introduced.
 
-- [Factory Method](../factory-method/README.md)
-- Factory Kit
+## Related Patterns
 
-[//]: # (TODO: link after adding the pattern)
+- [Factory Method](../factory-method/README.md):
+  Abstract Factory uses factory methods to create
+  products.
+- [Factory](../factory/README.md): A simpler version
+  that does not deal with families of products.
 
 ## Credits
 
-- [Design Patterns: Elements of Reusable Object-Oriented Software](https://www.amazon.com/gp/product/0201633612/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0201633612&linkCode=as2&tag=javadesignpat-20&linkId=675d49790ce11db99d90bde47f1aeb59)
-- [Head First Design Patterns: A Brain-Friendly Guide](https://www.amazon.com/gp/product/0596007124/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596007124&linkCode=as2&tag=javadesignpat-20&linkId=6b8b6eea86021af6c8e3cd3fc382cb5b)
+- [Design Patterns: Elements of Reusable Object-Oriented
+  Software](https://amzn.to/3w0pvKI)
+- [Head First Design Patterns: Building Extensible and
+  Maintainable Object-Oriented
+  Software](https://amzn.to/49NGldq)

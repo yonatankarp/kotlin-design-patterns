@@ -51,12 +51,15 @@ internal class AbstractFactoryTest {
 
     @Test
     fun `verify elf kingdom creation`() {
+        // Given
         val kingdom = Kingdom.FactoryMaker.makeFactory(ELF)
 
+        // When
         val king = kingdom.createKing()
         val castle = kingdom.createCastle()
         val army = kingdom.createArmy()
 
+        // Then
         assertTrue(king is ElfKing)
         assertEquals("This is the elven king!", king.description)
         assertTrue(castle is ElfCastle)
@@ -67,12 +70,15 @@ internal class AbstractFactoryTest {
 
     @Test
     fun `verify orc kingdom creation`() {
+        // Given
         val kingdom = Kingdom.FactoryMaker.makeFactory(ORC)
 
+        // When
         val king = kingdom.createKing()
         val castle = kingdom.createCastle()
         val army = kingdom.createArmy()
 
+        // Then
         assertTrue(king is OrcKing)
         assertEquals("This is the orc king!", king.description)
         assertTrue(castle is OrcCastle)

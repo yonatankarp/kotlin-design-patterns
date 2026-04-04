@@ -1,11 +1,11 @@
 package com.yonatankarp.prototype
 
 /**
- * Prototype.
+ * Abstract base for objects that can produce copies of themselves.
  */
 abstract class Prototype<T> {
     /**
-     * Object a shallow copy of this object or null if this object is not Cloneable.
+     * Returns a shallow copy of this instance.
      */
     abstract fun clone(): T
 }

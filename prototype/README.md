@@ -5,121 +5,137 @@ language: en
 tag:
   - Gang of Four
   - Instantiation
+  - Object composition
+  - Polymorphism
 ---
+
+## Also known as
+
+- Clone
 
 ## Intent
 
-Specify the kinds of objects to create using a prototypical instance, and create
-new objects by copying this prototype.
+Specify the kinds of objects to create using a
+prototypical instance, and create new objects by
+copying this prototype.
 
 ## Explanation
 
-First, it should be noted that the Prototype pattern is not used to gain
-performance benefits. It's only used for creating new objects from prototype
-instances.
+### Real-world example
 
-Real-world example
+> Imagine a company that manufactures custom-designed
+> furniture. Instead of creating each piece from scratch
+> every time an order is placed, they keep prototypes of
+> their most popular designs. When a customer places an
+> order, the company clones the prototype and makes the
+> necessary customizations.
 
-> Remember Dolly? The sheep that was cloned! Let's not get into the details but
-> the key point here is that it is all about cloning.
+### In plain words
 
-In plain words
+> Create an object based on an existing object through
+> cloning.
 
-> Create an object based on an existing object through cloning.
+### Wikipedia says
 
-Wikipedia says
-
-> The prototype pattern is a creational design pattern in software development.
-> It is used when the type of objects to create is determined by a prototypical
+> The prototype pattern is a creational design pattern
+> in software development. It is used when the type of
+> objects to create is determined by a prototypical
 > instance, which is cloned to produce new objects.
 
-In short, it allows you to create a copy of an existing object and modify it to
-your needs, instead of going through the trouble of creating an object from
-scratch and setting it up.
+```mermaid
+sequenceDiagram
+    participant Client
+    participant HeroFactory
+    participant Prototype
 
-### Programmatic Example
+    Client->>HeroFactory: createMage()
+    HeroFactory->>Prototype: clone()
+    Prototype-->>HeroFactory: cloned Mage
+    HeroFactory-->>Client: Mage
+```
 
-In Kotlin, the prototype pattern is recommended to be implemented as follows.
-First, create an interface with a method for cloning objects. In this example,
-`Prototype` interface accomplishes this with its `clone` method. We will then
-use the `copy()` function of data class to create a clone of our class where
-we can override specific fields of the class if needed.
+### **Programmatic Example**
+
+In Kotlin, the prototype pattern leverages `data class`
+`copy()` for cloning. First, create an abstract base
+with a `clone` method.
 
 ```kotlin
 abstract class Prototype<T> {
-  abstract fun clone(): T
+    abstract fun clone(): T
 }
 ```
 
-Our example contains a hierarchy of different creatures. For example, let's
-look at `Beast` and `OrcBeast` classes.
+Our example contains a hierarchy of different
+creatures. For example, let's look at `Beast` and
+`OrcBeast` classes.
 
 ```kotlin
 abstract class Beast : Prototype<Beast>()
 
-data class OrcBeast(private val weapon: String) : Beast() {
-    
-  override fun clone() = copy()
+data class OrcBeast(
+    private val weapon: String,
+) : Beast() {
+    override fun clone() = copy()
 
-  override fun toString() = "Orcish wolf attacks with $weapon"
+    override fun toString() =
+        "Orcish wolf attacks with $weapon"
 }
 ```
 
-We don't want to go into too many details, but the full example contains also
-base classes `Mage` and `Warlord` and there are specialized implementations for
-those for elves in addition to orcs.
+The full example also contains `Mage` and `Warlord`
+base classes with elven and orcish implementations.
 
-To take full advantage of the prototype pattern, we create `HeroFactory` class
-to produce different kinds of creatures from prototypes.
+To take full advantage of the prototype pattern, we
+create `HeroFactory` to produce different kinds of
+creatures from prototypes.
 
 ```kotlin
 class HeroFactory(
-  private val mage: Mage,
-  private val warlord: Warlord,
-  private val beast: Beast,
+    private val mage: Mage,
+    private val warlord: Warlord,
+    private val beast: Beast,
 ) {
-  fun createMage() = mage.clone()
-  
-  fun createWarlord() = warlord.clone()
-  
-  fun createBeast() = beast.clone()
+    fun createMage() = mage.clone()
+    fun createWarlord() = warlord.clone()
+    fun createBeast() = beast.clone()
 }
 ```
 
-Now, we are able to show the full prototype pattern in action producing new
-creatures by cloning existing instances.
+Now we can produce new creatures by cloning existing
+instances.
 
 ```kotlin
-var factory = HeroFactory(
-  ElfMage("cooking"),
-  ElfWarlord("cleaning"),
-  ElfBeast("protecting")
+val elfFactory = HeroFactory(
+    ElfMage("cooking"),
+    ElfWarlord("cleaning"),
+    ElfBeast("protecting")
 )
 
-var mage = factory.createMage()
-var warlord = factory.createWarlord()
-var beast = factory.createBeast()
+val elfMage = elfFactory.createMage()
+val elfWarlord = elfFactory.createWarlord()
+val elfBeast = elfFactory.createBeast()
 
-logger.info(mage.toString())
-logger.info(warlord.toString())
-logger.info(beast.toString())
+logger.info(elfMage.toString())
+logger.info(elfWarlord.toString())
+logger.info(elfBeast.toString())
 
-factory = HeroFactory(
-  OrcMage("axe"),
-  OrcWarlord("sword"),
-  OrcBeast("laser")
+val orcFactory = HeroFactory(
+    OrcMage("axe"),
+    OrcWarlord("sword"),
+    OrcBeast("laser")
 )
 
-mage = factory.createMage()
-warlord = factory.createWarlord()
-beast = factory.createBeast()
+val orcMage = orcFactory.createMage()
+val orcWarlord = orcFactory.createWarlord()
+val orcBeast = orcFactory.createBeast()
 
-logger.info(mage.toString())
-logger.info(warlord.toString())
-logger.info(beast.toString())
+logger.info(orcMage.toString())
+logger.info(orcWarlord.toString())
+logger.info(orcBeast.toString())
 ```
 
-Here's the console output from running the example.
+Program output:
 
 ```text
 Elven mage helps in cooking
@@ -136,64 +152,61 @@ Orcish wolf attacks with laser
 classDiagram
     class Prototype~T~ {
         <<abstract>>
-        +clone() T*
+        +clone() T
     }
     class Beast {
         <<abstract>>
-        +clone() Beast*
     }
     class Mage {
         <<abstract>>
-        +clone() Mage*
     }
     class Warlord {
         <<abstract>>
-        +clone() Warlord*
     }
     class HeroFactory {
-        -Beast beast
-        -Mage mage
-        -Warlord warlord
+        -beast Beast
+        -mage Mage
+        -warlord Warlord
         +createBeast() Beast
         +createMage() Mage
         +createWarlord() Warlord
     }
     class ElfBeast {
-        -String helpType
+        -helpType String
         +clone() ElfBeast
         +toString() String
     }
     class ElfMage {
-        -String helpType
+        -helpType String
         +clone() ElfMage
         +toString() String
     }
     class ElfWarlord {
-        -String helpType
+        -helpType String
         +clone() ElfWarlord
         +toString() String
     }
     class OrcBeast {
-        -String weapon
+        -weapon String
         +clone() OrcBeast
         +toString() String
     }
     class OrcMage {
-        -String weapon
+        -weapon String
         +clone() OrcMage
         +toString() String
     }
     class OrcWarlord {
-        -String weapon
+        -weapon String
         +clone() OrcWarlord
         +toString() String
     }
     HeroFactory --> Beast : beast
     HeroFactory --> Warlord : warlord
     HeroFactory --> Mage : mage
-    Beast ..|> Prototype~T~
-    Mage ..|> Prototype~T~
-    Warlord ..|> Prototype~T~
+    Beast --|> Prototype~T~
+    Mage --|> Prototype~T~
+    Warlord --|> Prototype~T~
     ElfBeast --|> Beast
     ElfMage --|> Mage
     ElfWarlord --|> Warlord
@@ -204,20 +217,49 @@ classDiagram
 
 ## Applicability
 
-Use the Prototype pattern when a system should be independent of how its
-products are created, composed, represented and
+Use the Prototype pattern when:
 
-- When the classes to instantiate are specified at run-time, for example, by
-  dynamic loading.
-- To avoid building a class hierarchy of factories that parallels the class
-  hierarchy of products.
-- When instances of a class can have one of only a few different combinations
-  of state. It may be more convenient to install a corresponding number of
-  prototypes and clone them rather than instantiating the class manually, each
-  time with the appropriate state.
-- When object creation is expensive compared to cloning.
+- The classes to instantiate are specified at run-time,
+  for example by dynamic loading.
+- To avoid building a class hierarchy of factories
+  that parallels the class hierarchy of products.
+- When instances of a class can have one of only a few
+  different combinations of state. It may be more
+  convenient to install a corresponding number of
+  prototypes and clone them rather than instantiating
+  the class manually each time.
+- When object creation is expensive compared to
+  cloning.
+
+## Consequences
+
+Benefits:
+
+- Hides the complexities of instantiating new objects.
+- Reduces the number of classes.
+- Allows adding and removing objects at runtime.
+
+Trade-offs:
+
+- Requires implementing a cloning mechanism which
+  might be complex.
+- Deep cloning can be difficult to implement correctly,
+  especially with complex object graphs or circular
+  references.
+
+## Related Patterns
+
+- [Abstract Factory](../abstract-factory/README.md):
+  Both create objects, but Prototype uses cloning
+  whereas Abstract Factory uses factory methods.
+- [Factory Method](../factory-method/README.md): A
+  factory method that returns a new instance cloned
+  from a prototype.
 
 ## Credits
 
-- [Design Patterns: Elements of Reusable Object-Oriented Software](https://www.amazon.com/gp/product/0201633612/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0201633612&linkCode=as2&tag=javadesignpat-20&linkId=675d49790ce11db99d90bde47f1aeb59)
-- [Head First Design Patterns: A Brain-Friendly Guide](https://www.amazon.com/gp/product/0596007124/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596007124&linkCode=as2&tag=javadesignpat-20&linkId=6b8b6eea86021af6c8e3cd3fc382cb5b)
+- [Design Patterns: Elements of Reusable Object-Oriented
+  Software](https://amzn.to/3w0pvKI)
+- [Head First Design Patterns: Building Extensible and
+  Maintainable Object-Oriented
+  Software](https://amzn.to/49NGldq)

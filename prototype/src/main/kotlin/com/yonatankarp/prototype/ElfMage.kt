@@ -1,7 +1,7 @@
 package com.yonatankarp.prototype
 
 /**
- * ElfMage
+ * An elven [Mage] that can be cloned via [copy].
  */
 data class ElfMage(private val helpType: String) : Mage() {
     override fun clone() = copy()

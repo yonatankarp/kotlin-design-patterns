@@ -1,7 +1,7 @@
 package com.yonatankarp.prototype
 
 /**
- * OrcWarlord.
+ * An orcish [Warlord] that can be cloned via [copy].
  */
 data class OrcWarlord(private val weapon: String) : Warlord() {
     override fun clone() = copy()

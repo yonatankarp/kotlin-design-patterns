@@ -7,19 +7,20 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
 /**
- * Date: 12/28/15 - 8:45 PM
- *
- * @param <P> Prototype
- * @author Jeroen Meulemeester
-</P> */
+ * Verifies that each [Prototype] implementation correctly
+ * clones itself as a distinct but equal instance.
+ */
 internal class PrototypeTest<P : Prototype<P>> {
     @ParameterizedTest
     @MethodSource("dataProvider")
     fun `test prototype`(testedPrototype: P, expectedToString: String) {
+        // Given
         assertEquals(expectedToString, testedPrototype.toString())
 
+        // When
         val clone = testedPrototype.clone()
 
+        // Then
         assertNotSame(clone, testedPrototype)
         assertSame(testedPrototype::class.java, clone::class.java)
         assertEquals(clone, testedPrototype)

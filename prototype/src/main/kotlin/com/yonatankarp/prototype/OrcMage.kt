@@ -1,7 +1,7 @@
 package com.yonatankarp.prototype
 
 /**
- * OrcMage.
+ * An orcish [Mage] that can be cloned via [copy].
  */
 data class OrcMage(private val weapon: String) : Mage() {
     override fun clone() = copy()

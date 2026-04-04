@@ -3,7 +3,7 @@ package com.yonatankarp.decorator
 import org.slf4j.LoggerFactory
 
 /**
- * SimpleTroll implements [Troll] interface directly.
+ * A basic [Troll] with no additional equipment.
  */
 class SimpleTroll : Troll {
     override val attackPower: Int

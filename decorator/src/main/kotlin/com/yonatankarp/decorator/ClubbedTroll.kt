@@ -3,7 +3,7 @@ package com.yonatankarp.decorator
 import org.slf4j.LoggerFactory
 
 /**
- * Decorator that adds a club for the troll.
+ * [Troll] decorator that adds a club, increasing attack power.
  */
 class ClubbedTroll(private val decorated: Troll) : Troll {
     override val attackPower: Int

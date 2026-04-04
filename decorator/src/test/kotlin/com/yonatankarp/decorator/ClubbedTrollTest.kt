@@ -12,15 +12,15 @@ import org.junit.jupiter.api.Test
 internal class ClubbedTrollTest {
     @Test
     fun `test clubbed troll`() {
-        // Create a normal troll first, but make sure we can spy on it later on.
+        // Given
         val simpleTroll = spyk<SimpleTroll>()
-
-        // Now we want to decorate the troll to make it stronger ...
         val clubbed = ClubbedTroll(simpleTroll)
+
+        // When / Then — attack power is combined
         assertEquals(20, clubbed.attackPower)
         verify(exactly = 1) { simpleTroll.attackPower }
 
-        // Check if the clubbed troll actions are delegated to the decorated troll
+        // When / Then — actions are delegated
         clubbed.attack()
         verify(exactly = 1) { simpleTroll.attack() }
         clubbed.fleeBattle()

@@ -25,18 +25,24 @@ internal class SimpleTrollTest {
 
     @Test
     fun `test troll actions`() {
+        // Given
         val troll = SimpleTroll()
         assertEquals(10, troll.attackPower)
 
+        // When
         troll.attack()
+
+        // Then
         assertEquals("The troll tries to grab you!", appender.lastMessage)
 
+        // When
         troll.fleeBattle()
+
+        // Then
         assertEquals(
             "The troll shrieks in horror and runs away!",
             appender.lastMessage
         )
-
         assertEquals(2, appender.logSize)
     }
 }

@@ -1,7 +1,7 @@
 package com.yonatankarp.factorymethod
 
 /**
- * The interface containing method for producing objects.
+ * Interface for manufacturing [Weapon] instances.
  */
 internal interface Blacksmith {
     fun manufactureWeapon(weaponType: WeaponType): Weapon

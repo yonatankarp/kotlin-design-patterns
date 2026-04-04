@@ -1,7 +1,7 @@
 package com.yonatankarp.factorymethod
 
 /**
- * Weapon interface.
+ * Represents a weapon with a specific [WeaponType].
  */
 internal interface Weapon {
     val weaponType: WeaponType

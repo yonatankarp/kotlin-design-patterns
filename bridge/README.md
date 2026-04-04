@@ -3,7 +3,11 @@ title: Bridge
 category: Structural
 language: en
 tag:
+  - Abstraction
+  - Decoupling
+  - Extensibility
   - Gang of Four
+  - Object composition
 ---
 
 ## Also known as
@@ -12,113 +16,124 @@ tag:
 
 ## Intent
 
-Decouple an abstraction from its implementation so that the two can vary
-independently.
+Decouple an abstraction from its implementation so
+that the two can vary independently.
 
 ## Explanation
 
-Real-world example
+### Real-world example
 
-> Consider you have a weapon with different enchantments, and you are supposed
-> to allow mixing different weapons with different enchantments. What would you
-> do? Create multiple copies of each of the weapons for each of the enchantments
-> or would you just create separate enchantment and set it for the weapon as
-> needed? Bridge pattern allows you to do the second.
+> Consider you have a weapon with different
+> enchantments, and you are supposed to allow mixing
+> different weapons with different enchantments. Would
+> you create multiple copies of each weapon for each
+> enchantment, or create separate enchantments and set
+> them for the weapon as needed? Bridge pattern allows
+> you to do the second.
 
-In Plain Words
+### In plain words
 
-> Bridge pattern is about favoring composition over inheritance. Implementation
-> details are pushed from a hierarchy to another object with a separate
-> hierarchy.
+> Bridge pattern is about favoring composition over
+> inheritance. Implementation details are pushed from a
+> hierarchy to another object with a separate hierarchy.
 
-Wikipedia says
+### Wikipedia says
 
-> The bridge pattern is a design pattern used in software engineering that is
-> meant to "decouple an abstraction from its implementation so that the two can
-> vary independently"
+> The bridge pattern is a design pattern used in
+> software engineering that is meant to "decouple an
+> abstraction from its implementation so that the two
+> can vary independently."
 
-### Programmatic Example
+```mermaid
+sequenceDiagram
+    participant Client
+    participant Sword
+    participant SoulEatingEnchantment
 
-Translating our weapon example from above. Here we have the `Weapon` hierarchy:
+    Client->>Sword: wield()
+    Sword->>SoulEatingEnchantment: onActivate()
+    SoulEatingEnchantment-->>Sword: done
+    Client->>Sword: swing()
+    Sword->>SoulEatingEnchantment: apply()
+    SoulEatingEnchantment-->>Sword: done
+    Client->>Sword: unwield()
+    Sword->>SoulEatingEnchantment: onDeactivate()
+    SoulEatingEnchantment-->>Sword: done
+```
+
+### **Programmatic Example**
+
+Translating our weapon example from above. Here we
+have the `Weapon` hierarchy:
 
 ```kotlin
-interface Weapon {
-  fun wield()
-  fun swing()
-  fun unwield()
-  val enchantment: Enchantment
+internal interface Weapon {
+    val enchantment: Enchantment
+    fun wield()
+    fun swing()
+    fun unwield()
 }
 
-class Sword(override val enchantment: Enchantment) : Weapon {
-  override fun wield() {
-    logger.info("The sword is wielded.")
-    enchantment.onActivate()
-  }
+internal class Sword(
+    override val enchantment: Enchantment,
+) : Weapon {
+    override fun wield() {
+        logger.info("The sword is wielded.")
+        enchantment.onActivate()
+    }
 
-  override fun swing() {
-    logger.info("The sword is swung.")
-    enchantment.apply()
-  }
+    override fun swing() {
+        logger.info("The sword is swung.")
+        enchantment.apply()
+    }
 
-  override fun unwield() {
-    logger.info("The sword is unwielded.")
-    enchantment.onDeactivate()
-  }
-}
-
-class Hammer(override val enchantment: Enchantment) : Weapon {
-  override fun wield() {
-    logger.info("The hammer is wielded.")
-    enchantment.onActivate()
-  }
-
-  override fun swing() {
-    logger.info("The hammer is swung.")
-    enchantment.apply()
-  }
-
-  override fun unwield() {
-    logger.info("The hammer is unwielded.")
-    enchantment.onDeactivate()
-  }
+    override fun unwield() {
+        logger.info("The sword is unwielded.")
+        enchantment.onDeactivate()
+    }
 }
 ```
 
 Here's the separate enchantment hierarchy:
 
 ```kotlin
-interface Enchantment {
-  fun onActivate()
-  fun apply()
-  fun onDeactivate()
+internal interface Enchantment {
+    fun onActivate()
+    fun apply()
+    fun onDeactivate()
 }
 
-class FlyingEnchantment : Enchantment {
-  override fun onActivate() {
-    logger.info("The item begins to glow faintly.")
-  }
+internal class FlyingEnchantment : Enchantment {
+    override fun onActivate() {
+        logger.info("The item begins to glow faintly.")
+    }
 
-  override fun apply() {
-    logger.info("The item flies and strikes the enemies finally returning to owner's hand.")
-  }
+    override fun apply() {
+        logger.info(
+            "The item flies and strikes the enemies"
+                + " finally returning to owner's hand."
+        )
+    }
 
-  override fun onDeactivate() {
-    logger.info("The item's glow fades.")
-  }
+    override fun onDeactivate() {
+        logger.info("The item's glow fades.")
+    }
 }
 
-class SoulEatingEnchantment : Enchantment {
-  override fun onActivate() {
-    logger.info("The item spreads bloodlust.")
-  }
+internal class SoulEatingEnchantment : Enchantment {
+    override fun onActivate() {
+        logger.info("The item spreads bloodlust.")
+    }
 
-  override fun apply() {
-    logger.info("The item eats the soul of enemies.")
-  }
+    override fun apply() {
+        logger.info(
+            "The item eats the soul of enemies."
+        )
+    }
 
-  override fun onDeactivate() {
-    logger.info("Bloodlust slowly disappears.")
-  }
+    override fun onDeactivate() {
+        logger.info("Bloodlust slowly disappears.")
+    }
 }
 ```
 
@@ -138,7 +153,7 @@ hammer.swing()
 hammer.unwield()
 ```
 
-Here's the console output.
+Program output:
 
 ```text
 The knight receives an enchanted sword.
@@ -163,9 +178,9 @@ The item's glow fades.
 classDiagram
     class Enchantment {
         <<interface>>
-        +apply()*
-        +onActivate()*
-        +onDeactivate()*
+        +apply()
+        +onActivate()
+        +onDeactivate()
     }
     class FlyingEnchantment {
         +apply()
@@ -179,19 +194,19 @@ classDiagram
     }
     class Weapon {
         <<interface>>
-        +Enchantment enchantment*
-        +swing()*
-        +unwield()*
-        +wield()*
+        +enchantment Enchantment
+        +swing()
+        +unwield()
+        +wield()
     }
     class Sword {
-        +Enchantment enchantment
+        +enchantment Enchantment
         +swing()
         +unwield()
         +wield()
     }
     class Hammer {
-        +Enchantment enchantment
+        +enchantment Enchantment
         +swing()
         +unwield()
         +wield()
@@ -206,29 +221,49 @@ classDiagram
 
 ## Applicability
 
-Use the Bridge pattern when
+Use the Bridge pattern when:
 
-- You want to avoid a permanent binding between an abstraction and its
-  implementation. This might be the case, for example, when the implementation
-  must be selected or switched at run-time.
-- Both the abstractions and their implementations should be extensible by
-  subclassing. In this case, the Bridge pattern lets you combine the different
-  abstractions and implementations and extend them independently.
-- Changes in the implementation of an abstraction should have no impact on
-  clients; that is, their code should not have to be recompiled.
-- You have a proliferation of classes. Such a class hierarchy indicates the need
-  for splitting an object into two parts. Rumbaugh uses the term "nested
-  generalizations" to refer to such class hierarchies.
-- You want to share an implementation among multiple objects (perhaps using
-  reference counting), and this fact should be hidden from the client. A simple
-  example is Coplien's String class, in which multiple objects can share the
-  same string representation.
+- You want to avoid a permanent binding between an
+  abstraction and its implementation, for example when
+  the implementation must be selected at run-time.
+- Both the abstractions and their implementations
+  should be extensible by subclassing independently.
+- Changes in the implementation of an abstraction
+  should have no impact on clients.
+- You have a proliferation of classes indicating the
+  need for splitting an object into two parts.
 
-## Tutorial
+## Consequences
 
-- [Bridge Pattern Tutorial](https://www.journaldev.com/1491/bridge-design-pattern-java)
+Benefits:
+
+- Decouples interface and implementation, allowing
+  them to vary independently.
+- Improves extensibility — you can extend abstraction
+  and implementation hierarchies independently.
+- Hides implementation details from clients.
+
+Trade-offs:
+
+- Increases complexity due to the extra layer of
+  indirection.
+- Can complicate the system architecture for clients
+  unfamiliar with the pattern.
+
+## Related Patterns
+
+- [Adapter](../adapter/README.md): Adapter changes
+  an interface after design; Bridge designs the
+  abstraction and implementation to vary independently
+  from the start.
+- [Strategy](../strategy/README.md): Similar structure
+  but different intent — Strategy changes behavior,
+  Bridge separates abstraction from implementation.
 
 ## Credits
 
-- [Design Patterns: Elements of Reusable Object-Oriented Software](https://www.amazon.com/gp/product/0201633612/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0201633612&linkCode=as2&tag=javadesignpat-20&linkId=675d49790ce11db99d90bde47f1aeb59)
-- [Head First Design Patterns: A Brain-Friendly Guide](https://www.amazon.com/gp/product/0596007124/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596007124&linkCode=as2&tag=javadesignpat-20&linkId=6b8b6eea86021af6c8e3cd3fc382cb5b)
+- [Design Patterns: Elements of Reusable Object-Oriented
+  Software](https://amzn.to/3w0pvKI)
+- [Head First Design Patterns: Building Extensible and
+  Maintainable Object-Oriented
+  Software](https://amzn.to/49NGldq)

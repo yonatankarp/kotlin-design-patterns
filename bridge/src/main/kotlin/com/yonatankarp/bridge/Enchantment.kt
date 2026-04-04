@@ -1,7 +1,7 @@
 package com.yonatankarp.bridge
 
 /**
- * Enchantment.
+ * Implementation interface in the Bridge pattern for [Weapon] behaviors.
  */
 internal interface Enchantment {
     fun onActivate()

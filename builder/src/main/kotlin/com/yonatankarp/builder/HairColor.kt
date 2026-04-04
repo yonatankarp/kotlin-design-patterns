@@ -1,7 +1,7 @@
 package com.yonatankarp.builder
 
 /**
- * HairColor enumeration.
+ * Represents the available hair colors for a [Hero].
  */
 internal enum class HairColor {
     BLACK,

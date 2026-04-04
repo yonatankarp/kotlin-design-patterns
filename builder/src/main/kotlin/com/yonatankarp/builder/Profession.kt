@@ -1,7 +1,7 @@
 package com.yonatankarp.builder
 
 /**
- * Profession enumeration.
+ * Represents the character class or profession of a [Hero].
  */
 internal enum class Profession {
     MAGE,

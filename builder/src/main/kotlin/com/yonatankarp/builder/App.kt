@@ -19,7 +19,9 @@ import org.slf4j.LoggerFactory
 internal val logger = LoggerFactory.getLogger("com.yonatankarp.builder")
 
 /**
- * Program entry point.
+ * Demonstrates the Builder pattern by constructing [Hero]
+ * instances using both a traditional [Hero.Builder] and
+ * Kotlin's named arguments via [NamedArgumentsHero].
  */
 fun main() {
     // Helper builder class implementation

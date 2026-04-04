@@ -1,7 +1,7 @@
 package com.yonatankarp.strategy
 
 /**
- * DragonSlayer uses different strategies to slay the dragon.
+ * Context that delegates dragon-slaying to a [DragonSlayingStrategy].
  */
 internal class DragonSlayer(private var strategy: DragonSlayingStrategy) {
     fun changeStrategy(strategy: DragonSlayingStrategy) {

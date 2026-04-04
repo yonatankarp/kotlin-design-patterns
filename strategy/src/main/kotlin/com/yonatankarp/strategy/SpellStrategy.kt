@@ -1,7 +1,7 @@
 package com.yonatankarp.strategy
 
 /**
- * Spell strategy.
+ * A [DragonSlayingStrategy] using magical spell attacks.
  */
 internal class SpellStrategy : DragonSlayingStrategy {
     override fun execute() {

@@ -1,11 +1,13 @@
 package com.yonatankarp.strategy
 
 /**
- * Enum strategy pattern.
+ * Demonstrates the strategy pattern using an enum that
+ * delegates to [DragonSlayingStrategy] instances.
  */
 internal class EnumStrategy {
     /**
-     * Enum to demonstrate strategy pattern.
+     * Enum entries that each delegate to a
+     * [DragonSlayingStrategy] lambda.
      */
     internal enum class Strategy(private val dragonSlayingStrategy: DragonSlayingStrategy) :
         DragonSlayingStrategy {

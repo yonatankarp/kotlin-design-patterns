@@ -22,18 +22,22 @@ internal class DragonSlayerTest {
 
     @Test
     fun `test change strategy`() {
+        // Given
         val initialStrategy = spyk<DragonSlayingStrategy>()
         val dragonSlayer = DragonSlayer(initialStrategy)
 
+        // When
         dragonSlayer.goToBattle()
 
+        // Then
         verify(exactly = 1) { initialStrategy.execute() }
 
+        // When
         val newStrategy = spyk<DragonSlayingStrategy>()
         dragonSlayer.changeStrategy(newStrategy)
-
         dragonSlayer.goToBattle()
 
+        // Then
         verify(exactly = 1) { newStrategy.execute() }
         confirmVerified(initialStrategy, newStrategy)
     }

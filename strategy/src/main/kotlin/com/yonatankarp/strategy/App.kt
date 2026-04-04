@@ -42,7 +42,7 @@ fun main() {
 
     // functional interface implementation Strategy pattern
     logger.info(GREEN_DRAGON_SPOTTED)
-    val functionalDragonSlayer = DragonSlayer { logger.info("With your Excalibur you severe the dragon's head!") }
+    val functionalDragonSlayer = DragonSlayer { logger.info("With your Excalibur you sever the dragon's head!") }
     functionalDragonSlayer.goToBattle()
 
     logger.info(RED_DRAGON_EMERGES)

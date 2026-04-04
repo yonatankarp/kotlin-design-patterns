@@ -3,8 +3,7 @@ package com.yonatankarp.strategy
 internal typealias Strategy = () -> Unit
 
 /**
- * FunctionalDragonSlayer uses different strategies to slay the dragon that are
- * based on lambdas
+ * Context that delegates dragon-slaying to a lambda [Strategy].
  */
 internal class FunctionalDragonSlayer(private var strategy: Strategy) {
     fun changeStrategy(strategy: Strategy) {

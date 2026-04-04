@@ -1,6 +1,10 @@
 package com.yonatankarp.strategy
 
-object LambdaStrategy {
+/**
+ * Strategy implementations as standalone functions,
+ * used with [FunctionalDragonSlayer] via method references.
+ */
+internal object LambdaStrategy {
     fun meleeStrategy() =
         logger.info("With your Excalibur you sever the dragon's head!")
 

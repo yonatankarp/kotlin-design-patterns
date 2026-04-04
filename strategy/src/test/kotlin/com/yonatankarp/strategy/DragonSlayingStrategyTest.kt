@@ -27,7 +27,10 @@ internal class DragonSlayingStrategyTest {
     @ParameterizedTest(name = "test execute {0}")
     @MethodSource("dataProvider")
     fun `test execute`(strategy: DragonSlayingStrategy, expectedResult: String) {
+        // When
         strategy.execute()
+
+        // Then
         assertEquals(expectedResult, appender.lastMessage)
         assertEquals(1, appender.logSize)
     }

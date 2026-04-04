@@ -1,7 +1,7 @@
 package com.yonatankarp.strategy
 
 /**
- * Projectile strategy.
+ * A [DragonSlayingStrategy] using ranged projectile attacks.
  */
 internal class ProjectileStrategy : DragonSlayingStrategy {
     override fun execute() {

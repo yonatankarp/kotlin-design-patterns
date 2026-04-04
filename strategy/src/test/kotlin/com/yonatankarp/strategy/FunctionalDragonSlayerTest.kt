@@ -22,18 +22,22 @@ internal class FunctionalDragonSlayerTest {
 
     @Test
     fun `test change strategy`() {
+        // Given
         val initialStrategy = spyk<Strategy>()
-        val dragonSlayer = DragonSlayer(initialStrategy)
+        val dragonSlayer = FunctionalDragonSlayer(initialStrategy)
 
+        // When
         dragonSlayer.goToBattle()
 
+        // Then
         verify(exactly = 1) { initialStrategy.invoke() }
 
+        // When
         val newStrategy = spyk<Strategy>()
         dragonSlayer.changeStrategy(newStrategy)
-
         dragonSlayer.goToBattle()
 
+        // Then
         verify(exactly = 1) { newStrategy.invoke() }
         confirmVerified(initialStrategy, newStrategy)
     }

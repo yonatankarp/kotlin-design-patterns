@@ -1,7 +1,7 @@
 package com.yonatankarp.strategy
 
 /**
- * Melee strategy.
+ * A [DragonSlayingStrategy] using close-combat melee attacks.
  */
 internal class MeleeStrategy : DragonSlayingStrategy {
     override fun execute() {

@@ -1,7 +1,7 @@
 package com.yonatankarp.bridge
 
 /**
- * SoulEatingEnchantment.
+ * An [Enchantment] that spreads bloodlust and devours souls.
  */
 internal class SoulEatingEnchantment : Enchantment {
     override fun onActivate() {

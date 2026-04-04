@@ -1,7 +1,7 @@
 package com.yonatankarp.bridge
 
 /**
- * Hammer.
+ * A [Weapon] that delegates enchantment behavior via the Bridge.
  */
 internal class Hammer(override val enchantment: Enchantment) : Weapon {
     override fun wield() {

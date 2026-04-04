@@ -1,7 +1,7 @@
 package com.yonatankarp.bridge
 
 /**
- * FlyingEnchantment.
+ * An [Enchantment] that makes the [Weapon] fly and strike.
  */
 internal class FlyingEnchantment : Enchantment {
     override fun onActivate() {

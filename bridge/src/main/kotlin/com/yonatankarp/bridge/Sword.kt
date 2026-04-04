@@ -1,7 +1,7 @@
 package com.yonatankarp.bridge
 
 /**
- * Sword.
+ * A [Weapon] that delegates enchantment behavior via the Bridge.
  */
 internal class Sword(override val enchantment: Enchantment) : Weapon {
     override fun wield() {

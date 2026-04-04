@@ -1,7 +1,7 @@
 package com.yonatankarp.bridge
 
 /**
- * Weapon.
+ * Abstraction in the Bridge pattern, delegating to an [Enchantment].
  */
 internal interface Weapon {
     val enchantment: Enchantment

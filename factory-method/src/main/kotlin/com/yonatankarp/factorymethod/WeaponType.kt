@@ -1,7 +1,7 @@
 package com.yonatankarp.factorymethod
 
 /**
- * WeaponType enumeration.
+ * Enumerates the types of weapons a [Blacksmith] can manufacture.
  */
 internal enum class WeaponType(val title: String) {
     AXE("axe"),

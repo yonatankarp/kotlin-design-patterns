@@ -3,8 +3,11 @@ title: Factory Method
 category: Creational
 language: en
 tag:
-  - Extensibility
+  - Encapsulation
   - Gang of Four
+  - Instantiation
+  - Object composition
+  - Polymorphism
 ---
 
 ## Also known as
@@ -13,71 +16,127 @@ tag:
 
 ## Intent
 
-Define an interface for creating an object, but let subclasses decide which
-class to instantiate. Factory Method lets a class defer instantiation to
-subclasses.
+Define an interface for creating an object, but let
+subclasses decide which class to instantiate. Factory
+Method lets a class defer instantiation to subclasses.
 
 ## Explanation
 
-Real-world example
+### Real-world example
 
-> Blacksmith manufactures weapons. Elves require Elvish weapons and orcs require
-> Orcish weapons. Depending on the customer at hand the right type of blacksmith
-> is summoned.
+> Blacksmith manufactures weapons. Elves require Elvish
+> weapons and orcs require Orcish weapons. Depending on
+> the customer at hand the right type of blacksmith is
+> summoned.
 
-In plain words
+### In plain words
 
-> It provides a way to delegate the instantiation logic to child classes.
+> It provides a way to delegate the instantiation logic
+> to child classes.
 
-Wikipedia says
+### Wikipedia says
 
-> In class-based programming, the factory method pattern is a creational pattern
-> that uses factory methods to deal with the problem of creating objects without
-> having to specify the exact class of the object that will be created. This is
-> done by creating objects by calling a factory method — either specified in an
-> interface and implemented by child classes, or implemented in a base class and
-> optionally overridden by derived classes—rather than by calling a constructor.
+> In class-based programming, the factory method pattern
+> is a creational pattern that uses factory methods to
+> deal with the problem of creating objects without having
+> to specify the exact class of the object that will be
+> created. This is done by creating objects by calling a
+> factory method -- either specified in an interface and
+> implemented by child classes, or implemented in a base
+> class and optionally overridden by derived
+> classes -- rather than by calling a constructor.
 
-### Programmatic Example
+```mermaid
+sequenceDiagram
+    participant Client
+    participant Blacksmith
+    participant Weapon
 
-Taking our blacksmith example above. First of all, we have a `Blacksmith`
-interface and some implementations for it:
+    Client->>Blacksmith: manufactureWeapon(WeaponType)
+    Blacksmith->>Weapon: create(WeaponType)
+    Weapon-->>Blacksmith: weapon instance
+    Blacksmith-->>Client: Weapon
+```
+
+### **Programmatic Example**
+
+Taking our blacksmith example above. First of all, we
+have a `WeaponType` enumeration and a `Weapon` interface:
 
 ```kotlin
-internal interface Blacksmith {
-  fun manufactureWeapon(weaponType: WeaponType): Weapon
+internal enum class WeaponType(val title: String) {
+    AXE("axe"),
+    SHORT_SWORD("short sword"),
+    SPEAR("spear"),
+    UNDEFINED(""),
 }
 
-internal class ElfBlacksmith : Blacksmith {
-  override fun manufactureWeapon(weaponType: WeaponType): Weapon =
-    ELF_ARSENAL.getOrElse(weaponType) {
-      throw IllegalArgumentException("Weapon type $weaponType is not supported by elf blacksmith.")
-    }
-}
-
-internal class OrcBlacksmith : Blacksmith {
-  override fun manufactureWeapon(weaponType: WeaponType): Weapon =
-    ORC_ARSENAL.getOrElse(weaponType) {
-      throw IllegalArgumentException("Weapon type $weaponType is not supported by the orc blacksmith.")
-    }
+internal interface Weapon {
+    val weaponType: WeaponType
 }
 ```
 
-When the customers come, the correct type of blacksmith is summoned and
-requested weapons are manufactured:
+There are two concrete weapon implementations --
+`ElfWeapon` and `OrcWeapon`:
 
 ```kotlin
-var blacksmith: Blacksmith = OrcBlacksmith()
-var weapon: Weapon = blacksmith.manufactureWeapon(WeaponType.SPEAR)
-logger.info("$blacksmith manufactured ${weapon.weaponType.title}")
-weapon = blacksmith.manufactureWeapon(WeaponType.AXE)
-logger.info("$blacksmith manufactured ${weapon.weaponType.title}")
+internal class ElfWeapon(
+    override val weaponType: WeaponType,
+) : Weapon {
+    override fun toString() = "an elven $weaponType"
+}
 
-blacksmith = ElfBlacksmith()
-weapon = blacksmith.manufactureWeapon(WeaponType.SPEAR)
-logger.info("$blacksmith manufactured ${weapon.weaponType.title}")
-weapon = blacksmith.manufactureWeapon(WeaponType.AXE)
-logger.info("$blacksmith manufactured ${weapon.weaponType.title}")
+internal class OrcWeapon(
+    override val weaponType: WeaponType,
+) : Weapon {
+    override fun toString() = "an orcish $weaponType"
+}
+```
+
+The `Blacksmith` interface declares the factory method,
+and concrete blacksmiths implement it:
+
+```kotlin
+internal interface Blacksmith {
+    fun manufactureWeapon(weaponType: WeaponType): Weapon
+}
+
+internal class ElfBlacksmith : Blacksmith {
+    override fun manufactureWeapon(
+        weaponType: WeaponType,
+    ): Weapon =
+        ELF_ARSENAL.getOrElse(weaponType) {
+            throw IllegalArgumentException(
+                "Weapon type $weaponType is not supported"
+                    + " by elf blacksmith."
+            )
+        }
+}
+
+internal class OrcBlacksmith : Blacksmith {
+    override fun manufactureWeapon(
+        weaponType: WeaponType,
+    ): Weapon =
+        ORC_ARSENAL.getOrElse(weaponType) {
+            throw IllegalArgumentException(
+                "Weapon type $weaponType is not supported"
+                    + " by the orc blacksmith."
+            )
+        }
+}
+```
+
+When the customers come, the correct type of blacksmith
+is summoned and requested weapons are manufactured:
+
+```kotlin
+val orcBlacksmith = OrcBlacksmith()
+manufactureWeapon(orcBlacksmith, WeaponType.SPEAR)
+manufactureWeapon(orcBlacksmith, WeaponType.AXE)
+
+val elfBlacksmith = ElfBlacksmith()
+manufactureWeapon(elfBlacksmith, WeaponType.SPEAR)
+manufactureWeapon(elfBlacksmith, WeaponType.AXE)
 ```
 
 Program output:
@@ -95,11 +154,11 @@ The elf blacksmith manufactured axe
 classDiagram
     class Blacksmith {
         <<interface>>
-        +manufactureWeapon(WeaponType) Weapon*
+        +manufactureWeapon(WeaponType) Weapon
     }
     class Weapon {
         <<interface>>
-        +getWeaponType() WeaponType*
+        +weaponType WeaponType
     }
     class WeaponType {
         <<enumeration>>
@@ -107,24 +166,24 @@ classDiagram
         SHORT_SWORD
         SPEAR
         UNDEFINED
-        +String title
+        +title String
     }
     class ElfBlacksmith {
-        -Map~WeaponType, ElfWeapon~ ELFARSENAL$
-        +manufactureWeapon(WeaponType weaponType) Weapon
+        -ELF_ARSENAL Map~WeaponType, ElfWeapon~
+        +manufactureWeapon(WeaponType) Weapon
+        +toString() String
     }
     class OrcBlacksmith {
-        -Map~WeaponType, OrcWeapon~ ORCARSENAL$
-        +manufactureWeapon(WeaponType weaponType) Weapon
+        -ORC_ARSENAL Map~WeaponType, OrcWeapon~
+        +manufactureWeapon(WeaponType) Weapon
+        +toString() String
     }
     class ElfWeapon {
-        -WeaponType weaponType
-        +getWeaponType() WeaponType
+        +weaponType WeaponType
         +toString() String
     }
     class OrcWeapon {
-        -WeaponType weaponType
-        +getWeaponType() WeaponType
+        +weaponType WeaponType
         +toString() String
     }
     ElfWeapon --> WeaponType : weaponType
@@ -139,13 +198,46 @@ classDiagram
 
 Use the Factory Method pattern when:
 
-- Class cannot anticipate the class of objects it must create.
-- Class wants its subclasses to specify the objects it creates.
-- Classes delegate responsibility to one of several helper subclasses, and you
-  want to localize the knowledge of which helper subclass is the delegate.
+- A class cannot anticipate the class of objects it must
+  create.
+- A class wants its subclasses to specify the objects it
+  creates.
+- Classes delegate responsibility to one of several
+  helper subclasses, and you want to localize the
+  knowledge of which helper subclass is the delegate.
+
+## Consequences
+
+Benefits:
+
+- Eliminates the need to bind application-specific
+  classes into your code. The code only deals with the
+  product interface, so it can work with any
+  user-defined concrete product classes.
+- Provides hooks for subclasses, giving them an
+  extensible way to provide an extended version of an
+  object.
+
+Trade-offs:
+
+- Clients might have to subclass the creator class just
+  to create a particular product object.
+
+## Related Patterns
+
+- [Abstract Factory](../abstract-factory/README.md):
+  Often implemented with factory methods. An abstract
+  factory groups several factory methods that create a
+  family of related products.
+- [Prototype](../prototype/README.md): A factory method
+  that returns a new instance of a class that is a clone
+  of a prototype class.
 
 ## Credits
 
-- [Design Patterns: Elements of Reusable Object-Oriented Software](https://www.amazon.com/gp/product/0201633612/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0201633612&linkCode=as2&tag=javadesignpat-20&linkId=675d49790ce11db99d90bde47f1aeb59)
-- [Head First Design Patterns: A Brain-Friendly Guide](https://www.amazon.com/gp/product/0596007124/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596007124&linkCode=as2&tag=javadesignpat-20&linkId=6b8b6eea86021af6c8e3cd3fc382cb5b)
-- [Refactoring to Patterns](https://www.amazon.com/gp/product/0321213351/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0321213351&linkCode=as2&tag=javadesignpat-20&linkId=2a76fcb387234bc71b1c61150b3cc3a7)
+- [Design Patterns: Elements of Reusable Object-Oriented
+  Software](https://amzn.to/3w0pvKI)
+- [Head First Design Patterns: Building Extensible and
+  Maintainable Object-Oriented
+  Software](https://amzn.to/49NGldq)
+- [Refactoring to Patterns](https://amzn.to/3VOO4F5)

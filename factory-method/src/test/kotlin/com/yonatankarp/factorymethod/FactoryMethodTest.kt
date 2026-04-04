@@ -28,7 +28,10 @@ internal class FactoryMethodTest {
         expectedWeaponType: WeaponType,
         clazz: KClass<*>,
     ) {
+        // When
         val weapon = blacksmith.manufactureWeapon(expectedWeaponType)
+
+        // Then
         verifyWeapon(weapon, expectedWeaponType, clazz)
     }
 

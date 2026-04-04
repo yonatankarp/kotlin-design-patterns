@@ -1,7 +1,7 @@
 package com.yonatankarp.factorymethod
 
 /**
- * Concrete subclass for creating new objects.
+ * A [Blacksmith] that manufactures elven [Weapon] instances.
  */
 internal class ElfBlacksmith : Blacksmith {
     override fun manufactureWeapon(weaponType: WeaponType): Weapon =

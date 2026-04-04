@@ -3,7 +3,11 @@ title: Factory
 category: Creational
 language: en
 tag:
+  - Abstraction
+  - Encapsulation
   - Gang of Four
+  - Instantiation
+  - Polymorphism
 ---
 
 ## Also known as
@@ -13,28 +17,47 @@ tag:
 
 ## Intent
 
-Providing a static method encapsulated in a class called the factory, to hide
-the implementation logic and make client code focus on usage rather than
+Providing a static method encapsulated in a class
+called the factory, to hide the implementation logic
+and make client code focus on usage rather than
 initializing new objects.
 
 ## Explanation
 
-Real-world example
+### Real-world example
 
-> Imagine an alchemist who is about to manufacture coins. The alchemist must be
-> able to create both gold and copper coins and switching between them must be
-> possible without modifying the existing source code. The factory pattern makes
-> it possible by providing a static construction method which can be called with
+> Imagine an alchemist who is about to manufacture
+> coins. The alchemist must be able to create both gold
+> and copper coins and switching between them must be
+> possible without modifying the existing source code.
+> The factory pattern makes it possible by providing a
+> static construction method which can be called with
 > relevant parameters.
 
-Wikipedia says
+### Wikipedia says
 
-> Factory is an object for creating other objects – formally a factory is a
-> function or method that returns objects of a varying prototype or class.
+> Factory is an object for creating other objects --
+> formally a factory is a function or method that
+> returns objects of a varying prototype or class.
 
-### Programmatic Example
+```mermaid
+sequenceDiagram
+    participant Client
+    participant CoinFactory
+    participant CoinType
+    participant Coin
 
-We have an interface `Coin` and two implementations `GoldCoin` and `CopperCoin`.
+    Client->>CoinFactory: getCoin(CoinType)
+    CoinFactory->>CoinType: constructor()
+    CoinType->>Coin: create()
+    Coin-->>CoinFactory: Coin instance
+    CoinFactory-->>Client: Coin
+```
+
+### **Programmatic Example**
+
+We have an interface `Coin` and two implementations
+`GoldCoin` and `CopperCoin`.
 
 ```kotlin
 internal interface Coin {
@@ -50,27 +73,31 @@ internal class CopperCoin : Coin {
 }
 ```
 
-Enumeration above represents types of coins that we support (`GoldCoin` and
-`CopperCoin`).
+The `CoinType` enumeration maps each type to its
+constructor lambda:
 
 ```kotlin
-internal enum class CoinType(val constructor: () -> Coin) {
+internal enum class CoinType(
+    val constructor: () -> Coin,
+) {
     COPPER({ CopperCoin() }),
     GOLD({ GoldCoin() }),
 }
 ```
 
-Then we have the static method `getCoin` to create coin objects encapsulated in
-the factory class `CoinFactory`.
+Then we have the static method `getCoin` to create
+coin objects encapsulated in the factory class
+`CoinFactory`.
 
 ```kotlin
 internal object CoinFactory {
-    fun getCoin(type: CoinType): Coin = type.constructor()
+    fun getCoin(type: CoinType): Coin =
+        type.constructor()
 }
 ```
 
-Now on the client code we can create different types of coins using the factory
-class.
+Now on the client code we can create different types
+of coins using the factory class.
 
 ```kotlin
 logger.info("The alchemist begins his work.")
@@ -82,62 +109,80 @@ logger.info(gold.description)
 
 Program output:
 
-```shell
+```text
 The alchemist begins his work.
 This is a copper coin.
 This is a gold coin.
 ```
 
-## Class Diagram
+## Class diagram
 
 ```mermaid
 classDiagram
     class Coin {
         <<interface>>
-        +getDescription() String*
+        +description String
     }
     class CoinFactory {
-        +getCoin(CoinType type) Coin$
+        <<object>>
+        +getCoin(CoinType) Coin
     }
     class CoinType {
         <<enumeration>>
         COPPER
         GOLD
-        -Supplier~Coin~ constructor
-        +getConstructor() Supplier~Coin~
+        +constructor () ~-~ Coin
     }
     class CopperCoin {
-        ~String DESCRIPTION$
-        +getDescription() String
+        +description String
     }
     class GoldCoin {
-        ~String DESCRIPTION$
-        +getDescription() String
+        +description String
     }
+    CoinFactory --> CoinType : uses
+    CoinType --> Coin : creates
     CopperCoin ..|> Coin
     GoldCoin ..|> Coin
 ```
 
 ## Applicability
 
-Use the factory pattern when you only care about the creation of a object, not
-how to create and manage it.
+Use the Factory pattern when:
 
-Pros
+- The class does not know beforehand the exact types
+  and dependencies of the objects it needs to create.
+- A method returns one of several possible classes that
+  share a common super class and you want to
+  encapsulate the logic of which object to create.
 
-- Allows keeping all objects creation in one place.
-- Allows to write loosely coupled code. Some of its main advantages include
-  better testability, easy-to-understand code, swappable components, scalability
-  and isolated features.
+## Consequences
 
-Cons
+Benefits:
 
-- The code becomes more complicated than it should be.
+- Allows keeping all object creation in one place and
+  writing loosely coupled code with better testability,
+  swappable components, and scalability.
+- Supports the Open/Closed Principle -- new types can
+  be introduced without changing existing code.
 
-## Related patterns
+Trade-offs:
+
+- The code can become more complicated due to the
+  introduction of additional classes.
+
+## Related Patterns
 
 - [Factory Method](../factory-method/README.md)
 - [Abstract Factory](../abstract-factory/README.md)
-- Factory Kit
+- [Builder](../builder/README.md): Separates the
+  construction of a complex object from its
+  representation.
 
-[//]: # (TODO: link after adding the pattern)
+## Credits
+
+- [Design Patterns: Elements of Reusable Object-Oriented
+  Software](https://amzn.to/3w0pvKI)
+- [Effective Java](https://amzn.to/4cGk2Jz)
+- [Head First Design Patterns: Building Extensible and
+  Maintainable Object-Oriented
+  Software](https://amzn.to/49NGldq)

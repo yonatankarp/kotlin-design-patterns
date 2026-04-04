@@ -1,7 +1,7 @@
 package com.yonatankarp.factory
 
 /**
- * Coin interface.
+ * Represents a coin produced by the [CoinFactory].
  */
 internal interface Coin {
     val description: String

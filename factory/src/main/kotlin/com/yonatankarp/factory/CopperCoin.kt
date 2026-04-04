@@ -1,7 +1,7 @@
 package com.yonatankarp.factory
 
 /**
- * CopperCoin implementation.
+ * A copper [Coin] produced by the [CoinFactory].
  */
 internal class CopperCoin : Coin {
     override val description = "This is a copper coin."

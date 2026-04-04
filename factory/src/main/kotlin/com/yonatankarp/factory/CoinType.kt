@@ -1,7 +1,7 @@
 package com.yonatankarp.factory
 
 /**
- * Enumeration for different types of coins.
+ * Enumerates the types of [Coin] the [CoinFactory] can produce.
  */
 internal enum class CoinType(val constructor: () -> Coin) {
     COPPER({ CopperCoin() }),

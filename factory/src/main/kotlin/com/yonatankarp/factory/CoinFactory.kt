@@ -1,7 +1,7 @@
 package com.yonatankarp.factory
 
 /**
- * Factory of coins.
+ * Static factory that creates [Coin] instances by [CoinType].
  */
 internal object CoinFactory {
     /**

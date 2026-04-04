@@ -1,7 +1,7 @@
 package com.yonatankarp.builder
 
 /**
- * Armor enumeration.
+ * Represents the type of armor a [Hero] can wear.
  */
 internal enum class Armor(private val title: String) {
     CHAIN_MAIL("chain mail"),

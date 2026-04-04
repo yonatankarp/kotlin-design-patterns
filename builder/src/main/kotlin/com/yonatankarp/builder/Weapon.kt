@@ -1,7 +1,7 @@
 package com.yonatankarp.builder
 
 /**
- * Weapon enumeration.
+ * Represents the type of weapon a [Hero] can wield.
  */
 internal enum class Weapon {
     AXE,

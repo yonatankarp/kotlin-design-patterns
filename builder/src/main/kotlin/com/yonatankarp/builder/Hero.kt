@@ -1,5 +1,10 @@
 package com.yonatankarp.builder
 
+/**
+ * Represents a role-playing game character constructed via
+ * the [Builder] pattern, with required [profession] and
+ * [name] and optional appearance and equipment attributes.
+ */
 internal data class Hero(
     val profession: Profession,
     val name: String,
@@ -31,7 +36,8 @@ internal data class Hero(
     }
 
     /**
-     * The builder class.
+     * Accumulates optional [Hero] attributes and produces a
+     * fully constructed [Hero] instance via [build].
      */
     internal class Builder(profession: Profession?, name: String?) {
         val profession: Profession = requireNotNull(profession) { "profession can not be null" }

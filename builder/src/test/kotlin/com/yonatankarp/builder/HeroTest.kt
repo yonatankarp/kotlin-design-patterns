@@ -23,8 +23,10 @@ internal class HeroTest {
 
     @Test
     fun `test build default hero`() {
+        // When
         val hero = Hero.Builder(Profession.WARRIOR, "Sir Lancelot").build()
 
+        // Then
         assertNotNull(hero)
         assertNotNull(hero.toString())
         assertEquals(Profession.WARRIOR, hero.profession)
@@ -37,6 +39,7 @@ internal class HeroTest {
 
     @Test
     fun `test build hero`() {
+        // When
         val heroName = "Sir Lancelot"
         val hero = Hero.Builder(Profession.WARRIOR, heroName)
             .withArmor(Armor.CHAIN_MAIL)
@@ -45,6 +48,7 @@ internal class HeroTest {
             .withHairColor(HairColor.BLOND)
             .build()
 
+        // Then
         assertNotNull(hero)
         assertNotNull(hero.toString())
         assertEquals(Profession.WARRIOR, hero.profession)

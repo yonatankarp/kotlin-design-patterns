@@ -8,11 +8,13 @@ import org.junit.jupiter.api.Test
 class NamedArgumentsHeroTest {
     @Test
     fun `test build default hero`() {
+        // When
         val hero = NamedArgumentsHero(
             profession = Profession.WARRIOR,
-            name = "Sir Lancelot"
+            name = "Sir Lancelot",
         )
 
+        // Then
         assertNotNull(hero)
         assertNotNull(hero.toString())
         assertEquals(Profession.WARRIOR, hero.profession)
@@ -25,14 +27,18 @@ class NamedArgumentsHeroTest {
 
     @Test
     fun `test build hero`() {
+        // When
         val heroName = "Sir Lancelot"
-        val hero = Hero.Builder(Profession.WARRIOR, heroName)
-            .withArmor(Armor.CHAIN_MAIL)
-            .withWeapon(Weapon.SWORD)
-            .withHairType(HairType.LONG_CURLY)
-            .withHairColor(HairColor.BLOND)
-            .build()
+        val hero = NamedArgumentsHero(
+            profession = Profession.WARRIOR,
+            name = heroName,
+            armor = Armor.CHAIN_MAIL,
+            weapon = Weapon.SWORD,
+            hairType = HairType.LONG_CURLY,
+            hairColor = HairColor.BLOND,
+        )
 
+        // Then
         assertNotNull(hero)
         assertNotNull(hero.toString())
         assertEquals(Profession.WARRIOR, hero.profession)

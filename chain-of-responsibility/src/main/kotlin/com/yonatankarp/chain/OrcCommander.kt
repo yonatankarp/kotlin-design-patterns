@@ -15,6 +15,6 @@ internal class OrcCommander : RequestHandler {
 
     override fun handle(request: Request) {
         request.markHandled()
-        logger.info("{} handling request \"{}\"", name, request)
+        logger.info("$name handling request \"$request\"")
     }
 }

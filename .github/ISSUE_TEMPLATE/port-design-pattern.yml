@@ -1,0 +1,65 @@
+name: Port Design Pattern
+description: Request to port a design pattern from the Java reference repo
+title: "Port `<pattern-name>` pattern"
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template to request porting a design pattern from
+        [iluwatar/java-design-patterns](https://github.com/iluwatar/java-design-patterns).
+
+  - type: input
+    id: pattern-name
+    attributes:
+      label: Pattern name
+      description: The kebab-case name matching the Java repo directory
+      placeholder: e.g. active-object
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      description: The pattern category from the Java README frontmatter
+      options:
+        - Behavioral
+        - Creational
+        - Structural
+        - Architectural
+        - Concurrency
+        - Data access
+        - Functional
+        - Integration
+        - Messaging
+        - Performance optimization
+        - Resilience
+        - Resource management
+        - Testing
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Brief description of the pattern's intent
+      placeholder: What does this pattern do?
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance Criteria
+      description: Checklist for a complete port
+      value: |
+        - [ ] Idiomatic Kotlin implementation (no Jatlin)
+        - [ ] Tests with backtick method names
+        - [ ] README with Mermaid class diagram
+        - [ ] Added to `DESIGN_PATTERN_CATEGORIES.md`
+        - [ ] `./gradlew build` passes
+    validations:
+      required: true

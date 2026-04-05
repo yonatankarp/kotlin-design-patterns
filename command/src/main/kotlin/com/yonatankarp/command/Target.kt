@@ -20,12 +20,7 @@ internal open class Target(
      * Logs the current status of this target.
      */
     fun printStatus() {
-        logger.info(
-            "{}, [size={}] [visibility={}]",
-            this,
-            size,
-            visibility,
-        )
+        logger.info("$this, [size=$size] [visibility=$visibility]")
     }
 
     /**

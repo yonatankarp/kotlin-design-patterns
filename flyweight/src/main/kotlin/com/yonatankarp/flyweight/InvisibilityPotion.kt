@@ -1,7 +1,7 @@
 package com.yonatankarp.flyweight
 
 /**
- * InvisibilityPotion.
+ * An invisibility [Potion] shared via [PotionFactory].
  */
 internal class InvisibilityPotion : Potion {
     override fun drink() =

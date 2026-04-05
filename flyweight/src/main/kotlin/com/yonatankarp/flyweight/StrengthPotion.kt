@@ -1,9 +1,9 @@
 package com.yonatankarp.flyweight
 
 /**
- * StrengthPotion.
+ * A strength [Potion] shared via [PotionFactory].
  */
-class StrengthPotion : Potion {
+internal class StrengthPotion : Potion {
     override fun drink() =
         logger.info("You feel strong. (Potion=${hashCode()})")
 }

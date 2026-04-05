@@ -1,7 +1,7 @@
 package com.yonatankarp.flyweight
 
 /**
- * Interface for Potions.
+ * Flyweight object representing a drinkable potion.
  */
 internal interface Potion {
     fun drink()

@@ -49,11 +49,11 @@ sequenceDiagram
     participant Star
     participant StarMemento
 
-    Caretaker->>Star: getMemento()
+    Caretaker->>Star: star.memento (get)
     Star-->>StarMemento: create(type, age, mass)
     StarMemento-->>Caretaker: memento
     Caretaker->>Star: timePasses()
-    Caretaker->>Star: setMemento(memento)
+    Caretaker->>Star: star.memento = saved (set)
     Star->>StarMemento: read state
     Star-->>Star: restore type, age, mass
 ```
@@ -190,8 +190,7 @@ classDiagram
         -ageYears: Int
         -massTons: Int
         +timePasses()
-        +getMemento() StarMemento
-        +setMemento(memento: StarMemento)
+        +memento: StarMemento
         +toString() String
     }
     class StarMementoInternal {

@@ -21,13 +21,13 @@ internal class Star(
      * previously captured snapshot.
      */
     var memento: StarMemento
-        get() = StarMementoInternal(
+        get() = StarSnapshot(
             type = type,
             ageYears = ageYears,
             massTons = massTons,
         )
         set(value) {
-            val state = value as StarMementoInternal
+            val state = value as StarSnapshot
             type = state.type
             ageYears = state.ageYears
             massTons = state.massTons
@@ -61,7 +61,7 @@ internal class Star(
      * [Star]'s internal state. Hidden from the caretaker
      * behind the [StarMemento] interface.
      */
-    private data class StarMementoInternal(
+    private data class StarSnapshot(
         val type: StarType,
         val ageYears: Int,
         val massTons: Int,

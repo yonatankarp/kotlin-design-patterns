@@ -108,13 +108,13 @@ internal class Star(
     }
 
     var memento: StarMemento
-        get() = StarMementoInternal(
+        get() = StarSnapshot(
             type = type,
             ageYears = ageYears,
             massTons = massTons,
         )
         set(value) {
-            val state = value as StarMementoInternal
+            val state = value as StarSnapshot
             type = state.type
             ageYears = state.ageYears
             massTons = state.massTons
@@ -123,7 +123,7 @@ internal class Star(
     override fun toString(): String =
         "$type age: $ageYears years mass: $massTons tons"
 
-    private data class StarMementoInternal(
+    private data class StarSnapshot(
         val type: StarType,
         val ageYears: Int,
         val massTons: Int,
@@ -193,7 +193,7 @@ classDiagram
         +memento: StarMemento
         +toString() String
     }
-    class StarMementoInternal {
+    class StarSnapshot {
         <<data class>>
         +type: StarType
         +ageYears: Int
@@ -211,9 +211,9 @@ classDiagram
 
     Star ..> StarMemento : creates
     Star --> StarType
-    StarMementoInternal ..|> StarMemento
-    StarMementoInternal --o Star : inner class
-    StarMementoInternal --> StarType
+    StarSnapshot ..|> StarMemento
+    StarSnapshot --o Star : inner class
+    StarSnapshot --> StarType
 ```
 
 ## Applicability

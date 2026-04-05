@@ -111,12 +111,7 @@ internal abstract class Target(
     var visibility: Visibility,
 ) {
     fun printStatus() {
-        logger.info(
-            "{}, [size={}] [visibility={}]",
-            this,
-            size,
-            visibility,
-        )
+        logger.info("$this, [size=$size] [visibility=$visibility]")
     }
 
     fun changeSize() {

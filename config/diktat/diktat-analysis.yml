@@ -449,7 +449,7 @@
   enabled: true
 # Checks if there are any trivial getters or setters
 - name: TRIVIAL_ACCESSORS_ARE_NOT_RECOMMENDED
-  enabled: true
+  enabled: false
 # Checks that no custom getters and setters are used for properties. It is a more wide rule than TRIVIAL_ACCESSORS_ARE_NOT_RECOMMENDED
 # Kotlin compiler automatically generates `get` and `set` methods for properties and also lets the possibility to override it.
 # But in all cases it is very confusing when `get` and `set` are overridden for a developer who uses this particular class.
@@ -480,7 +480,7 @@
 # there should be explicit backing property with the name of real property
 # Example: val table get() {if (_table == null) ...} -> table should have _table
 - name: NO_CORRESPONDING_PROPERTY
-  enabled: true
+  enabled: false
 # Checks if there is class/object that can be replace with extension function
 - name: AVOID_USING_UTILITY_CLASS
   enabled: false

@@ -15,6 +15,25 @@ internal class Star(
     private var massTons: Int,
 ) {
     /**
+     * The star's current state as an opaque [StarMemento].
+     *
+     * Reading captures a snapshot; writing restores a
+     * previously captured snapshot.
+     */
+    var memento: StarMemento
+        get() = StarMementoInternal(
+            type = type,
+            ageYears = ageYears,
+            massTons = massTons,
+        )
+        set(value) {
+            val state = value as StarMementoInternal
+            type = state.type
+            ageYears = state.ageYears
+            massTons = state.massTons
+        }
+
+    /**
      * Advances the star to its next lifecycle stage, doubling
      * its age and multiplying its mass eightfold before
      * applying the type-specific transition.
@@ -32,32 +51,6 @@ internal class Star(
                 massTons = 0
             }
         }
-    }
-
-    /**
-     * Captures the current state of this star into a
-     * [StarMemento].
-     *
-     * @return an opaque memento containing the current state
-     */
-    fun getMemento(): StarMemento =
-        StarMementoInternal(
-            type = type,
-            ageYears = ageYears,
-            massTons = massTons,
-        )
-
-    /**
-     * Restores this star's state from a previously captured
-     * [StarMemento].
-     *
-     * @param memento the memento to restore from
-     */
-    fun setMemento(memento: StarMemento) {
-        val state = memento as StarMementoInternal
-        type = state.type
-        ageYears = state.ageYears
-        massTons = state.massTons
     }
 
     override fun toString(): String =

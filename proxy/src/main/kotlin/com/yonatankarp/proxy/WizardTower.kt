@@ -1,7 +1,7 @@
 package com.yonatankarp.proxy
 
 /**
- * WizardTower interface.
+ * Interface for a tower that [Wizard] instances can enter.
  */
 internal interface WizardTower {
     fun enter(wizard: Wizard)

@@ -3,8 +3,13 @@ title: Proxy
 category: Structural
 language: en
 tag:
- - Gang Of Four
- - Decoupling
+  - Decoupling
+  - Encapsulation
+  - Gang of Four
+  - Lazy initialization
+  - Proxy
+  - Security
+  - Wrapping
 ---
 
 ## Also known as
@@ -13,74 +18,103 @@ tag:
 
 ## Intent
 
-Provide a surrogate or placeholder for another object to control access to it.
+Provide a surrogate or placeholder for another object
+to control access to it.
 
 ## Explanation
 
-Real-world example
+### Real-world example
 
-> Imagine a tower where the local wizards go to study their spells. The ivory
-> tower can only be accessed through a proxy which ensures that only the first
-> three wizards can enter. Here the proxy represents the functionality of the
-> tower and adds access control to it.
+> Imagine a tower where the local wizards go to study
+> their spells. The ivory tower can only be accessed
+> through a proxy which ensures that only the first
+> three wizards can enter. Here the proxy represents
+> the functionality of the tower and adds access
+> control to it.
 
-In plain words
+### In plain words
 
-> Using the proxy pattern, a class represents the functionality of another
-> class.
+> Using the proxy pattern, a class represents the
+> functionality of another class.
 
-Wikipedia says
+### Wikipedia says
 
-> A proxy, in its most general form, is a class functioning as an interface to
-> something else. A proxy is a wrapper or agent object that is being called by
-> the client to access the real serving object behind the scenes. Use of the
-> proxy can simply be forwarding to the real object, or can provide additional
-> logic. In the proxy extra functionality can be provided, for example caching
-> when operations on the real object are resource intensive, or checking
-> preconditions before operations on the real object are invoked.
+> A proxy, in its most general form, is a class
+> functioning as an interface to something else. A
+> proxy is a wrapper or agent object that is being
+> called by the client to access the real serving
+> object behind the scenes. Use of the proxy can simply
+> be forwarding to the real object, or can provide
+> additional logic. In the proxy extra functionality
+> can be provided, for example caching when operations
+> on the real object are resource intensive, or checking
+> preconditions before operations on the real object
+> are invoked.
 
-### Programmatic Example
+```mermaid
+sequenceDiagram
+    participant Client
+    participant WizardTowerProxy
+    participant IvoryTower
 
-Taking our wizard tower example from above. Firstly we have the `WizardTower`
-interface and the `IvoryTower` class.
+    Client->>WizardTowerProxy: enter(wizard)
+    alt numWizards < limit
+        WizardTowerProxy->>IvoryTower: enter(wizard)
+        IvoryTower-->>WizardTowerProxy: done
+        WizardTowerProxy-->>Client: wizard enters
+    else limit reached
+        WizardTowerProxy-->>Client: wizard denied
+    end
+```
+
+### **Programmatic Example**
+
+Taking our wizard tower example from above. Firstly
+we have the `WizardTower` interface and the
+`IvoryTower` class.
 
 ```kotlin
-interface WizardTower {
-  fun enter(wizard: Wizard)
+internal interface WizardTower {
+    fun enter(wizard: Wizard)
 }
 
-class IvoryTower : WizardTower {
-  override fun enter(wizard: Wizard) =
-      logger.info("$wizard enters the tower.")
+internal class IvoryTower : WizardTower {
+    override fun enter(wizard: Wizard) =
+        logger.info("$wizard enters the tower.")
 }
 ```
 
 Then a simple `Wizard` class.
 
 ```kotlin
-class Wizard(private val name: String) {
-  override fun toString() = name
+internal class Wizard(private val name: String) {
+    override fun toString() = name
 }
 ```
 
-Then we have the `WizardTowerProxy` to add access control to `WizardTower`.
+Then we have the `WizardTowerProxy` to add access
+control to `WizardTower`.
 
 ```kotlin
-class WizardTowerProxy(private val tower: WizardTower) : WizardTower {
-  private var numWizards = 0
+internal class WizardTowerProxy(
+    private val tower: WizardTower,
+) : WizardTower {
+    private var numWizards = 0
 
-  override fun enter(wizard: Wizard) {
-    if (numWizards < NUM_WIZARDS_ALLOWED) {
-      tower.enter(wizard)
-      numWizards++
-    } else {
-      logger.info("$wizard is not allowed to enter!")
+    override fun enter(wizard: Wizard) {
+        if (numWizards < NUM_WIZARDS_ALLOWED) {
+            tower.enter(wizard)
+            numWizards++
+        } else {
+            logger.info(
+                "$wizard is not allowed to enter!"
+            )
+        }
     }
-  }
 
-  companion object {
-    private const val NUM_WIZARDS_ALLOWED = 3
-  }
+    companion object {
+        private const val NUM_WIZARDS_ALLOWED = 3
+    }
 }
 ```
 
@@ -111,20 +145,20 @@ Brown wizard is not allowed to enter!
 classDiagram
     class WizardTower {
         <<interface>>
-        +enter(Wizard)*
+        +enter(Wizard)
     }
     class IvoryTower {
-        +enter(Wizard wizard)
+        +enter(Wizard)
     }
     class Wizard {
-        -String name
+        -name String
         +toString() String
     }
     class WizardTowerProxy {
-        -int NUM_WIZARDS_ALLOWED$
-        -int numWizards
-        -WizardTower tower
-        +enter(Wizard wizard)
+        -NUM_WIZARDS_ALLOWED Int
+        -numWizards Int
+        -tower WizardTower
+        +enter(Wizard)
     }
     WizardTowerProxy --> WizardTower : tower
     IvoryTower ..|> WizardTower
@@ -133,35 +167,42 @@ classDiagram
 
 ## Applicability
 
-Proxy is applicable whenever there is a need for a more versatile or
-sophisticated reference to an object than a simple pointer. Here are several
-common situations in which the Proxy pattern is applicable.
+Use the Proxy pattern when:
 
-- Remote proxy provides a local representative for an object in a different
-  address space.
-- Virtual proxy creates expensive objects on demand.
-- Protection proxy controls access to the original object. Protection proxies
-  are useful when objects should have different access rights.
+- A remote proxy provides a local representative for
+  an object in a different address space.
+- A virtual proxy creates expensive objects on demand.
+- A protection proxy controls access to the original
+  object when objects should have different access
+  rights.
 
-Typically, the proxy pattern is used to
+## Consequences
 
-- Control access to another object
-- Lazy initialization
-- Implement logging
-- Facilitate network connection
-- Count references to an object
+Benefits:
 
-## Tutorials
+- Controls access to the real object without clients
+  knowing.
+- Can add functionality (logging, caching, access
+  control) transparently.
 
-- [Controlling Access With Proxy Pattern](http://java-design-patterns.com/blog/controlling-access-with-proxy-pattern/)
+Trade-offs:
 
-## Related patterns
+- Introduces an additional layer of indirection.
+- May add latency to object access.
 
-[//]: # (TODO: Update once the pattern is set)
+## Related Patterns
 
-- [Ambassador](https://java-design-patterns.com/patterns/ambassador/)
+- [Decorator](../decorator/README.md): Decorator adds
+  responsibilities to objects, while Proxy controls
+  access to them.
+- [Adapter](../adapter/README.md): Adapter provides a
+  different interface, while Proxy provides the same
+  interface with controlled access.
 
 ## Credits
 
-- [Design Patterns: Elements of Reusable Object-Oriented Software](https://www.amazon.com/gp/product/0201633612/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0201633612&linkCode=as2&tag=javadesignpat-20&linkId=675d49790ce11db99d90bde47f1aeb59)
-- [Head First Design Patterns: A Brain-Friendly Guide](https://www.amazon.com/gp/product/0596007124/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596007124&linkCode=as2&tag=javadesignpat-20&linkId=6b8b6eea86021af6c8e3cd3fc382cb5b)
+- [Design Patterns: Elements of Reusable Object-Oriented
+  Software](https://amzn.to/3w0pvKI)
+- [Head First Design Patterns: Building Extensible and
+  Maintainable Object-Oriented
+  Software](https://amzn.to/49NGldq)

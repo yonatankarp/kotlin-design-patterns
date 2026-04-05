@@ -68,7 +68,7 @@ sequenceDiagram
     Wizard->>Wizard: push to undoStack
 ```
 
-**Programmatic Example**
+### **Programmatic Example**
 
 In the Command pattern, objects are used to encapsulate all
 information needed to perform an action or trigger an event at

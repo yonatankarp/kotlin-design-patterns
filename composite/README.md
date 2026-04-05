@@ -3,8 +3,15 @@ title: Composite
 category: Structural
 language: en
 tag:
+  - Decoupling
   - Gang of Four
+  - Object composition
+  - Recursion
 ---
+
+## Also known as
+
+- Object Tree
 
 ## Intent
 
@@ -14,18 +21,18 @@ uniformly.
 
 ## Explanation
 
-Real-world example
+### Real-world example
 
 > Every sentence is composed of words which are in turn composed of characters.
 > Each of these objects are printable, and they can have something printed
 > before or after them like sentence always ends with full stop and word always
 > has space before it.
 
-In plain words
+### In plain words
 
 > Composite pattern lets clients uniformly treat the individual objects.
 
-Wikipedia says
+### Wikipedia says
 
 > In software engineering, the composite pattern is a partitioning design
 > pattern. The composite pattern describes that a group of objects is to be
@@ -34,7 +41,7 @@ Wikipedia says
 > hierarchies. Implementing the composite pattern lets clients treat individual
 > objects and compositions uniformly.
 
-### Programmatic Example
+### **Programmatic Example**
 
 Taking our sentence example from above. Here we have the base class
 `LetterComposite` and the different printable types `Letter`, `Word` and
@@ -202,8 +209,35 @@ Use the Composite pattern when
   objects and individual objects. Clients will treat all objects in the
   composite structure uniformly.
 
+## Consequences
+
+Benefits:
+
+- Defines class hierarchies of primitive and composite
+  objects uniformly.
+- Makes it easy to add new component types.
+- Clients can treat composites and individual objects
+  uniformly.
+
+Trade-offs:
+
+- Can make the design overly general, making it harder
+  to restrict the components of a composite.
+
+## Related Patterns
+
+- [Decorator](../decorator/README.md): Often used
+  together; both have similar structure but Decorator
+  adds responsibilities while Composite aggregates
+  children.
+- [Flyweight](../flyweight/README.md): Often combined
+  with Composite to share leaf nodes.
+
 ## Credits
 
-- [Design Patterns: Elements of Reusable Object-Oriented Software](https://www.amazon.com/gp/product/0201633612/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0201633612&linkCode=as2&tag=javadesignpat-20&linkId=675d49790ce11db99d90bde47f1aeb59)
-- [Head First Design Patterns: A Brain-Friendly Guide](https://www.amazon.com/gp/product/0596007124/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596007124&linkCode=as2&tag=javadesignpat-20&linkId=6b8b6eea86021af6c8e3cd3fc382cb5b)
-- [Refactoring to Patterns](https://www.amazon.com/gp/product/0321213351/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0321213351&linkCode=as2&tag=javadesignpat-20&linkId=2a76fcb387234bc71b1c61150b3cc3a7)
+- [Design Patterns: Elements of Reusable Object-Oriented
+  Software](https://amzn.to/3w0pvKI)
+- [Head First Design Patterns: Building Extensible and
+  Maintainable Object-Oriented
+  Software](https://amzn.to/49NGldq)
+- [Refactoring to Patterns](https://amzn.to/3VOO4F5)

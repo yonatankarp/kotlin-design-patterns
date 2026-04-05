@@ -1,7 +1,7 @@
 package com.yonatankarp.composite
 
 /**
- * Sentence.
+ * Composite [LetterComposite] containing [Word] children.
  */
 internal class Sentence(words: List<Word>) : LetterComposite() {
     /**

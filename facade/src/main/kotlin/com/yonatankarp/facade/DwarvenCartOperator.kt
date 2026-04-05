@@ -1,7 +1,7 @@
 package com.yonatankarp.facade
 
 /**
- * DwarvenCartOperator is one of the goldmine subsystems.
+ * A [DwarvenMineWorker] that moves gold chunks out of the mine.
  */
 internal class DwarvenCartOperator : DwarvenMineWorker() {
     override val name: String

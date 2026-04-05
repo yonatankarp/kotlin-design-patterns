@@ -1,7 +1,7 @@
 package com.yonatankarp.facade
 
 /**
- * DwarvenGoldDigger is one of the goldmine subsystems.
+ * A [DwarvenMineWorker] that digs for gold in the mine.
  */
 internal class DwarvenGoldDigger : DwarvenMineWorker() {
     override val name: String

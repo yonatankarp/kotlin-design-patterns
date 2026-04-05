@@ -3,8 +3,14 @@ title: Facade
 category: Structural
 language: en
 tag:
-  - Gang Of Four
+  - Abstraction
+  - API design
+  - Code simplification
   - Decoupling
+  - Encapsulation
+  - Gang of Four
+  - Interface
+  - Object composition
 ---
 
 ## Intent
@@ -14,23 +20,23 @@ defines a higher-level interface that makes the subsystem easier to use.
 
 ## Explanation
 
-Real-world example
+### Real-world example
 
 > How does a goldmine work? "Well, the miners go down there and dig gold!" you
 > say. That is what you believe because you are using a simple interface that
 > goldmine provides on the outside, internally it has to do a lot of stuff to
 > make it happen. This simple interface to the complex subsystem is a facade.
 
-In plain words
+### In plain words
 
 > Facade pattern provides a simplified interface to a complex subsystem.
 
-Wikipedia says
+### Wikipedia says
 
 > A facade is an object that provides a simplified interface to a larger body of
 > code, such as a class library.
 
-### Programmatic Example
+### **Programmatic Example**
 
 Let's take our goldmine example from above. Here we have the dwarven mine worker
 hierarchy. First there's a base class `DwarvenMineWorker`:
@@ -243,7 +249,34 @@ Use the Facade pattern when
   dependencies between them by making them communicate with each other solely
   through their facades.
 
+## Consequences
+
+Benefits:
+
+- Isolates clients from subsystem components, reducing
+  the number of objects that clients deal with.
+- Promotes weak coupling between the subsystem and its
+  clients.
+
+Trade-offs:
+
+- The facade can become a god object coupled to all
+  classes of the subsystem if not designed carefully.
+
+## Related Patterns
+
+- [Adapter](../adapter/README.md): Adapter changes
+  the interface of an existing object, while Facade
+  defines a new simplified interface.
+- [Flyweight](../flyweight/README.md): Flyweight shows
+  how to make lots of little objects, while Facade
+  shows how to make a single object that represents an
+  entire subsystem.
+
 ## Credits
 
-- [Design Patterns: Elements of Reusable Object-Oriented Software](https://www.amazon.com/gp/product/0201633612/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0201633612&linkCode=as2&tag=javadesignpat-20&linkId=675d49790ce11db99d90bde47f1aeb59)
-- [Head First Design Patterns: A Brain-Friendly Guide](https://www.amazon.com/gp/product/0596007124/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596007124&linkCode=as2&tag=javadesignpat-20&linkId=6b8b6eea86021af6c8e3cd3fc382cb5b)
+- [Design Patterns: Elements of Reusable Object-Oriented
+  Software](https://amzn.to/3w0pvKI)
+- [Head First Design Patterns: Building Extensible and
+  Maintainable Object-Oriented
+  Software](https://amzn.to/49NGldq)

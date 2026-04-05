@@ -1,7 +1,7 @@
 package com.yonatankarp.flyweight
 
 /**
- * Enumeration for potion types.
+ * Enumerates the types of [Potion] the [PotionFactory] can provide.
  */
 enum class PotionType {
     HEALING,

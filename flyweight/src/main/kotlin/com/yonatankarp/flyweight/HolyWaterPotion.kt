@@ -1,7 +1,7 @@
 package com.yonatankarp.flyweight
 
 /**
- * HolyWaterPotion.
+ * A holy water [Potion] shared via [PotionFactory].
  */
 internal class HolyWaterPotion : Potion {
     override fun drink() =

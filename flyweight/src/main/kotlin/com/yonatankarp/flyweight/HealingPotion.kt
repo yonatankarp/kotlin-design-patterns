@@ -1,7 +1,7 @@
 package com.yonatankarp.flyweight
 
 /**
- * HealingPotion.
+ * A healing [Potion] shared via [PotionFactory].
  */
 internal class HealingPotion : Potion {
     override fun drink() =

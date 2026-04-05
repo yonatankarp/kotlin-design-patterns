@@ -3,8 +3,11 @@ title: Flyweight
 category: Structural
 language: en
 tag:
- - Gang of Four
- - Performance
+  - Gang of Four
+  - Memory management
+  - Object composition
+  - Optimization
+  - Performance
 ---
 
 ## Intent
@@ -13,26 +16,26 @@ Use sharing to support large numbers of fine-grained objects efficiently.
 
 ## Explanation
 
-Real-world example
+### Real-world example
 
 > Alchemist's shop has shelves full of magic potions. Many of the potions are
 > the same so there is no need to create a new object for each of them. Instead,
 > one object instance can represent multiple shelf items so the memory footprint
 > remains small.
 
-In plain words
+### In plain words
 
 > It is used to minimize memory usage or computational expenses by sharing as
 > much as possible with similar objects.
 
-Wikipedia says
+### Wikipedia says
 
 > In computer programming, flyweight is a software design pattern. A flyweight
 > is an object that minimizes memory use by sharing as much data as possible
 > with other similar objects; it is a way to use objects in large numbers when
 > a simple repeated representation would use an unacceptable amount of memory.
 
-### Programmatic Example
+### **Programmatic Example**
 
 Translating our alchemist shop example from above. First of all, we have
 different potion types:
@@ -219,7 +222,32 @@ used. Apply the Flyweight pattern when all the following are true:
 - The application doesn't depend on object identity. Since flyweight objects may
   be shared, identity tests will return true for conceptually distinct objects.
 
+## Consequences
+
+Benefits:
+
+- Reduces the total number of object instances,
+  saving memory.
+- Centralizes state management for extrinsic data.
+
+Trade-offs:
+
+- Introduces complexity in separating intrinsic and
+  extrinsic state.
+- May introduce runtime cost when extrinsic state must
+  be computed.
+
+## Related Patterns
+
+- [Composite](../composite/README.md): Flyweight is
+  often combined with Composite to share leaf nodes.
+- [Factory](../factory/README.md): Flyweight objects
+  are usually created through a factory.
+
 ## Credits
 
-- [Design Patterns: Elements of Reusable Object-Oriented Software](https://www.amazon.com/gp/product/0201633612/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0201633612&linkCode=as2&tag=javadesignpat-20&linkId=675d49790ce11db99d90bde47f1aeb59)
-- [Head First Design Patterns: A Brain-Friendly Guide](https://www.amazon.com/gp/product/0596007124/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596007124&linkCode=as2&tag=javadesignpat-20&linkId=6b8b6eea86021af6c8e3cd3fc382cb5b)
+- [Design Patterns: Elements of Reusable Object-Oriented
+  Software](https://amzn.to/3w0pvKI)
+- [Head First Design Patterns: Building Extensible and
+  Maintainable Object-Oriented
+  Software](https://amzn.to/49NGldq)

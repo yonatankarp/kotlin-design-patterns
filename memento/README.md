@@ -58,7 +58,7 @@ sequenceDiagram
     Star-->>Star: restore type, age, mass
 ```
 
-**Programmatic Example**
+### **Programmatic Example**
 
 First we define the lifecycle stages of a star.
 

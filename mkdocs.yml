@@ -1,0 +1,100 @@
+site_name: Kotlin Design Patterns
+site_url: https://yonatankarp.github.io/kotlin-design-patterns/
+repo_url: https://github.com/yonatankarp/kotlin-design-patterns
+repo_name: yonatankarp/kotlin-design-patterns
+
+docs_dir: .
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: deep purple
+      accent: amber
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: deep purple
+      accent: amber
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - admonition
+  - pymdownx.details
+  - toc:
+      permalink: true
+
+plugins:
+  - search
+  - same-dir
+
+exclude_docs: |
+  **/src/**
+  **/build/**
+  **/.gradle/**
+  **/gradle/**
+  **/.github/**
+  **/config/**
+  **/.claude/**
+  **/.git/**
+  **/node_modules/**
+  **/*.kt
+  **/*.kts
+  **/*.toml
+  **/*.yml
+  **/*.yaml
+  **/*.json
+  **/*.properties
+  **/gradlew*
+  **/.gitignore
+  **/LICENSE
+
+nav:
+  - Home: README.md
+  - Categories: DESIGN_PATTERN_CATEGORIES.md
+  - Creational:
+      - Singleton: singleton/README.md
+      - Factory Method: factory-method/README.md
+      - Factory: factory/README.md
+      - Abstract Factory: abstract-factory/README.md
+      - Builder: builder/README.md
+      - Prototype: prototype/README.md
+  - Structural:
+      - Adapter: adapter/README.md
+      - Bridge: bridge/README.md
+      - Composite: composite/README.md
+      - Decorator: decorator/README.md
+      - Facade: facade/README.md
+      - Flyweight: flyweight/README.md
+      - Proxy: proxy/README.md
+  - Behavioral:
+      - Chain of Responsibility: chain-of-responsibility/README.md
+      - Command: command/README.md
+      - Interpreter: interpreter/README.md
+      - Iterator: iterator/README.md
+      - Mediator: mediator/README.md
+      - Memento: memento/README.md
+      - Observer: observer/README.md
+      - State: state/README.md
+      - Strategy: strategy/README.md
+      - Template Method: template-method/README.md
+      - Visitor: visitor/README.md

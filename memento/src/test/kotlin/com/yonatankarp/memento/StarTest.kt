@@ -53,18 +53,18 @@ internal class StarTest {
     fun `should restore previous state from memento`() {
         // Given
         val star = Star(StarType.SUN, 1, 2)
-        val firstMemento = star.getMemento()
+        val firstMemento = star.memento
         assertEquals("sun age: 1 years mass: 2 tons", star.toString())
 
         star.timePasses()
-        val secondMemento = star.getMemento()
+        val secondMemento = star.memento
         assertEquals(
             "red giant age: 2 years mass: 16 tons",
             star.toString(),
         )
 
         star.timePasses()
-        val thirdMemento = star.getMemento()
+        val thirdMemento = star.memento
         assertEquals(
             "white dwarf age: 4 years mass: 128 tons",
             star.toString(),
@@ -78,7 +78,7 @@ internal class StarTest {
         )
 
         // Then - restoring to third memento
-        star.setMemento(thirdMemento)
+        star.memento = thirdMemento
         assertEquals(
             "white dwarf age: 4 years mass: 128 tons",
             star.toString(),
@@ -90,13 +90,13 @@ internal class StarTest {
             star.toString(),
         )
 
-        star.setMemento(secondMemento)
+        star.memento = secondMemento
         assertEquals(
             "red giant age: 2 years mass: 16 tons",
             star.toString(),
         )
 
-        star.setMemento(firstMemento)
+        star.memento = firstMemento
         assertEquals("sun age: 1 years mass: 2 tons", star.toString())
     }
 }

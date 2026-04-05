@@ -29,25 +29,25 @@ fun main() {
 
     val star = Star(StarType.SUN, INITIAL_AGE, INITIAL_MASS)
     logger.info(star.toString())
-    states.push(star.getMemento())
+    states.push(star.memento)
 
     star.timePasses()
     logger.info(star.toString())
-    states.push(star.getMemento())
+    states.push(star.memento)
 
     star.timePasses()
     logger.info(star.toString())
-    states.push(star.getMemento())
+    states.push(star.memento)
 
     star.timePasses()
     logger.info(star.toString())
-    states.push(star.getMemento())
+    states.push(star.memento)
 
     star.timePasses()
     logger.info(star.toString())
 
     while (states.isNotEmpty()) {
-        star.setMemento(states.pop())
+        star.memento = states.pop()
         logger.info(star.toString())
     }
 }

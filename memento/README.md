@@ -107,19 +107,18 @@ internal class Star(
         }
     }
 
-    fun getMemento(): StarMemento =
-        StarMementoInternal(
+    var memento: StarMemento
+        get() = StarMementoInternal(
             type = type,
             ageYears = ageYears,
             massTons = massTons,
         )
-
-    fun setMemento(memento: StarMemento) {
-        val state = memento as StarMementoInternal
-        type = state.type
-        ageYears = state.ageYears
-        massTons = state.massTons
-    }
+        set(value) {
+            val state = value as StarMementoInternal
+            type = state.type
+            ageYears = state.ageYears
+            massTons = state.massTons
+        }
 
     override fun toString(): String =
         "$type age: $ageYears years mass: $massTons tons"
@@ -141,25 +140,25 @@ fun main() {
 
     val star = Star(StarType.SUN, 10_000_000, 500_000)
     logger.info(star.toString())
-    states.push(star.getMemento())
+    states.push(star.memento)
 
     star.timePasses()
     logger.info(star.toString())
-    states.push(star.getMemento())
+    states.push(star.memento)
 
     star.timePasses()
     logger.info(star.toString())
-    states.push(star.getMemento())
+    states.push(star.memento)
 
     star.timePasses()
     logger.info(star.toString())
-    states.push(star.getMemento())
+    states.push(star.memento)
 
     star.timePasses()
     logger.info(star.toString())
 
     while (states.isNotEmpty()) {
-        star.setMemento(states.pop())
+        star.memento = states.pop()
         logger.info(star.toString())
     }
 }

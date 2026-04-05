@@ -63,7 +63,7 @@ sequenceDiagram
     P->>R: partyAction(ENEMY)
 ```
 
-**Programmatic Example**
+### **Programmatic Example**
 
 The party members `Rogue`, `Wizard`, `Hobbit`, and `Hunter`
 all inherit from the sealed `PartyMemberBase` class which

@@ -1,7 +1,7 @@
 package com.yonatankarp.composite
 
 /**
- * Word.
+ * Composite [LetterComposite] containing [Letter] children.
  */
 class Word : LetterComposite {
     /**

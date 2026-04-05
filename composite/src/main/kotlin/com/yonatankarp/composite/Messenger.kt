@@ -1,7 +1,7 @@
 package com.yonatankarp.composite
 
 /**
- * Messenger.
+ * Constructs [Sentence] composites from predefined messages.
  */
 internal class Messenger {
     fun messageFromOrcs(): LetterComposite {

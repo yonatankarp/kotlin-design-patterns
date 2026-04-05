@@ -1,7 +1,7 @@
 package com.yonatankarp.composite
 
 /**
- * Composite interface.
+ * Base component in the Composite tree of printable elements.
  */
 sealed class LetterComposite {
     private val children = mutableListOf<LetterComposite>()
@@ -17,7 +17,7 @@ sealed class LetterComposite {
     }
 
     /**
-     * Print.
+     * Recursively prints this node and all its children.
      */
     fun print() {
         printThisBefore()

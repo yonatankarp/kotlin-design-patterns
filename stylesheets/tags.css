@@ -1,0 +1,15 @@
+/* Move tags below the first heading */
+.md-content__inner {
+  display: flex;
+  flex-direction: column;
+}
+.md-content__inner > h1 {
+  order: 0;
+}
+.md-content__inner > .md-tags {
+  order: 1;
+  margin-bottom: 1em;
+}
+.md-content__inner > *:not(.md-tags):not(h1) {
+  order: 2;
+}

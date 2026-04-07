@@ -48,6 +48,9 @@ plugins:
   - same-dir
   - tags
 
+extra_css:
+  - stylesheets/tags.css
+
 exclude_docs: |
   **/src/**
   **/build/**

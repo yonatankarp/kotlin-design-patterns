@@ -2,7 +2,8 @@
 title: Mediator
 category: Behavioral
 language: en
-tag:
+tags:
+  - Behavioral
   - Decoupling
   - Gang of Four
   - Messaging

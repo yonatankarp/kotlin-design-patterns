@@ -2,7 +2,8 @@
 title: Decorator
 category: Structural
 language: en
-tag:
+tags:
+  - Structural
   - Enhancement
   - Extensibility
   - Gang of Four

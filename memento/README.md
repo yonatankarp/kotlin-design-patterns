@@ -2,7 +2,8 @@
 title: Memento
 category: Behavioral
 language: en
-tag:
+tags:
+  - Behavioral
   - Encapsulation
   - Gang of Four
   - State tracking

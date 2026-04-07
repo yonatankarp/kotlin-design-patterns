@@ -2,7 +2,8 @@
 title: Template Method
 category: Behavioral
 language: en
-tag:
+tags:
+  - Behavioral
   - Abstraction
   - Code simplification
   - Extensibility

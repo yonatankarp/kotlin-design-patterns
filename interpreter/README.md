@@ -2,7 +2,8 @@
 title: Interpreter
 category: Behavioral
 language: en
-tag:
+tags:
+  - Behavioral
   - Abstraction
   - Data transformation
   - Decoupling

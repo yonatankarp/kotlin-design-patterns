@@ -2,7 +2,8 @@
 title: Factory
 category: Creational
 language: en
-tag:
+tags:
+  - Creational
   - Abstraction
   - Encapsulation
   - Gang of Four

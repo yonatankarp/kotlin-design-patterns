@@ -2,7 +2,8 @@
 title: Adapter
 category: Structural
 language: en
-tag:
+tags:
+  - Structural
   - Compatibility
   - Decoupling
   - Gang of Four

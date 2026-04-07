@@ -2,7 +2,8 @@
 title: Facade
 category: Structural
 language: en
-tag:
+tags:
+  - Structural
   - Abstraction
   - API design
   - Code simplification

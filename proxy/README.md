@@ -2,7 +2,8 @@
 title: Proxy
 category: Structural
 language: en
-tag:
+tags:
+  - Structural
   - Decoupling
   - Encapsulation
   - Gang of Four

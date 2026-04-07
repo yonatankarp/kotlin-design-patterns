@@ -2,7 +2,8 @@
 title: Abstract Factory
 category: Creational
 language: en
-tag:
+tags:
+  - Creational
   - Abstraction
   - Decoupling
   - Gang of Four

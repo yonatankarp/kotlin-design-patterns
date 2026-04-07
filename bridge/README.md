@@ -2,7 +2,8 @@
 title: Bridge
 category: Structural
 language: en
-tag:
+tags:
+  - Structural
   - Abstraction
   - Decoupling
   - Extensibility

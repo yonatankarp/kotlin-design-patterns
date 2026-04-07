@@ -2,7 +2,8 @@
 title: Composite
 category: Structural
 language: en
-tag:
+tags:
+  - Structural
   - Decoupling
   - Gang of Four
   - Object composition

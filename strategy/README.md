@@ -2,7 +2,8 @@
 title: Strategy
 category: Behavioral
 language: en
-tag:
+tags:
+  - Behavioral
   - Decoupling
   - Extensibility
   - Gang of Four

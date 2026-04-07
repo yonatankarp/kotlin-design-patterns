@@ -2,7 +2,8 @@
 title: Factory Method
 category: Creational
 language: en
-tag:
+tags:
+  - Creational
   - Encapsulation
   - Gang of Four
   - Instantiation

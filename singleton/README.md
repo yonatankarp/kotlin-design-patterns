@@ -2,7 +2,8 @@
 title: Singleton
 category: Creational
 language: en
-tag:
+tags:
+  - Creational
   - Gang of Four
   - Instantiation
   - Lazy initialization

@@ -2,7 +2,8 @@
 title: Iterator
 category: Behavioral
 language: en
-tag:
+tags:
+  - Behavioral
   - Data access
   - Data transformation
   - Decoupling

@@ -46,6 +46,7 @@ markdown_extensions:
 plugins:
   - search
   - same-dir
+  - tags
 
 exclude_docs: |
   **/src/**

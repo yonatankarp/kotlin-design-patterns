@@ -2,7 +2,8 @@
 title: Prototype
 category: Creational
 language: en
-tag:
+tags:
+  - Creational
   - Gang of Four
   - Instantiation
   - Object composition

@@ -2,7 +2,8 @@
 title: Flyweight
 category: Structural
 language: en
-tag:
+tags:
+  - Structural
   - Gang of Four
   - Memory management
   - Object composition

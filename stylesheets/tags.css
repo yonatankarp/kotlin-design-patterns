@@ -3,13 +3,13 @@
   display: flex;
   flex-direction: column;
 }
-.md-content__inner > h1 {
+.md-content__inner > h1:first-child {
   order: 0;
 }
 .md-content__inner > .md-tags {
   order: 1;
   margin-bottom: 1em;
 }
-.md-content__inner > *:not(.md-tags):not(h1) {
+.md-content__inner > *:not(.md-tags):not(h1:first-child) {
   order: 2;
 }

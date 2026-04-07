@@ -98,3 +98,5 @@ nav:
       - Strategy: strategy/README.md
       - Template Method: template-method/README.md
       - Visitor: visitor/README.md
+  - Integration:
+      - Gateway: gateway/README.md

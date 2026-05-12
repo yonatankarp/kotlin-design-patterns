@@ -1,5 +1,5 @@
 [versions]
-coroutines = "1.10.2"
+coroutines = "1.11.0"
 junit = "6.0.3"
 junitPlatform = "6.0.3"
 jvm = "21"

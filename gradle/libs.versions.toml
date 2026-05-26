@@ -1,7 +1,7 @@
 [versions]
 coroutines = "1.11.0"
 junit = "6.1.0"
-junitPlatform = "6.0.3"
+junitPlatform = "6.1.0"
 jvm = "21"
 kotlin = "2.3.21"
 kotlinJunitTools = "0.3.1"

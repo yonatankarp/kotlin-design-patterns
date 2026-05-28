@@ -9,26 +9,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Git Checkout
-        uses: actions/checkout@v6
-        with:
-          fetch-depth: 0
-
-      - name: Find changed READMEs
-        id: changed
-        env:
-          BASE_SHA: ${{ github.event.pull_request.base.sha }}
-          HEAD_SHA: ${{ github.sha }}
-        run: |
-          files=$(git diff --name-only --diff-filter=ACMRT "$BASE_SHA" "$HEAD_SHA" -- '**/README.md' | tr '\n' ' ')
-          echo "files=$files" >> "$GITHUB_OUTPUT"
-
-      - name: Lint READMEs
-        if: steps.changed.outputs.files != ''
-        uses: avto-dev/markdown-lint@v1
-        with:
-          config: './config/markdown-lint/rules.json'
-          args: ${{ steps.changed.outputs.files }}
+  linters:
+    uses: yonatankarp/github-actions/.github/workflows/linters.yml@v2
+    with:
+      check_style: false

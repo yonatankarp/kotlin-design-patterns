@@ -29,12 +29,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: ./gradlew build
 
-  dependabot-auto-merge:
+  dependabot_auto_merge:
     needs: build
-    if: github.event.pull_request.user.login == 'dependabot[bot]'
+    if: ${{ github.actor == 'dependabot[bot]' }}
     permissions:
       contents: write
       pull-requests: write
     uses: yonatankarp/github-actions/.github/workflows/dependabot-auto-merge.yml@v2
     secrets:
-      GITHUB_PAT: ${{ secrets.CI_PAT }}
+      GITHUB_PAT: ${{ secrets.REVIEWER_GITHUB_TOKEN }}

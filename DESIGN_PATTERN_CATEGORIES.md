@@ -32,3 +32,7 @@
 - [Visitor](./visitor/README.md)
 - [Template Method](./template-method/README.md)
 - [Observer](./observer/README.md)
+
+## Integration Patterns
+
+- [Gateway](./gateway/README.md)
